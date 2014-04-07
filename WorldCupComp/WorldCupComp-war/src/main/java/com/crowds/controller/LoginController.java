@@ -19,8 +19,8 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 public class LoginController extends MultiActionController implements InitializingBean{
 
 	@Autowired
-	xxprivate UserService		m_userService;
-	yy
+	xxxprivate UserService		m_userService;
+	yyx
 	
 	@RequestMapping("/register")  
 	public ModelAndView registerUser(@ModelAttribute User p_user) {  

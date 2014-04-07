@@ -32,7 +32,7 @@ public class LoginController extends MultiActionController implements Initializi
 		return new ModelAndView("register", "model", model);  
 	}
 	
-	/** ..
+	/** ..   paul
 
 	 * Check whether all mandatory properties are really set (initialized)
 	 */

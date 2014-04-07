@@ -20,7 +20,7 @@ public class LoginController extends MultiActionController implements Initializi
 
 	@Autowired
 	xxxprivate UserService		m_userService;
-	yyxxxxzzz
+	yyxxxxzzzwww
 	
 	@RequestMapping("/register")  
 	public ModelAndView registerUser(@ModelAttribute User p_user) {  

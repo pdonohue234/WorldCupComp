@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.crowds.worldcupcomp</groupId>
+  <artifactId>WorldCupComp</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <build>
+      <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>com.google.appengine</groupId>
+                  <artifactId>appengine-maven-plugin</artifactId>
+                  <version>${appengine.target.version}</version>
+              </plugin>
+          </plugins>
+      </pluginManagement>
+  </build>
+  
+  <dependencies>
+    <dependency>
+        <groupId>com.google.appengine</groupId>
+        <artifactId>appengine-api-1.0-sdk</artifactId>
+        <version>1.9.2</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+        <scope>provided</scope>
+    </dependency>
+    
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+        <scope>compile</scope> 		
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+        <scope>compile</scope> 		
+	</dependency>	
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+        <scope>compile</scope> 		
+	</dependency>	
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+        <scope>compile</scope> 		
+	</dependency>
+
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>${mysql.connector.version}</version>
+        <scope>compile</scope> 		
+	</dependency>
+    
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+        <scope>compile</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${commons.lang.version}</version>
+        <scope>compile</scope>  
+    </dependency>
+    
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+        <scope>compile</scope>  
+    </dependency>    
+    
+</dependencies>
+  
+  <modules>
+    <module>WorldCupComp-war</module>
+    <module>WorldCupComp-ear</module>
+  </modules>
+  
+  <properties>
+  
+	<!-- Build -->
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <appengine.target.version>1.8.7</appengine.target.version>
+    
+    
+    <commons.lang.version>2.6</commons.lang.version>
+    <log4j.version>1.2.17</log4j.version>
+    <mysql.connector.version>5.1.30</mysql.connector.version>
+    <spring.version>4.0.3.RELEASE</spring.version>
+  </properties>
+</project>

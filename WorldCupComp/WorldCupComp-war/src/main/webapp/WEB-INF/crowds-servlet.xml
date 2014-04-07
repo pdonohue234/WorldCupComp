@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans 	xmlns="http://www.springframework.org/schema/beans"  
+ 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ 		xmlns:p="http://www.springframework.org/schema/p"  
+ 		xmlns:context="http://www.springframework.org/schema/context"  
+ 		xsi:schemaLocation="http://www.springframework.org/schema/beans  
+  							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+  							http://www.springframework.org/schema/context  
+  							http://www.springframework.org/schema/context/spring-context-3.0.xsd">  
+  
+ 	<!-- telling container to take care of annotations stuff -->  
+ 	<context:annotation-config />  
+  
+ 	<!-- declaring base package -->  
+ 	<context:component-scan base-package="com.crowds" />  
+  
+	 <!-- adding view resolver to show jsp's on browser -->  
+	 <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+	  	<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" /> 
+	  	<property name="prefix" 	value="/WEB-INF/jsp/" />  
+	 	<property name="suffix" 	value=".jsp" />  
+	 </bean>  
+  
+	 <!-- declare beans here -->  
+   	<bean id="accountService" class="com.crowds.services.AccountService" />
+  	<bean id="eventService" class="com.crowds.services.EventService" />	
+	<bean id="fixtureService" class="com.crowds.services.FixtureService" />
+	<bean id="gameOddsService" class="com.crowds.services.GameOddsService" />
+  	<bean id="gameResultService" class="com.crowds.services.GameResultService" />
+  	<bean id="paymentService" class="com.crowds.services.PaymentService" />
+  	<bean id="predictionService" class="com.crowds.services.PredictionService" />
+  	<bean id="userScoreService" class="com.crowds.services.UserScoreService" />
+  	<bean id="userService" class="com.crowds.services.UserService" />
+  
+	 <!-- declare datasource bean -->  
+	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+	 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+	  	<property name="url" value="jdbc:mysql://localhost:3306/userdb" />  
+	  	<property name="username" value="root" />  
+	  	<property name="password" value="root" />  
+	 </bean>  
+</beans>  

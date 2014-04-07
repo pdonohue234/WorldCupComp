@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 public class LoginController extends MultiActionController implements InitializingBean{
 
 	@Autowired
-	xxxprivate UserService		m_userService;
+	private UserService		m_userService;
 	
 	
 	@RequestMapping("/register")  
@@ -31,13 +31,9 @@ public class LoginController extends MultiActionController implements Initializi
 		model.put("added", success);  
 		return new ModelAndView("register", "model", model);  
 	}
-<<<<<<< HEAD
 	
 	/** ..
-=======
-	
-	/** 
->>>>>>> refs/remotes/origin/master
+
 	 * Check whether all mandatory properties are really set (initialized)
 	 */
 	public void afterPropertiesSet() throws Exception {

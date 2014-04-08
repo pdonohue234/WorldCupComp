@@ -38,7 +38,7 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- Testing all Dependencies -->
+        <!-- Test all Dependencies -->
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>

@@ -54,8 +54,8 @@
 			      <td><form:input path="name" /></td>  
 			     </tr>  
 			     <tr>  
-			      <td>Name2 :</td>  
-			      <td><form:input path="name2" /></td>  
+			      <td>Name3 :</td>  
+			      <td><form:input path="name3" /></td>  
 			     </tr> 			     
 			     <tr>  
 			      <td> </td>  

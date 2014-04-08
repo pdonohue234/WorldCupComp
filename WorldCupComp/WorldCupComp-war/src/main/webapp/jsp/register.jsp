@@ -54,6 +54,10 @@
 			      <td><form:input path="name" /></td>  
 			     </tr>  
 			     <tr>  
+			      <td>Name2 :</td>  
+			      <td><form:input path="name2" /></td>  
+			     </tr> 			     
+			     <tr>  
 			      <td> </td>  
 			      <td><input type="submit" value="Save" /></td>  
 			     </tr>  

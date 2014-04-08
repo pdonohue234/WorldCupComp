@@ -50,8 +50,8 @@
 			      <td><form:input path="email" /></td>  
 			     </tr>  
 			     <tr>  
-			      <td>Name3 :</td>  
-			      <td><form:input path="name3" /></td>  
+			      <td>Name33 :</td>  
+			      <td><form:input path="name33" /></td>  
 			     </tr>  
 			     <tr>  
 			      <td>Name4 :</td>  

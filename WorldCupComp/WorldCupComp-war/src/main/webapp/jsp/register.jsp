@@ -50,8 +50,13 @@
 			      <td><form:input path="email" /></td>  
 			     </tr>  
 			     <tr>  
+<<<<<<< HEAD
 			      <td>Name3 :</td>  
 			      <td><form:input path="name3" /></td>  
+=======
+			      <td>Name :</td>  
+			      <td><form:input path="name" /></td>  
+>>>>>>> branch 'master' of https://github.com/pauliewallie/WorldCupComp.git
 			     </tr>  
 			     <tr>  
 			      <td>Name4 :</td>  

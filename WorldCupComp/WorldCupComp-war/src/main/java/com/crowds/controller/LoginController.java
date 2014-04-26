@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -23,13 +24,18 @@ public class LoginController extends MultiActionController implements Initializi
 	
 	
 	@RequestMapping("/register")  
-	public ModelAndView registerUser(@ModelAttribute User p_user) {  
+	public ModelAndView registerUser(@ModelAttribute User user) {  
 	  
-		boolean success = this.getUserService().insertData(p_user); 
+		boolean success = this.getUserService().insertData(user); 
 	  
 		Map<String, Object> model = new HashMap<String, Object>();  
 		model.put("added", success);  
 		return new ModelAndView("register", "model", model);  
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String printWelcome() {
+		return "message";  
 	}
 	
 	/**
@@ -39,6 +45,7 @@ public class LoginController extends MultiActionController implements Initializi
 		Assert.notNull(m_userService, "UserService is mandatory!");
 	}
 
+	@Autowired
 	public UserService getUserService() {
 		return m_userService;
 	}

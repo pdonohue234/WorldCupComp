@@ -5,10 +5,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
-	<welcome-file-list>
-		<welcome-file>register.jsp</welcome-file>
-	</welcome-file-list>
 	
+	<display-name>World Cup Application</display-name>
+	<description>Crowds - World Cup Application</description>
 	<servlet>  
 	  <servlet-name>crowds</servlet-name>  
 	  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
@@ -17,7 +16,21 @@
 	  
 	<servlet-mapping>  
 	  <servlet-name>crowds</servlet-name>  
-	  <url-pattern>*.html</url-pattern>  
-	</servlet-mapping> 	
+	  <url-pattern>/</url-pattern>  
+	</servlet-mapping> 
+	
+	<context-param>
+	  <param-name>contextConfigLocation</param-name>
+	  <param-value>/WEB-INF/crowds-servlet.xml</param-value>
+	</context-param>
+	
+	<listener>
+	  <listener-class>
+	  	org.springframework.web.context.ContextLoaderListener
+	  </listener-class>
+	</listener>	
 
+	<welcome-file-list>
+        <welcome-file>html/index.html</welcome-file>
+    </welcome-file-list>
 </web-app>

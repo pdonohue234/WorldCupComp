@@ -1,0 +1,5 @@
+MVC i.e. Model-View-Controller is a pattern helpful separation of concerns.
+
+- Model represents a POJO object that carries data.
+- View is the layer in which the data is presented in visual format.
+- Controller is the component which is responsible for communication between model and view.

@@ -6,32 +6,11 @@
 <html>  
 	<head>  
 		<title>World Cup Charity Competition | Registration Form</title>  
-		<style>  
-			body {  
-			 font-size: 20px;  
-			 color: teal;  
-			 font-family: Calibri;  
-			}  
-			  
-			td {  
-			 font-size: 15px;  
-			 color: black;  
-			 width: 100px;  
-			 height: 22px;  
-			 text-align: left;  
-			}  
-			  
-			.heading {  
-			 font-size: 18px;  
-			 color: white;  
-			 font: bold;  
-			 background-color: orange;  
-			 border: thick;  
-			}  
-		</style>  
+		<link type="text/css" rel="stylesheet" href="../css/main.css"/>
 	</head>  
 
 	<body>  
+		<h1>Message : ${message}</h1>
  		<center>  
 		<b>World Cup Charity Competition | Registration Form </b>   
   		<div>  

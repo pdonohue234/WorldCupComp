@@ -58,6 +58,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	protected User findById(String p_userId) {
 		try {
 			if( StringUtils.isNotBlank(p_userId)) {
+				this.m_logger.warn("Finding: " + p_userId);
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY, new Object[] {p_userId});
 				User user = this.findById(l_sql, new UserRowMapper());
 				return user;

@@ -16,8 +16,8 @@
   
 	 <!-- adding view resolver to show jsp's on browser -->  
 	 <bean id="viewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
-	  	<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" /> 
-	  	<property name="prefix" 	value="/WEB-INF/jsp/" />  
+	  	 <!--<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" />  --> 
+	  	<property name="prefix" 	value="/jsp/" />  
 	 	<property name="suffix" 	value=".jsp" />  
 	 </bean>  
   
@@ -35,7 +35,7 @@
 	 <!-- declare datasource bean -->  
 	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
 	 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-	  	<property name="url" value="jdbc:mysql://localhost:3306/userdb" />  
+	  	<property name="url" value="jdbc:mysql://173.194.86.198:3306/worldcupcomp2014" />  
 	  	<property name="username" value="root" />  
 	  	<property name="password" value="@g00dpasspop" />  
 	 </bean>  

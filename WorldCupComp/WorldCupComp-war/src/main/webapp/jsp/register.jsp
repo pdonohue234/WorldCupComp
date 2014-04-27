@@ -10,34 +10,27 @@
 	</head>  
 
 	<body>  
-		<h1>Message : ${message}</h1>
  		<center>  
 		<b>World Cup Charity Competition | Registration Form </b>   
   		<div>  
-	   	<form:form method="post" action="/register" modelAttribute="user">  
-	    	<table>  
-			     <tr>  
-			      <td>User Name :</td>  
-			      <td><form:input path="userId" /></td>  
-			     </tr> 
-			     <tr>  
-			      <td>Password :</td>  
-			      <td><form:input path="password" /></td>  
-			     </tr> 			      
-			     <tr>  
-			      <td>Email :</td>  
-			      <td><form:input path="email" /></td>  
-			     </tr>  
-			     <tr>  
-			      <td>Name :</td>  
-			      <td><form:input path="name" /></td>  
-			     </tr>  
-			     <tr>  			     
-			     <tr>  
-			      <td> </td>  
-			      <td><input type="submit" value="Save" /></td>  
-			     </tr>  
-		    </table>  
+	   	<form:form method="post" action="/registerUser" modelAttribute="user">  
+			<label for="userIdInput">User Name: </label>
+      		<form:input path="userId" id="userIdInput" /> 
+			<br/>
+			 
+			<label for="passwordInput">Password: </label>
+      		<form:input path="password" id="passwordInput" /> 
+			<br/> 	
+					      
+			<label for="emailInput">Email: </label>
+      		<form:input path="email" id="emailInput" /> 
+			<br/> 	
+			
+			<label for="nameInput">Name: </label>
+      		<form:input path="name" id="nameInput" /> 
+			<br/> 	 
+			
+			<input type="submit" value="Save" />
 	   </form:form>  
 	  </div>  
 	 </center>  

@@ -75,9 +75,11 @@ public class UserService extends UserDao {
 	public boolean insertData(User p_user) {  
 		try {
 			if(p_user != null && StringUtils.isNotEmpty(p_user.getUserId())) {
+				this.m_logger.warn("Checking User does not already exist!");
 				//Check if record exists for that userId already
 				User userExists = this.findById(p_user.getUserId());
 				if( userExists == null ) {
+					this.m_logger.warn("User does not exist");
 					int rowCount = this.insert(p_user);
 					if(rowCount != -1)
 						return true;	

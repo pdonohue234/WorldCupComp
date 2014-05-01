@@ -3,7 +3,7 @@
 @font-face{font-family:'FontAwesome';src:url('font/fontawesome-webfont.eot?v=4.0.1');src:url('font/fontawesome-webfont.eot?#iefix&v=4.0.1') format('embedded-opentype'),url('font/fontawesome-webfont.woff?v=4.0.1') format('woff'),url('font/fontawesome-webfont.ttf?v=4.0.1') format('truetype'),url('font/fontawesome-webfont.svg?v=4.0.1#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}
 
 /*********************************************************************************/
-/* Basic  ggggg                                                                    */
+/* Basic                                                                         */
 /*********************************************************************************/
 
 	body {
@@ -474,7 +474,7 @@
 			}
 			
 				.main.style1 h2 {
-					font-size: 4.25em;
+					font-size: 2.25em;
 					line-height: 1em;
 					letter-spacing: -4px;
 				}
@@ -1086,7 +1086,7 @@
 /*********************************************************************************/
 
 	#home {
-		background: url('images/overlay.png'), url('../images/intro.jpg');
+		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1098,7 +1098,7 @@
 /*********************************************************************************/
 
 	#predictions {
-		background: url('images/overlay.png'), url('../images/one.jpg');
+		background: url('images/overlay.png'), url('../images/stadium_darkgrey.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, center center;
@@ -1109,7 +1109,7 @@
 /*********************************************************************************/
 
 	#sponsors {
-		background: url('images/overlay.png'), url('../images/two.jpg');
+		background: url('images/overlay.png'), url('../images/14IRSB_10490.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, center center;
@@ -1120,7 +1120,10 @@
 /*********************************************************************************/
 
 	#charity {
-		
+		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, center center;
 	}
 	
 /*********************************************************************************/

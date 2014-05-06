@@ -15,17 +15,16 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 
 	public Logger			m_logger	= 	Logger.getLogger(EventDao.class.getName());
 	
-	protected static final String	SQL_TABLE_NAME 		= "EVENT";
-	protected static final String	SQL_TABLE_COLUMNS 	= "EVENTID, EVENT_NAME, EVENT_DESCRIPTION, EVENT_COUNTRY, EVENT_START_DATE";
+	protected static final String	SQL_TABLE_NAME 		= "Events";
+	protected static final String	SQL_TABLE_COLUMNS 	= "Event_ID, Event_Name, Event_Desc, Event_Date";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
-	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE EVENTID=?";
-	protected static final String	SQL_SELECT_USINGNAME= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE EVENT_NAME=?";
-	protected static final String	SQL_SELECT_USINGNAMEANDCOUNTRY= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE EVENT_NAME=? AND EVENT_COUNTRY=?";
+	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Event_ID=?";
+	protected static final String	SQL_SELECT_USINGNAME= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Event_Name=?";
 	
-	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET EVENT_NAME=?, EVENT_DESCRIPTION=?, EVENT_COUNTRY=?, EVENT_START_DATE=? WHERE EVENTID=?";
-	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE EVENTID=?";
+	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?)";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Event_Name=?, Event_Desc=?, Event_Date=? WHERE Event_ID=?";
+	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE Event_ID=?";
 	
 	
 	public EventDao() {
@@ -90,26 +89,6 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 	}
 	
 	/**
-	 * Find a single Event record for given event name and country
-	 * @param p_eventName
-	 * @param p_eventCountry
-	 * @return Event record
-	 */
-	protected Event findByEventNameAndCountry(String p_eventName, String p_eventCountry){
-		try {
-			if( StringUtils.isNotBlank(p_eventName) && StringUtils.isNotBlank(p_eventCountry)) {
-				Sql l_sql = new Sql(SQL_SELECT_USINGNAMEANDCOUNTRY, new Object[] {p_eventName, p_eventCountry});
-				Event event = this.findById(l_sql, new EventRowMapper());
-				return event;
-			}
-		}
-		catch(Exception e) {
-			this.m_logger.severe(e.getLocalizedMessage());
-		}
-		return null;
-	}	
-	
-	/**
 	 * Insert a new Event record into the database
 	 * @param p_event
 	 * @return number of rows affected (-1 if error)
@@ -119,7 +98,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			if( StringUtils.isNotBlank(p_event.getEventId())) {
 				Sql l_sql = new Sql(SQL_ADD, 
 						new Object[] {p_event.getEventId(), p_event.getEventName(), p_event.getEventDescription(), 
-						p_event.getEventCountry(), this.getSdf().format(p_event.getEventStartDate())});
+						this.getSdf().format(p_event.getEventStartDate())});
 				int rows = this.update(l_sql);
 				return rows;
 			}
@@ -139,7 +118,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 		try {
 			if( StringUtils.isNotBlank(p_event.getEventId())) {
 				Sql l_sql = new Sql(SQL_UPDATE, 
-						new Object[] {p_event.getEventName(), p_event.getEventDescription(), p_event.getEventCountry(),
+						new Object[] {p_event.getEventName(), p_event.getEventDescription(), 
 										this.getSdf().format(p_event.getEventStartDate()), p_event.getEventId()});
 				int rows = this.update(l_sql);
 				return rows;
@@ -194,7 +173,6 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 				dto.setEventId(rs.getString(seqn++));
 				dto.setEventName(rs.getString(seqn++));
 				dto.setEventDescription(rs.getString(seqn++));
-				dto.setEventCountry(rs.getString(seqn++));
 				dto.setEventStartDate(getDate(rs.getDate(seqn++)));
 			}
 			catch(Exception e) {

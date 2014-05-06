@@ -67,28 +67,6 @@ public class EventService extends EventDao {
 		return null;
 	}	
 	
-	/**
-	 * Find an Event based on event name and country
-	 * @param p_eventName
-	 * @param p_eventCountry
-	 * @return Event
-	 */
-	public Event getEventByNameAndCountry(String p_eventName, String p_eventCountry) { 
-		try {
-			if(StringUtils.isNotEmpty(p_eventName) && StringUtils.isNotEmpty(p_eventCountry)) {
-				return this.findByEventNameAndCountry(p_eventName, p_eventCountry); 
-			}
-			else {
-				this.m_logger.warning("Cannot find Event record based on empty event name/country!");
-			}
-		}
-		catch(Exception e) {
-			this.m_logger.severe("Error attemping to find Event record with event name: " + p_eventName 
-					+ " and event country: " + p_eventCountry);
-			this.m_logger.severe(e.getLocalizedMessage());
-		} 
-		return null;
-	}	
 	
 	/** 
 	 * Insert a single Event record into the database

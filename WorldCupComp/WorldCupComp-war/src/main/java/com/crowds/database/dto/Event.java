@@ -7,18 +7,17 @@ public class Event extends Dto<Event> implements Serializable {
 	
 	private static final long serialVersionUID = 535781654836189576L;
 	
-	public static final String MAPPED_TABLE_NAME = "EVENT";
+	public static final String MAPPED_TABLE_NAME = "Events";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"EVENTID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"Event_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"EVENT_NAME", "EVENT_DESCRIPTION", "EVENT_COUNTRY", "EVENT_START_DATE"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Event_Name", "Event_Desc", "Event_Date"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int EVENTID = 0;
 	
 	private String	m_eventName;
 	private String	m_eventDescription;
-	private String	m_eventCountry;
 	private Date	m_eventStartDate;
 	
 	/**
@@ -46,42 +45,32 @@ public class Event extends Dto<Event> implements Serializable {
 	}
 
 
-	public final String getEventName() {
+	public String getEventName() {
 		return m_eventName;
 	}
 
 
-	public final void setEventName(String p_eventName) {
+	public void setEventName(String p_eventName) {
 		m_eventName = p_eventName;
 	}
 
 
-	public final String getEventDescription() {
+	public String getEventDescription() {
 		return m_eventDescription;
 	}
 
 
-	public final void setEventDescription(String p_eventDescription) {
+	public void setEventDescription(String p_eventDescription) {
 		m_eventDescription = p_eventDescription;
 	}
 
 
-	public final String getEventCountry() {
-		return m_eventCountry;
-	}
-
-
-	public final void setEventCountry(String p_eventCountry) {
-		m_eventCountry = p_eventCountry;
-	}
-
-
-	public final Date getEventStartDate() {
+	public Date getEventStartDate() {
 		return m_eventStartDate;
 	}
 
 
-	public final void setEventStartDate(Date p_eventStartDate) {
+	public void setEventStartDate(Date p_eventStartDate) {
 		m_eventStartDate = p_eventStartDate;
 	}
 

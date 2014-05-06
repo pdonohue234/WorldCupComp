@@ -7,11 +7,11 @@ public class Accounts extends Dto<Accounts> implements Serializable {
 	
 	private static final long serialVersionUID = 5357816548361689586L;
 	
-	public static final String MAPPED_TABLE_NAME = "ACCOUNTS";
+	public static final String MAPPED_TABLE_NAME = "Accounts";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"ACCOUNTID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"Account_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"MONEY_RECEIVED", "PRIZE_MONEY_OWED", "OTHER_EXPENSES", 
+	protected static final String[] FIELD_NAMES = new String[] {"Money_Received", "Prize_Money_Owed", "Other_Expenses", "TimeStamp", 
 		"DATE", "TIME"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
@@ -21,7 +21,6 @@ public class Accounts extends Dto<Accounts> implements Serializable {
 	private double	m_prizeMoneyOwed;
 	private double	m_otherExpenses;
 	private Date	m_date;
-	private Integer	m_time; //Hhmmss
 	
 	
 	/**
@@ -49,53 +48,43 @@ public class Accounts extends Dto<Accounts> implements Serializable {
 	}
 	
 	
-	public final double getMoneyReceived() {
+	public double getMoneyReceived() {
 		return m_moneyReceived;
 	}
 
 
-	public final void setMoneyReceived(double p_moneyReceived) {
+	public void setMoneyReceived(double p_moneyReceived) {
 		m_moneyReceived = p_moneyReceived;
 	}
 
 
-	public final double getPrizeMoneyOwed() {
+	public double getPrizeMoneyOwed() {
 		return m_prizeMoneyOwed;
 	}
 
 
-	public final void setPrizeMoneyOwed(double p_prizeMoneyOwed) {
+	public void setPrizeMoneyOwed(double p_prizeMoneyOwed) {
 		m_prizeMoneyOwed = p_prizeMoneyOwed;
 	}
 
 
-	public final double getOtherExpenses() {
+	public double getOtherExpenses() {
 		return m_otherExpenses;
 	}
 
 
-	public final void setOtherExpenses(double p_otherExpenses) {
+	public void setOtherExpenses(double p_otherExpenses) {
 		m_otherExpenses = p_otherExpenses;
 	}
 
 
-	public final Date getDate() {
+	public Date getDate() {
 		return m_date;
 	}
 
 
-	public final void setDate(Date p_date) {
+	public void setDate(Date p_date) {
 		m_date = p_date;
-	}
-
-
-	public final Integer getTime() {
-		return m_time;
-	}
-
-
-	public final void setTime(Integer p_time) {
-		m_time = p_time;
 	}
 
 

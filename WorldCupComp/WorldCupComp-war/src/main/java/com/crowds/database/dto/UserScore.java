@@ -6,12 +6,12 @@ public class UserScore extends Dto<UserScore> implements Serializable {
 	
 	private static final long serialVersionUID = 5357816548361689586L;
 	
-	public static final String MAPPED_TABLE_NAME = "UserScore";
+	public static final String MAPPED_TABLE_NAME = "User_Scores";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"USERID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"User_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"NUM_PREDICTIONS_MADE", "NUM_PREDICTIONS_CORRECT", 
-		"NUM_PREDICTIONS_INCORRECT", "NUM_PREDICTIONS_PENDING", "CURRENT_SCORE"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Predictions_Made", "Predictions_Correct", 
+		"Predictions_Incorrect", "Predictions_Pending", "Overall_Score"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int USERID = 0;
@@ -48,52 +48,52 @@ public class UserScore extends Dto<UserScore> implements Serializable {
 	}
 	
 	
-	public final int getNumPredictionsMade() {
+	public int getNumPredictionsMade() {
 		return m_numPredictionsMade;
 	}
 
 
-	public final void setNumPredictionsMade(int p_numPredictionsMade) {
+	public void setNumPredictionsMade(int p_numPredictionsMade) {
 		m_numPredictionsMade = p_numPredictionsMade;
 	}
 
 
-	public final int getNumPredictionsCorrect() {
+	public int getNumPredictionsCorrect() {
 		return m_numPredictionsCorrect;
 	}
 
 
-	public final void setNumPredictionsCorrect(int p_numPredictionsCorrect) {
+	public void setNumPredictionsCorrect(int p_numPredictionsCorrect) {
 		m_numPredictionsCorrect = p_numPredictionsCorrect;
 	}
 
 
-	public final int getNumPredictionsIncorrect() {
+	public int getNumPredictionsIncorrect() {
 		return m_numPredictionsIncorrect;
 	}
 
 
-	public final void setNumPredictionsIncorrect(int p_numPredictionsIncorrect) {
+	public void setNumPredictionsIncorrect(int p_numPredictionsIncorrect) {
 		m_numPredictionsIncorrect = p_numPredictionsIncorrect;
 	}
 
 
-	public final int getNumPredictionsPending() {
+	public int getNumPredictionsPending() {
 		return m_numPredictionsPending;
 	}
 
 
-	public final void setNumPredictionsPending(int p_numPredictionsPending) {
+	public void setNumPredictionsPending(int p_numPredictionsPending) {
 		m_numPredictionsPending = p_numPredictionsPending;
 	}
 
 
-	public final int getCurrentScore() {
+	public int getCurrentScore() {
 		return m_currentScore;
 	}
 
 
-	public final void setCurrentScore(int p_currentScore) {
+	public void setCurrentScore(int p_currentScore) {
 		m_currentScore = p_currentScore;
 	}
 

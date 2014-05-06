@@ -7,11 +7,11 @@ public class GameOdds extends Dto<GameOdds> implements Serializable {
 	
 	private static final long serialVersionUID = 5357816548361689586L;
 	
-	public static final String MAPPED_TABLE_NAME = "GAMEODDS";
+	public static final String MAPPED_TABLE_NAME = "Game_Odds";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"GAMEID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"Game_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"TEAM1_ODDS", "TEAM2_ODDS", "DRAW_ODDS", "DATE", "TIME"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Team1_Odds", "Team2_Odds", "Draw_Odds", "TimeStampEntered"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int GAMEID = 0;
@@ -20,7 +20,6 @@ public class GameOdds extends Dto<GameOdds> implements Serializable {
 	private double	m_teamTwoOdds;
 	private double	m_drawOdds;
 	private Date	m_date;
-	private Integer	m_time; //Hhmmss
 	
 	/**
 	 * Default Constructor
@@ -47,53 +46,43 @@ public class GameOdds extends Dto<GameOdds> implements Serializable {
 	}
 
 
-	public final double getTeamOneOdds() {
+	public double getTeamOneOdds() {
 		return m_teamOneOdds;
 	}
 
 
-	public final void setTeamOneOdds(double p_teamOneOdds) {
+	public void setTeamOneOdds(double p_teamOneOdds) {
 		m_teamOneOdds = p_teamOneOdds;
 	}
 
 
-	public final double getTeamTwoOdds() {
+	public double getTeamTwoOdds() {
 		return m_teamTwoOdds;
 	}
 
 
-	public final void setTeamTwoOdds(double p_teamTwoOdds) {
+	public void setTeamTwoOdds(double p_teamTwoOdds) {
 		m_teamTwoOdds = p_teamTwoOdds;
 	}
 
 
-	public final double getDrawOdds() {
+	public double getDrawOdds() {
 		return m_drawOdds;
 	}
 
 
-	public final void setDrawOdds(double p_drawOdds) {
+	public void setDrawOdds(double p_drawOdds) {
 		m_drawOdds = p_drawOdds;
 	}
 
 
-	public final Date getDate() {
+	public Date getDate() {
 		return m_date;
 	}
 
 
-	public final void setDate(Date p_date) {
+	public void setDate(Date p_date) {
 		m_date = p_date;
-	}
-
-
-	public final Integer getTime() {
-		return m_time;
-	}
-
-
-	public final void setTime(Integer p_time) {
-		m_time = p_time;
 	}
 
 

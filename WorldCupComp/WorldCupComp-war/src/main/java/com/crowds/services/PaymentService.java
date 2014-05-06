@@ -31,17 +31,17 @@ public class PaymentService extends PaymentDao {
 	 * @param paymentId
 	 * @return
 	 */
-	public Payment getPayment(String p_userId, String p_paymentId) { 
+	public Payment getPayment(String transactionId, String p_userId) { 
 		try {
-			if( StringUtils.isNotBlank(p_userId) && StringUtils.isNotBlank(p_paymentId)) {
-				return this.findById(p_userId, p_paymentId); 
+			if( StringUtils.isNotBlank(p_userId) && StringUtils.isNotBlank(transactionId)) {
+				return this.findById(transactionId, p_userId); 
 			}
 			else {
 				this.m_logger.warning("Cannot find User's Payment record because of empty Keys passed!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.severe("Error attemping to find User's Payment record for Keys: " + p_userId +" and "+ p_paymentId);
+			this.m_logger.severe("Error attemping to find User's Payment record for Keys: " + p_userId +" and "+ transactionId);
 			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
@@ -76,9 +76,9 @@ public class PaymentService extends PaymentDao {
 	public boolean insertData(Payment p_payment) {  
 		try {
 			if(p_payment != null && StringUtils.isNotEmpty(p_payment.getUserId()) && 
-					StringUtils.isNotEmpty(p_payment.getPaymentId() )) {
+					StringUtils.isNotEmpty(p_payment.getTransactionId() )) {
 				//Check if record exists for that userId already
-				Payment paymentExists = this.findById(p_payment.getUserId(), p_payment.getPaymentId());
+				Payment paymentExists = this.findById(p_payment.getTransactionId(), p_payment.getUserId());
 				if( paymentExists == null ) {
 					int rowCount = this.insert(p_payment);
 					if(rowCount != -1)
@@ -88,7 +88,7 @@ public class PaymentService extends PaymentDao {
 				}
 				else {
 					this.m_logger.warning("User's Payments records were not added - User's Payments records already exists "
-							+ "for Keys:" + p_payment.getUserId() + " and " + p_payment.getPaymentId());
+							+ "for Keys:" + p_payment.getUserId() + " and " + p_payment.getTransactionId());
 				}
 			}
 			else {
@@ -97,7 +97,7 @@ public class PaymentService extends PaymentDao {
 		}
 		catch(Exception e) {
 			this.m_logger.severe("Error attemping to create a User's Payments record for Key: " + p_payment.getUserId() 
-					+ " and " + p_payment.getPaymentId());
+					+ " and " + p_payment.getTransactionId());
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
@@ -111,20 +111,20 @@ public class PaymentService extends PaymentDao {
 	public boolean updateData(Payment p_payment) {  
 		try {
 			if(p_payment != null && StringUtils.isNotEmpty(p_payment.getUserId()) && 
-					StringUtils.isNotEmpty(p_payment.getPaymentId() )) {
+					StringUtils.isNotEmpty(p_payment.getTransactionId() )) {
 				//Ensure record exists for that userId already
-				Payment paymentExists = this.findById(p_payment.getUserId(), p_payment.getPaymentId());
+				Payment paymentExists = this.findById(p_payment.getTransactionId(), p_payment.getUserId());
 				if( paymentExists != null ) {
 					int rowCount = this.update(p_payment);
 					if(rowCount != -1)
 						return true;	
 					else
 						this.m_logger.warning("User's Payments record was not updated successfully for Key:"  + p_payment.getUserId() 
-								+ " and " + p_payment.getPaymentId());
+								+ " and " + p_payment.getTransactionId());
 				}
 				else 
 					this.m_logger.warning("User's Payments record was not updated - User record does NOT exists for Key:"  + p_payment.getUserId() 
-							+ " and " + p_payment.getPaymentId());
+							+ " and " + p_payment.getTransactionId());
 			}
 			else {
 				this.m_logger.warning("Cannot update User's Payments record for empty Key!");
@@ -132,7 +132,7 @@ public class PaymentService extends PaymentDao {
 		}
 		catch(Exception e) {
 			this.m_logger.severe("Error attemping to update a User's Payments record for Key: "  + p_payment.getUserId() 
-					+ " and " + p_payment.getPaymentId());
+					+ " and " + p_payment.getTransactionId());
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
@@ -155,7 +155,7 @@ public class PaymentService extends PaymentDao {
 							return true;	
 						else
 							this.m_logger.warning("User's Payments record was not deleted for Key:" + payment.getUserId() 
-									+ " and " + payment.getPaymentId());
+									+ " and " + payment.getTransactionId());
 					}
 				}
 			}
@@ -175,17 +175,17 @@ public class PaymentService extends PaymentDao {
 	 * @param p_paymentId
 	 * @return
 	 */
-	public boolean deleteData(String p_userId, String p_paymentId) {  
+	public boolean deleteData(String transactionId, String p_userId) {  
 		try {
-			if(StringUtils.isNotEmpty(p_userId) && StringUtils.isNotEmpty(p_paymentId )) {
+			if(StringUtils.isNotEmpty(p_userId) && StringUtils.isNotEmpty(transactionId )) {
 				//Check if record exists before attempting to delete it
-				Payment paymentExists = this.findById(p_userId, p_paymentId);
+				Payment paymentExists = this.findById(transactionId, p_userId);
 				if( paymentExists != null ) {
 					int rowCount = this.delete(paymentExists);
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warning("User's Payments record was not deleted for Key:" + p_userId +" and "+ p_paymentId);
+						this.m_logger.warning("User's Payments record was not deleted for Key:" + p_userId +" and "+ transactionId);
 			
 				}
 			}
@@ -194,7 +194,7 @@ public class PaymentService extends PaymentDao {
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.severe("Error attemping to delete User's Payments record for Key:" + p_userId +" and "+ p_paymentId);
+			this.m_logger.severe("Error attemping to delete User's Payments record for Key:" + p_userId +" and "+ transactionId);
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;

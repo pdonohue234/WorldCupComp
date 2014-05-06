@@ -7,20 +7,20 @@ public class Payment extends Dto<Payment> implements Serializable {
 	
 	private static final long serialVersionUID = -12345678901234567L;
 	
-	public static final String MAPPED_TABLE_NAME = "Payment";
+	public static final String MAPPED_TABLE_NAME = "Payments";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"USERID", "PAYMENTID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"Trans_ID", "User_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"PAYMENT_METHOD", "PAYMENT_RECEIVED", "DATE", "TIME"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Payment_Amount", "Payment_Method", "Payment_Received", "Time_Stamp"}; 
 	
 	public static final int NUMBER_OF_KEYS = 2;
-	public static final int USERID = 0;
-	public static final int PAYMENTID = 1;	
-	
+	public static final int TRANSACTIONID = 0;
+	public static final int USERID = 1;	
+
+	private double 	m_paymentAmount;
 	private String	m_paymentMethod;
-	private double 	m_paymentReceived;
+	private String 	m_paymentReceived;
 	private Date	m_date;
-	private Integer	m_time; //Hhmmss
 	
 	
 	/**
@@ -31,20 +31,27 @@ public class Payment extends Dto<Payment> implements Serializable {
 	}
 	
 	/**
-	 * Overloaded Constructor - Accepts UserId 
+	 * Overloaded Constructor - Accepts TransactionId 
 	 */
-	public Payment(String p_userId ) {
-		super( new Object[] { p_userId, "" } );
+	public Payment(String p_transactionId ) {
+		super( new Object[] { p_transactionId, "" } );
 	}
 	
 	
 	/**
 	 * Overloaded Constructor - Accepts UserId & paymentId
 	 */
-	public Payment(String p_userId, String p_paymentId) {
-		super( new Object[] { p_userId, p_paymentId } );
+	public Payment(String p_transactionId, String p_userId) {
+		super( new Object[] { p_transactionId, p_userId } );
+	}
+
+	public String getTransactionId() {
+		return (String) m_ids[TRANSACTIONID];
 	}
 	
+	public void setTransactionId( String p_transactionId ) {
+		this.m_ids[TRANSACTIONID] = p_transactionId;
+	}
 	
 	public String getUserId() {
 		return (String) m_ids[USERID];
@@ -54,45 +61,36 @@ public class Payment extends Dto<Payment> implements Serializable {
 		this.m_ids[USERID] = p_userId;
 	}
 	
+	public double getPaymentAmount() {
+		return m_paymentAmount;
+	}
 
-	public String getPaymentId() {
-		return (String) m_ids[PAYMENTID];
+	public void setPaymentAmount(double p_paymentAmount) {
+		m_paymentAmount = p_paymentAmount;
 	}
 	
-	public void setPaymentId( String p_paymentId ) {
-		this.m_ids[PAYMENTID] = p_paymentId;
-	}
-	
-	public final String getPaymentMethod() {
+	public String getPaymentMethod() {
 		return m_paymentMethod;
 	}
 
-	public final void setPaymentMethod(String p_paymentMethod) {
+	public void setPaymentMethod(String p_paymentMethod) {
 		m_paymentMethod = p_paymentMethod;
 	}
 
-	public final double getPaymentReceived() {
+	public String getPaymentReceived() {
 		return m_paymentReceived;
 	}
 
-	public final void setPaymentReceived(double p_paymentReceived) {
+	public void setPaymentReceived(String p_paymentReceived) {
 		m_paymentReceived = p_paymentReceived;
 	}
 
-	public final Date getDate() {
+	public Date getDate() {
 		return m_date;
 	}
 
-	public final void setDate(Date p_date) {
+	public void setDate(Date p_date) {
 		m_date = p_date;
-	}
-
-	public final Integer getTime() {
-		return m_time;
-	}
-
-	public final void setTime(Integer p_time) {
-		m_time = p_time;
 	}
 
 	public String getMappedTableName() {

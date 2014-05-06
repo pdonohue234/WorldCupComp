@@ -16,16 +16,16 @@ public class UserDao extends AbstractDaoJdbc<User>{
 
 	public Logger			m_logger	= 	Logger.getLogger(UserDao.class.getName());
 	
-	protected static final String	SQL_TABLE_NAME 		= "USERS";
-	protected static final String	SQL_TABLE_COLUMNS 	= "USERID, PASSWORD, EMAIL, NAME, DATE_REGISTERED";
+	protected static final String	SQL_TABLE_NAME 		= "Users";
+	protected static final String	SQL_TABLE_COLUMNS 	= "User_Id, Password, Email, Name, Date_Registered";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
-	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE USERID=?";
-	protected static final String	SQL_SELECT_USINGEMAIL= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE EMAIL=?";
+	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
+	protected static final String	SQL_SELECT_USINGEMAIL= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Email=?";
 	
 	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET PASSWORD=?, EMAIL=?, NAME=?, DATE_REGISTERED=? WHERE USERID=?";
-	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE USERID=?";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Password=?, Email=?, Name=?, Date_Registered=? WHERE User_Id=?";
+	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
 	
 	
 	public UserDao() {

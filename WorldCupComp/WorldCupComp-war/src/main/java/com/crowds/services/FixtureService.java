@@ -53,10 +53,10 @@ public class FixtureService extends FixtureDao {
 	 * @param p_eventId
 	 * @return
 	 */
-	public Fixture getFixture(String p_gameId) { 
+	public Fixture getFixtureByGame(String p_gameId) { 
 		try {
 			if( StringUtils.isNotBlank(p_gameId) ) {
-				return this.findById(p_gameId); 
+				return this.findByGameId(p_gameId); 
 			}
 			else {
 				this.m_logger.warning("Cannot find Fixture record because of empty Key passed!");

@@ -120,19 +120,19 @@ public class PredictionService extends PredictionDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warning("User's Payments record was not updated successfully for Key:"  + p_prediction.getUserId() + 
+						this.m_logger.warning("User's Prediction record was not updated successfully for Key:"  + p_prediction.getUserId() + 
 								" and " + p_prediction.getGameId());
 				}
 				else 
-					this.m_logger.warning("User's Payments record was not updated - User record does NOT exists for Key:"  + p_prediction.getUserId() + 
+					this.m_logger.warning("User's Prediction record was not updated - User record does NOT exists for Key:"  + p_prediction.getUserId() + 
 							" and " + p_prediction.getGameId());
 			}
 			else {
-				this.m_logger.warning("Cannot update User's Payments record for empty Key!");
+				this.m_logger.warning("Cannot update User's Prediction record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.severe("Error attemping to update a User's Payments record for Key: "  + p_prediction.getUserId() + 
+			this.m_logger.severe("Error attemping to update a User's Prediction record for Key: "  + p_prediction.getUserId() + 
 					" and " + p_prediction.getGameId());
 			this.m_logger.severe(e.getLocalizedMessage());
 		}

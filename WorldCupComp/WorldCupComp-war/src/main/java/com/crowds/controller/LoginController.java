@@ -31,11 +31,6 @@ public class LoginController {
 	
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
 	public ModelAndView registerUser(@ModelAttribute User user) {  
-		System.out.println(user.getUserId());
-		System.out.println(user.getPassword());
-		System.out.println(user.getEmail());
-		System.out.println(user.getName());
-		
 		boolean success = this.getUserService().insertData(user); 
 	  
 		System.out.println(success);

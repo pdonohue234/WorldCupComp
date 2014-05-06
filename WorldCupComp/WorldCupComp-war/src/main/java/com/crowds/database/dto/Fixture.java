@@ -7,25 +7,26 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 	
 	private static final long serialVersionUID = 5357816548361689586L;
 	
-	public static final String MAPPED_TABLE_NAME = "FIXTURE";
+	public static final String MAPPED_TABLE_NAME = "Fixtures";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"GAMEID", "EVENTID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"Game_ID", "Event_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"GAME_TITLE", "GAME_DATE", "GAME_TIME", "TEAM1", 
-		"TEAM2", "ROUND", "LOCATION"};
+	protected static final String[] FIELD_NAMES = new String[] {"Game_Date", "Team1", "Team1_Score", "Team2", "Team2_Score", 
+		"Game_Played", "Winning_Team", "Round", "Game_Location"};
 	
 	public static final int NUMBER_OF_KEYS = 2;
 	public static final int GAMEID = 0;
 	public static final int EVENTID = 1;
 	
-	private String	m_gameTitle;
 	private Date	m_gameDate;
-	private Integer	m_gameTime; //Hhmmss
 	private String	m_teamOne;
+	private int		m_teamOneScore;
 	private String	m_teamTwo;
+	private int		m_teamTwoScore;
+	private String	m_gamePlayed;
+	private String	m_winningTeam;
 	private String	m_round;
-	private String 	m_location;
-	
+	private String	m_gameLocation;
 	
 	/**
 	 * Default Constructor
@@ -66,75 +67,88 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 		this.m_ids[EVENTID] = p_eventId;
 	}
 
-	public final Date getGameDate() {
+	public Date getGameDate() {
 		return m_gameDate;
 	}
 
 
-	public final void setGameDate(Date p_gameDate) {
+	public void setGameDate(Date p_gameDate) {
 		m_gameDate = p_gameDate;
 	}
 
 
-	public final Integer getGameTime() {
-		return m_gameTime;
-	}
-
-
-	public final void setGameTime(Integer p_gameTime) {
-		m_gameTime = p_gameTime;
-	}
-
-
-	public final String getGameTitle() {
-		return m_gameTitle;
-	}
-
-
-	public final void setGameTitle(String p_gameTitle) {
-		m_gameTitle = p_gameTitle;
-	}
-
-
-	public final String getTeamOne() {
+	public String getTeamOne() {
 		return m_teamOne;
 	}
 
 
-	public final void setTeamOne(String p_teamOne) {
+	public void setTeamOne(String p_teamOne) {
 		m_teamOne = p_teamOne;
 	}
 
+	public int getTeamOneScore() {
+		return m_teamOneScore;
+	}
 
-	public final String getTeamTwo() {
+
+	public void setTeamOneScore(int p_teamOneScore) {
+		m_teamOneScore = p_teamOneScore;
+	}
+
+
+	public String getTeamTwo() {
 		return m_teamTwo;
 	}
 
 
-	public final void setTeamTwo(String p_teamTwo) {
+	public void setTeamTwo(String p_teamTwo) {
 		m_teamTwo = p_teamTwo;
 	}
 
+	public int getTeamTwoScore() {
+		return m_teamTwoScore;
+	}
 
-	public final String getRound() {
+
+	public void setTeamTwoScore(int p_teamTwoScore) {
+		m_teamTwoScore = p_teamTwoScore;
+	}
+	
+	public String getGamePlayed() {
+		return m_gamePlayed;
+	}
+
+
+	public void setGamePlayed(String p_gamePlayed) {
+		m_gamePlayed = p_gamePlayed;
+	}
+	
+	public String getWinningTeam() {
+		return m_winningTeam;
+	}
+
+
+	public void setWinningTeam(String p_winningTeam) {
+		m_winningTeam = p_winningTeam;
+	}
+	
+	public String getRound() {
 		return m_round;
 	}
 
 
-	public final void setRound(String p_round) {
+	public void setRound(String p_round) {
 		m_round = p_round;
 	}
-
-
-	public final String getLocation() {
-		return m_location;
+	
+	public String getGameLocation() {
+		return m_gameLocation;
 	}
 
 
-	public final void setLocation(String p_location) {
-		m_location = p_location;
+	public void setGameLocation(String p_gameLocation) {
+		m_gameLocation = p_gameLocation;
 	}
-
 
 	public String getMappedTableName() {
 		return MAPPED_TABLE_NAME;

@@ -19,8 +19,8 @@ public class GameResultService extends GameResultDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL GameResults records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL GameResults records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -36,12 +36,12 @@ public class GameResultService extends GameResultDao {
 				return this.findById(p_gameId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find a GameResult record for empty Key!");
+				this.m_logger.warning("Cannot find a GameResult record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find GameResult record for Key: " + p_gameId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find GameResult record for Key: " + p_gameId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -62,19 +62,19 @@ public class GameResultService extends GameResultDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("GameResult record was not added successfully for Key:" + p_gameResult.getGameId());
+						this.m_logger.warning("GameResult record was not added successfully for Key:" + p_gameResult.getGameId());
 				}
 				else {
-					this.m_logger.warn("GameResult record was not added - record already exists for Key:" + p_gameResult.getGameId());
+					this.m_logger.warning("GameResult record was not added - record already exists for Key:" + p_gameResult.getGameId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add GameResult record for empty Key!");
+				this.m_logger.warning("Cannot add GameResult record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create a GameResult record for Key: " + p_gameResult.getGameId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to create a GameResult record for Key: " + p_gameResult.getGameId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -94,19 +94,19 @@ public class GameResultService extends GameResultDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("GameResult record was not updated successfully for Key:" + p_gameResult.getGameId());
+						this.m_logger.warning("GameResult record was not updated successfully for Key:" + p_gameResult.getGameId());
 				}
 				else {
-					this.m_logger.warn("GameResult record was not updated - record does NOT exists for Key:" + p_gameResult.getGameId());
+					this.m_logger.warning("GameResult record was not updated - record does NOT exists for Key:" + p_gameResult.getGameId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot update GameResult record for empty Key!");
+				this.m_logger.warning("Cannot update GameResult record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update a GameResult record for Key: " + p_gameResult.getGameId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to update a GameResult record for Key: " + p_gameResult.getGameId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -126,16 +126,16 @@ public class GameResultService extends GameResultDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("GameResult record was not deleted for Key:" + p_gameId);
+						this.m_logger.warning("GameResult record was not deleted for Key:" + p_gameId);
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete GameResult record for empty Key!");
+				this.m_logger.warning("Cannot delete GameResult record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete GameResult record for Key: " + p_gameId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete GameResult record for Key: " + p_gameId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}   

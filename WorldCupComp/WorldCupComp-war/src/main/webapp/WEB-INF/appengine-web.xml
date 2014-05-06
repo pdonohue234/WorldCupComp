@@ -7,4 +7,10 @@
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
+    
+    <!-- The MySQL Connector/J is available in Google App Engine, 
+    	but it's not included in an app unless the app explicitly asks for it
+   	-->
+    <use-google-connector-j>true</use-google-connector-j>        
+    
 </appengine-web-app>

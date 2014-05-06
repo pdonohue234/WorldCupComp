@@ -32,11 +32,32 @@
   	<bean id="userScoreService" class="com.crowds.services.UserScoreService" />
   	<bean id="userService" class="com.crowds.services.UserService" />
   
-	 <!-- declare datasource bean -->  
+	 <!-- declare datasource bean 
+	 Project ID: worldcupcomp2014
+	 Instance ID: worldcupcomp2014:v001 
+	 
+	 jdbc:google:mysql://your-project-id:your-instance-name/guestbook?user=root (don't need password for root)
+	 	  	<property name="url" value="jdbc:google:mysql://worldcupcomp2014:v001/worldcupcomp2014?user=root" />   
+	 -->  
+	 
+	 
+	 <!-- Production Only 
+	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+	 	<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver" />  
+	  	<property name="url" value="jdbc:google:mysql://worldcupcomp2014:v001/worldcupcomp2014?user=root" />
+	 </bean>  
+     -->
+	 	 
 	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
 	 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-	  	<property name="url" value="jdbc:mysql://173.194.86.198:3306/worldcupcomp2014" />  
-	  	<property name="username" value="root" />  
-	  	<property name="password" value="@g00dpasspop" />  
+	  	<property name="url" value="jdbc:mysql://173.194.86.198:3306/WorldCupCompDB?user=root" />
 	 </bean>  
+	 
+	 <!-- When running locally 
+	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+	 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+	  	<property name="url" value="jdbc:mysql://127.0.0.1:3306/worldcupcomp2014?user=root" />  
+	  	<property name="username" value="sys_wcc" />   
+	  	<property name="password" value='World!"£&*()' /> 
+	 </bean>  	--> 
 </beans>  

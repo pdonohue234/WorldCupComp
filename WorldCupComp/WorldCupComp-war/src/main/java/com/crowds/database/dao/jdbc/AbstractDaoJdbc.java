@@ -14,10 +14,10 @@ import com.crowds.database.sql.Sql;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
@@ -28,7 +28,7 @@ public abstract class AbstractDaoJdbc<T> {
 	protected DataSource 	m_dataSource;
 
 	SimpleDateFormat		m_sdf;
-	private Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	private Logger			m_logger	= 	Logger.getLogger(AbstractDaoJdbc.class.getName());
 	
 	public AbstractDaoJdbc() {
 		super();
@@ -52,7 +52,7 @@ public abstract class AbstractDaoJdbc<T> {
 			return results;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		
 		return l_list;
@@ -74,7 +74,7 @@ public abstract class AbstractDaoJdbc<T> {
 			return results;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		
 		return l_list;
@@ -95,7 +95,7 @@ public abstract class AbstractDaoJdbc<T> {
 			return result;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -113,7 +113,7 @@ public abstract class AbstractDaoJdbc<T> {
 			return rows;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return -1;
 		}		
 	}

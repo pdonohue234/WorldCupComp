@@ -2,9 +2,9 @@ package com.crowds.database.dao;
 
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -13,7 +13,7 @@ import com.crowds.database.sql.Sql;
 
 public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(FixtureDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "FIXTURE";
 	protected static final String	SQL_TABLE_COLUMNS 	= "GAMEID, EVENTID, GAME_TITLE, GAME_DATE, GAME_TIME, TEAM1, TEAM2, ROUND, LOCATION";
@@ -45,7 +45,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			return fixtures;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -65,7 +65,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -84,7 +84,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -104,7 +104,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -125,7 +125,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -146,7 +146,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -166,7 +166,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -202,7 +202,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 				dto.setLocation(rs.getString(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

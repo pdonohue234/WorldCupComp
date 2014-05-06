@@ -2,9 +2,9 @@ package com.crowds.database.dao;
 
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -13,7 +13,7 @@ import com.crowds.database.sql.Sql;
 
 public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(GameResultDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "GAMERESULT";
 	protected static final String	SQL_TABLE_COLUMNS 	= "GAMEID, TEAM1_SCORE, TEAM2_SCORE, WINNING_TEAM";
@@ -43,7 +43,7 @@ public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 			return gameResults;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -62,7 +62,7 @@ public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -83,7 +83,7 @@ public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -104,7 +104,7 @@ public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -124,7 +124,7 @@ public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -156,7 +156,7 @@ public class GameResultDao extends AbstractDaoJdbc<GameResult>{
 				dto.setWinningTeam(rs.getString(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

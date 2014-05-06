@@ -3,9 +3,9 @@ package com.crowds.database.dao;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -14,7 +14,7 @@ import com.crowds.database.sql.Sql;
 
 public class PaymentDao extends AbstractDaoJdbc<Payment>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(PaymentDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "PAYMENT";
 	protected static final String	SQL_TABLE_COLUMNS 	= "USERID, PAYMENTID, PAYMENT_METHOD, PAYMENT_RECEIVED, DATE, TIME";
@@ -46,7 +46,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			return payments;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -66,7 +66,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -85,7 +85,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -104,7 +104,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -126,7 +126,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -148,7 +148,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -168,7 +168,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -209,7 +209,7 @@ public class PaymentDao extends AbstractDaoJdbc<Payment>{
 				dto.setTime(rs.getInt(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

@@ -19,8 +19,8 @@ public class GameOddsService extends GameOddsDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL GameOdds records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL GameOdds records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -36,12 +36,12 @@ public class GameOddsService extends GameOddsDao {
 				return this.findById(p_gameId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find a GameOdds record for empty Key!");
+				this.m_logger.warning("Cannot find a GameOdds record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find GameOdds record for Key: " + p_gameId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find GameOdds record for Key: " + p_gameId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -62,19 +62,19 @@ public class GameOddsService extends GameOddsDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("GameOdds record was not added successfully for Key:" + p_gameOdds.getGameId());
+						this.m_logger.warning("GameOdds record was not added successfully for Key:" + p_gameOdds.getGameId());
 				}
 				else {
-					this.m_logger.warn("GameOdds record was not added - record already exists for Key:" + p_gameOdds.getGameId());
+					this.m_logger.warning("GameOdds record was not added - record already exists for Key:" + p_gameOdds.getGameId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add GameOdds record for empty Key!");
+				this.m_logger.warning("Cannot add GameOdds record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create a GameOdds record for Key: " + p_gameOdds.getGameId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to create a GameOdds record for Key: " + p_gameOdds.getGameId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -94,19 +94,19 @@ public class GameOddsService extends GameOddsDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("GameOdds record was not updated successfully for Key:" + p_gameOdds.getGameId());
+						this.m_logger.warning("GameOdds record was not updated successfully for Key:" + p_gameOdds.getGameId());
 				}
 				else {
-					this.m_logger.warn("GameOdds record was not updated - record does NOT exists for Key:" + p_gameOdds.getGameId());
+					this.m_logger.warning("GameOdds record was not updated - record does NOT exists for Key:" + p_gameOdds.getGameId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot update GameOdds record for empty Key!");
+				this.m_logger.warning("Cannot update GameOdds record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update a GameOdds record for Key: " + p_gameOdds.getGameId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to update a GameOdds record for Key: " + p_gameOdds.getGameId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -126,16 +126,16 @@ public class GameOddsService extends GameOddsDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("GameOdds record was not deleted for Key:" + p_gameId);
+						this.m_logger.warning("GameOdds record was not deleted for Key:" + p_gameId);
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete GameOdds record for empty Key!");
+				this.m_logger.warning("Cannot delete GameOdds record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete GameOdds record for Key: " + p_gameId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete GameOdds record for Key: " + p_gameId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}   

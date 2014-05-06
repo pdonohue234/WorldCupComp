@@ -19,8 +19,8 @@ public class AccountService extends AccountsDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL Accounts records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL Accounts records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -36,12 +36,12 @@ public class AccountService extends AccountsDao {
 				return this.findById(accountId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find Account record because of empty Keys passed!");
+				this.m_logger.warning("Cannot find Account record because of empty Keys passed!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Account record for Keys: " + accountId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find Account record for Keys: " + accountId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -57,8 +57,8 @@ public class AccountService extends AccountsDao {
 			return super.findMostRecent();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find most recent Account record.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find most recent Account record.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -79,20 +79,20 @@ public class AccountService extends AccountsDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Accounts records were not added successfully for Key:" + p_account.getAccountId());
+						this.m_logger.warning("Accounts records were not added successfully for Key:" + p_account.getAccountId());
 				}
 				else {
-					this.m_logger.warn("Accounts records were not added - records already exists "
+					this.m_logger.warning("Accounts records were not added - records already exists "
 							+ "for Key:" + p_account.getAccountId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add Accounts record for empty Key!");
+				this.m_logger.warning("Cannot add Accounts record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create an Accounts record for Key: " + p_account.getAccountId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to create an Accounts record for Key: " + p_account.getAccountId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -112,18 +112,18 @@ public class AccountService extends AccountsDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Accounts record was not updated successfully for Key:"  + p_account.getAccountId());
+						this.m_logger.warning("Accounts record was not updated successfully for Key:"  + p_account.getAccountId());
 				}
 				else 
-					this.m_logger.warn("Accounts record was not updated - record does NOT exists for Key:"  + p_account.getAccountId());
+					this.m_logger.warning("Accounts record was not updated - record does NOT exists for Key:"  + p_account.getAccountId());
 			}
 			else {
-				this.m_logger.warn("Cannot update Accounts record for empty Key!");
+				this.m_logger.warning("Cannot update Accounts record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update an Accounts record for Key: "  + p_account.getAccountId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to update an Accounts record for Key: "  + p_account.getAccountId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -144,17 +144,17 @@ public class AccountService extends AccountsDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Accounts record was not deleted for Key:" + p_accountId);
+						this.m_logger.warning("Accounts record was not deleted for Key:" + p_accountId);
 			
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete Accounts record for empty Key!");
+				this.m_logger.warning("Cannot delete Accounts record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete Accounts record for Key:" + p_accountId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete Accounts record for Key:" + p_accountId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	

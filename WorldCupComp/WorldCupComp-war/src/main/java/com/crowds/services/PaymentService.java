@@ -19,8 +19,8 @@ public class PaymentService extends PaymentDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL Payment records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL Payment records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -37,12 +37,12 @@ public class PaymentService extends PaymentDao {
 				return this.findById(p_userId, p_paymentId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find User's Payment record because of empty Keys passed!");
+				this.m_logger.warning("Cannot find User's Payment record because of empty Keys passed!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find User's Payment record for Keys: " + p_userId +" and "+ p_paymentId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find User's Payment record for Keys: " + p_userId +" and "+ p_paymentId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -58,12 +58,12 @@ public class PaymentService extends PaymentDao {
 				return this.findByUserId(p_userId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find User's Payments records based on empty userId key!");
+				this.m_logger.warning("Cannot find User's Payments records based on empty userId key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find User's Payments records with userId: " + p_userId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find User's Payments records with userId: " + p_userId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	}	
@@ -84,21 +84,21 @@ public class PaymentService extends PaymentDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("User's Payments records were not added successfully for Key:" + p_payment.getUserId());
+						this.m_logger.warning("User's Payments records were not added successfully for Key:" + p_payment.getUserId());
 				}
 				else {
-					this.m_logger.warn("User's Payments records were not added - User's Payments records already exists "
+					this.m_logger.warning("User's Payments records were not added - User's Payments records already exists "
 							+ "for Keys:" + p_payment.getUserId() + " and " + p_payment.getPaymentId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add User's Payments record for empty Key!");
+				this.m_logger.warning("Cannot add User's Payments record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create a User's Payments record for Key: " + p_payment.getUserId() 
+			this.m_logger.severe("Error attemping to create a User's Payments record for Key: " + p_payment.getUserId() 
 					+ " and " + p_payment.getPaymentId());
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -119,21 +119,21 @@ public class PaymentService extends PaymentDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("User's Payments record was not updated successfully for Key:"  + p_payment.getUserId() 
+						this.m_logger.warning("User's Payments record was not updated successfully for Key:"  + p_payment.getUserId() 
 								+ " and " + p_payment.getPaymentId());
 				}
 				else 
-					this.m_logger.warn("User's Payments record was not updated - User record does NOT exists for Key:"  + p_payment.getUserId() 
+					this.m_logger.warning("User's Payments record was not updated - User record does NOT exists for Key:"  + p_payment.getUserId() 
 							+ " and " + p_payment.getPaymentId());
 			}
 			else {
-				this.m_logger.warn("Cannot update User's Payments record for empty Key!");
+				this.m_logger.warning("Cannot update User's Payments record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update a User's Payments record for Key: "  + p_payment.getUserId() 
+			this.m_logger.severe("Error attemping to update a User's Payments record for Key: "  + p_payment.getUserId() 
 					+ " and " + p_payment.getPaymentId());
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -154,18 +154,18 @@ public class PaymentService extends PaymentDao {
 						if(rowCount != -1)
 							return true;	
 						else
-							this.m_logger.warn("User's Payments record was not deleted for Key:" + payment.getUserId() 
+							this.m_logger.warning("User's Payments record was not deleted for Key:" + payment.getUserId() 
 									+ " and " + payment.getPaymentId());
 					}
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete User's Payments record for empty Key!");
+				this.m_logger.warning("Cannot delete User's Payments record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete User's Paymentsrecord for Key: " + p_userId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete User's Paymentsrecord for Key: " + p_userId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -185,17 +185,17 @@ public class PaymentService extends PaymentDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("User's Payments record was not deleted for Key:" + p_userId +" and "+ p_paymentId);
+						this.m_logger.warning("User's Payments record was not deleted for Key:" + p_userId +" and "+ p_paymentId);
 			
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete User's Payments record for empty Key!");
+				this.m_logger.warning("Cannot delete User's Payments record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete User's Payments record for Key:" + p_userId +" and "+ p_paymentId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete User's Payments record for Key:" + p_userId +" and "+ p_paymentId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	

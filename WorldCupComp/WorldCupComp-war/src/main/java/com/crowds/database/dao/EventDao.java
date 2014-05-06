@@ -2,9 +2,9 @@ package com.crowds.database.dao;
 
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -13,7 +13,7 @@ import com.crowds.database.sql.Sql;
 
 public class EventDao extends AbstractDaoJdbc<Event>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(EventDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "EVENT";
 	protected static final String	SQL_TABLE_COLUMNS 	= "EVENTID, EVENT_NAME, EVENT_DESCRIPTION, EVENT_COUNTRY, EVENT_START_DATE";
@@ -45,7 +45,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			return events;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -64,7 +64,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -84,7 +84,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -104,7 +104,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -125,7 +125,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -146,7 +146,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -165,7 +165,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -198,7 +198,7 @@ public class EventDao extends AbstractDaoJdbc<Event>{
 				dto.setEventStartDate(getDate(rs.getDate(seqn++)));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

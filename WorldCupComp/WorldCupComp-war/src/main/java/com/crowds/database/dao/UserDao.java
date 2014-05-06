@@ -3,9 +3,9 @@ package com.crowds.database.dao;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -14,7 +14,7 @@ import com.crowds.database.sql.Sql;
 
 public class UserDao extends AbstractDaoJdbc<User>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(UserDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "USERS";
 	protected static final String	SQL_TABLE_COLUMNS 	= "USERID, PASSWORD, EMAIL, NAME, DATE_REGISTERED";
@@ -45,7 +45,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			return users;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -58,14 +58,14 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	protected User findById(String p_userId) {
 		try {
 			if( StringUtils.isNotBlank(p_userId)) {
-				this.m_logger.warn("Finding: " + p_userId);
+				this.m_logger.warning("Finding: " + p_userId);
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY, new Object[] {p_userId});
 				User user = this.findById(l_sql, new UserRowMapper());
 				return user;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -85,7 +85,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -106,7 +106,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -127,7 +127,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -147,7 +147,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -189,7 +189,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 				dto.setDateRegistered(getDate(rs.getDate(seqn++)));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

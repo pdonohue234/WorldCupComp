@@ -3,9 +3,9 @@ package com.crowds.database.dao;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -14,7 +14,7 @@ import com.crowds.database.sql.Sql;
 
 public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(GameOddsDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "GAMEODDS";
 	protected static final String	SQL_TABLE_COLUMNS 	= "GAMEID, TEAM1_ODDS, TEAM2_ODDS, DRAW_ODDS, DATE, TIME";
@@ -44,7 +44,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			return gameOdds;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -63,7 +63,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -84,7 +84,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -105,7 +105,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -125,7 +125,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -159,7 +159,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 				dto.setTime(rs.getInt(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

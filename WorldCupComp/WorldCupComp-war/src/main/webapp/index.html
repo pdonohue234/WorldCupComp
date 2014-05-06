@@ -6,7 +6,7 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<!--script src="js/functions.js"></script-->
+		<script src="js/functions.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.poptrox.min.js"></script>
 		<script src="js/skel.min.js"></script>
@@ -23,14 +23,14 @@
 			<header id="header">
 
 				<!-- Logo -->
-					<h1 id="logo"><a href="#">The World Cup Comp</a></h1>
+					<h1 id="logo"><a href="#">The World Cup Prediction Competition</a></h1>
 				
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
 
 							<li><a href="#home">Home</a></li>
-							<li><a href="#predictions">Your Predictions</a></li>
+							<li><a href="#predictions" onclick="verifySession()">Your Predictions</a></li>
 							<li><a href="#sponsors">Sponsors</a></li>
 							<li><a href="#charity">Laura Lynn Children's Hospice</a></li>
 							<li><a href="#contact">Contact Us</a></li>
@@ -45,10 +45,9 @@
 			<section id="home" class="main style1 dark fullscreen">
 				<div class="content container small">
 					<header>
-						<h2>Welcome to the World Cup Competition</h2>
+						<h2>Welcome to the World Cup Prediction Competition</h2>
 					</header>
-					<h3>About</h3>
-					<br>This is a charity competition with all proceeds going to Laura Lynn Children's Hospice. 
+					This is a charity competition with all proceeds going to Laura Lynn Children's Hospice. 
 					<br>Thanks to our sponsors
 					<br>Entry fee is 5
 					<br><br><h3>Prizes</h3>
@@ -59,7 +58,7 @@
 					</p>
 					
 					<footer>
-						<a href="#predictions" class="button style2 down">More</a>
+						<a href="#predictions" onclick="verifySession()" class="button style2 down">More</a>
 					</footer>
 				</div>
 			</section>
@@ -191,7 +190,7 @@
 					</table>
 					<center>
 						<a href="#XXX" class="button style2 hover">Submit</a>
-						<p><i>You can re-enter predictions until the game actually starts</i></p>
+						<p><i>You can re-enter predictions as often as you like until the game actually starts</i></p>
 					</center>
 			
 					
@@ -215,7 +214,7 @@
 			<section id="charity" class="main style3 primary">
 				<div class="content container">
 					<header>
-						<a href="http://www.lauralynn.ie" target="_blank"><img src="images/fulls/LL_HZ.jpg" width="818" height="314" title="Laura Lynn Children's Hospice" alt="Laura Lynn" /></a>
+						<a href="http://www.lauralynn.ie" target="_blank"><img src="images/fulls/LL_HZ_Trans.png" width="818" height="314" title="Laura Lynn Children's Hospice" alt="Laura Lynn" /></a>
 						<p><h3><i>Putting Life into a Child's Day, not days into a Child's Life</i></h3></p>
 					</header>
 					

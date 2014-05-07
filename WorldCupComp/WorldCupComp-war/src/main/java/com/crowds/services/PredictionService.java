@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.PredictionDao;
 import com.crowds.database.dto.Prediction;
 
 public class PredictionService extends PredictionDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(PredictionService.class.getName());
 	
 	/** 
 	 * Find list of all Predictions in system

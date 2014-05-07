@@ -6,33 +6,83 @@
 <html>  
 	<head>  
 		<title>World Cup Charity Competition | Registration Form</title>  
-		<link type="text/css" rel="stylesheet" href="../css/main.css"/>
+		
+		<link type="text/css" rel="stylesheet" href="../css/skel-noscript.css"/>
+		<link type="text/css" rel="stylesheet" href="../css/style.css"/>
+		
+		<script src="../js/functions.js" type="text/javascript"></script>
+		<script src="../js/jquery.min.js" type="text/javascript"></script>
+		<script src="../js/jquery.poptrox.min.js" type="text/javascript"></script>
+		<script src="../js/skel.min.js" type="text/javascript"></script>
+		<script src="../js/init.js" type="text/javascript"></script>
+	
 	</head>  
 
 	<body>  
- 		<center>  
-		<b>World Cup Charity Competition | Registration Form </b>   
-  		<div>  
-	   	<form:form method="post" action="/registerUser" modelAttribute="user">  
-			<label for="userIdInput">User Name: </label>
-      		<form:input path="userId" id="userIdInput" /> 
-			<br/>
-			 
-			<label for="passwordInput">Password: </label>
-      		<form:input path="password" id="passwordInput" /> 
-			<br/> 	
-					      
-			<label for="emailInput">Email: </label>
-      		<form:input path="email" id="emailInput" /> 
-			<br/> 	
+		<!-- Header -->
+			<header id="header">
+
+				<!-- Logo -->
+					<h1 id="logo"><a href="#">The World Cup Prediction Competition</a></h1>
+				
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+
+							<li><a href="#home">Home</a></li>
+							<li><a href="#predictions" onclick="verifySession()">Your Predictions</a></li>
+							<li><a href="#sponsors">Sponsors</a></li>
+							<li><a href="#charity">Laura Lynn Children's Hospice</a></li>
+							<li><a href="#contact">Contact Us</a></li>
+							<li><a href="#rules">Competition Rules T&Cs</a></li>
+
+						</ul>
+					</nav>
+			</header>
 			
-			<label for="nameInput">Name: </label>
-      		<form:input path="name" id="nameInput" /> 
-			<br/> 	 
 			
-			<input type="submit" value="Save" />
-	   </form:form>  
-	  </div>  
-	 </center>  
+	 		<section id="register" class="main style3 secondary">
+				<div class="content container">
+					<header>
+						<h2>Please sign in</h2>
+						<p><a href="/login">Click here if you already have an account</a></p>
+					</header>
+					<div class="box container small">
+					
+						<!--
+							 Login Form
+						-->
+							<form:form method="post" action="/registerUser" modelAttribute="user">  
+								<div class="row half">
+									<div class="6u"><label for="userIdInput">User Name: </label></div>
+						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>
+								</div>
+								
+								<div class="row half">
+									<div class="6u"><label for="passwordInput">Password: </label></div>
+						      		<div class="6u"><form:input path="password" id="passwordInput" /></div>
+								</div> 	
+										      
+								<div class="row half">
+									<div class="6u"><label for="emailInput">Email: </label></div>
+						      		<div class="6u"><form:input path="email" id="emailInput" /></div>
+								</div> 	
+								
+								<div class="row half">
+									<div class="6u"><label for="nameInput">Name: </label></div>
+						      		<div class="6u"><form:input path="name" id="nameInput" /></div>
+								</div> 	
+								<div class="row">
+									<div class="12u">
+										<ul class="actions">
+											<li><input type="submit" class="button" value="Save" /></li>
+										</ul>
+									</div>
+								</div>
+						   </form:form>  
+
+					</div>
+				</div>
+			</section>			
 	</body>  
 </html>  

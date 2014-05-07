@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.GameOddsDao;
 import com.crowds.database.dto.GameOdds;
 
 public class GameOddsService extends GameOddsDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(GameOddsService.class.getName());
 	
 	/** 
 	 * Find list of all GameOdds in system

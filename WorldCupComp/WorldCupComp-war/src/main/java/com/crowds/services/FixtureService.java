@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.FixtureDao;
 import com.crowds.database.dto.Fixture;
 
 public class FixtureService extends FixtureDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(FixtureService.class.getName());
 	
 	/** 
 	 * Find list of all Fixtures in system

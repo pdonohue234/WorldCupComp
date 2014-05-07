@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.UserDao;
 import com.crowds.database.dto.User;
 
 public class UserService extends UserDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(UserService.class.getName());
 	
 	/** 
 	 * Find list of all users in system
@@ -47,6 +50,39 @@ public class UserService extends UserDao {
 	} 
 	
 	/**
+	 * Find and validate a single user based on their userId and password
+	 * @param id
+	 * @return
+	 */
+	public User validateUser(User p_user) { 
+		try {
+			if(StringUtils.isNotEmpty(p_user.getUserId()) && StringUtils.isNotEmpty(p_user.getPassword()) ){
+				User dbUser = this.getUser(p_user.getUserId()); 
+				
+				if(dbUser != null) {
+					if(StringUtils.equals(p_user.getPassword(), dbUser.getPassword())) {
+						this.m_logger.warning("User exists & is validated - userId: " + p_user.getUserId());
+					}
+					else {
+						this.m_logger.warning("User exists but invalid password for userId: " + p_user.getUserId());
+					}
+				}
+				else {
+					this.m_logger.warning("User does not exist for userId: " + p_user.getUserId());
+				}
+			}
+			else {
+				this.m_logger.warning("Cannot find a User record for empty credentials!");
+			}
+		}
+		catch(Exception e) {
+			this.m_logger.severe("Error attemping to find & validate User record for User Id: " + p_user.getUserId());
+			this.m_logger.severe(e.getLocalizedMessage());
+		} 
+		return null;
+	} 
+	
+	/**
 	 * Find a list of users based on email address
 	 * @param id
 	 * @return
@@ -75,11 +111,11 @@ public class UserService extends UserDao {
 	public boolean insertData(User p_user) {  
 		try {
 			if(p_user != null && StringUtils.isNotEmpty(p_user.getUserId())) {
-				this.m_logger.info("Checking User does not already exist!");
+				this.m_logger.warning("Checking User does not already exist!");
 				//Check if record exists for that userId already
 				User userExists = this.findById(p_user.getUserId());
 				if( userExists == null ) {
-					this.m_logger.info("User does not exist");
+					this.m_logger.warning("User does not already exist - so will be added");
 					int rowCount = this.insert(p_user);
 					if(rowCount != -1)
 						return true;	

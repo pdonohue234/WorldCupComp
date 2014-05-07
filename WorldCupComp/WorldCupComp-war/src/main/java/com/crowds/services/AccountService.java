@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.AccountsDao;
 import com.crowds.database.dto.Accounts;
 
 public class AccountService extends AccountsDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(AccountService.class.getName());
 	
 	/** 
 	 * Find list of all Accounts in system

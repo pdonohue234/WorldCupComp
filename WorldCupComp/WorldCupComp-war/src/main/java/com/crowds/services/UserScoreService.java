@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.UserScoreDao;
 import com.crowds.database.dto.UserScore;
 
 public class UserScoreService extends UserScoreDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(UserScoreService.class.getName());
 	
 	/** 
 	 * Find list of all UserScores in system

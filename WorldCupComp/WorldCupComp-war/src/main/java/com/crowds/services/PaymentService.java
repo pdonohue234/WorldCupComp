@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.PaymentDao;
 import com.crowds.database.dto.Payment;
 
 public class PaymentService extends PaymentDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(PaymentService.class.getName());
 	
 	/** 
 	 * Find list of all payments in system

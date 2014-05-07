@@ -5,6 +5,6 @@ function verifySession() {
 	
 	//2. If not then redirect to login/register page
 	if(!validSession) {
-		window.location.href = "/register";
+		window.location.href = "/login";
 	}
 }

@@ -32,7 +32,7 @@ public abstract class AbstractDaoJdbc<T> {
 	
 	public AbstractDaoJdbc() {
 		super();
-		this.m_sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		this.m_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	}
 	
 	
@@ -91,8 +91,14 @@ public abstract class AbstractDaoJdbc<T> {
 	protected T findById(Sql p_sql, ParameterizedRowMapper<T> p_rowMapper) {
 		try {
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(m_dataSource);
-			T result = (T) jdbcTemplate.queryForObject(p_sql.getSql(), p_sql.getParameters(), p_rowMapper);
-			return result;
+			List<T> result = jdbcTemplate.query(p_sql.getSql(), p_sql.getParameters(), p_rowMapper);
+			
+			if( result.isEmpty() ) 
+				return null;
+			else if( result.size() >= 1 )
+				return result.get(0);
+			else
+				return null;
 		}
 		catch( Exception e ) {
 			this.m_logger.severe(e.getLocalizedMessage());
@@ -110,6 +116,7 @@ public abstract class AbstractDaoJdbc<T> {
 		try {
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(m_dataSource);
 			int rows = jdbcTemplate.update(p_sql.getSql(), p_sql.getParameters());
+			this.m_logger.warning("Record row num affected: " + rows);
 			return rows;
 		}
 		catch( Exception e ) {

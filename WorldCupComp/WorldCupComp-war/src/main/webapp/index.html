@@ -62,6 +62,52 @@
 					</footer>
 				</div>
 			</section>
+			
+		<!-- Login -->
+			<section id="login" class="main style3 secondary">
+				<div class="content container">
+					<header>
+						<h2>Please sign in</h2>
+						<p>Toggle to Create New Account, if new user.</p>
+					</header>
+					<div class="box container small">
+					
+						<!--
+							 Login Form
+						-->
+							<form:form method="post" action="/registerUser" modelAttribute="user">  
+								<div class="row half">
+									<div class="6u"><label for="userIdInput">User Name: </label></div>
+						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>
+								</div>
+								
+								<div class="row half">
+									<div class="6u"><label for="passwordInput">Password: </label></div>
+						      		<div class="6u"><form:input path="password" id="passwordInput" /></div>
+								</div> 	
+										      
+								<div class="row half">
+									<div class="6u"><label for="emailInput">Email: </label></div>
+						      		<div class="6u"><form:input path="email" id="emailInput" /></div>
+								</div> 	
+								
+								<div class="row half">
+									<div class="6u"><label for="nameInput">Name: </label></div>
+						      		<div class="6u"><form:input path="name" id="nameInput" /></div>
+								</div> 	
+								<div class="row">
+									<div class="12u">
+										<ul class="actions">
+											<li><input type="submit" class="button" value="Save" /></li>
+										</ul>
+									</div>
+								</div>
+						   </form:form>  
+
+					</div>
+				</div>
+				<a href="#t&c" class="button style2 down anchored">Next</a>
+			</section>			
 		
 		<!-- Predictions -->
 			<section id="predictions" class="main style2 left dark fullscreen">

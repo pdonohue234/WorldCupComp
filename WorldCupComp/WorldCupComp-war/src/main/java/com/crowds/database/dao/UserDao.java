@@ -61,6 +61,8 @@ public class UserDao extends AbstractDaoJdbc<User>{
 				this.m_logger.warning("Finding: " + p_userId);
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY, new Object[] {p_userId});
 				User user = this.findById(l_sql, new UserRowMapper());
+				if(user != null)
+					this.m_logger.warning("Found: " + p_userId);
 				return user;
 			}
 		}
@@ -101,6 +103,10 @@ public class UserDao extends AbstractDaoJdbc<User>{
 				validateFields(p_user );
 				Sql l_sql = new Sql(SQL_ADD, 
 						new Object[] {p_user.getUserId(), p_user.getPassword(), p_user.getEmail(), p_user.getName(), this.getSdf().format(new Date())});
+
+				this.m_logger.warning(SQL_ADD);
+				this.m_logger.warning(p_user.getUserId()+", "+p_user.getPassword()+", "+p_user.getEmail()+", "+p_user.getName()+", "+this.getSdf().format(new Date()));
+				
 				int rows = this.update(l_sql);
 				return rows;
 			}

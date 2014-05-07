@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.EventDao;
 import com.crowds.database.dto.Event;
 
 public class EventService extends EventDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(EventService.class.getName());
 	
 	/** 
 	 * Find list of all Events in system

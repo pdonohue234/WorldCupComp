@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.TeamDao;
 import com.crowds.database.dto.Team;
 
 public class TeamService extends TeamDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(TeamService.class.getName());
 	
 	/** 
 	 * Find list of all Teams in system

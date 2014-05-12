@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.UserScoreDao;
 import com.crowds.database.dto.UserScore;
 
 public class UserScoreService extends UserScoreDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(UserScoreService.class.getName());
 	
 	/** 
 	 * Find list of all UserScores in system
@@ -19,8 +22,8 @@ public class UserScoreService extends UserScoreDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL UserScore records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL UserScore records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -36,12 +39,12 @@ public class UserScoreService extends UserScoreDao {
 				return this.findById(p_userId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find a UserScore record for empty Key!");
+				this.m_logger.warning("Cannot find a UserScore record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find UserScore record for Key: " + p_userId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find UserScore record for Key: " + p_userId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -61,8 +64,8 @@ public class UserScoreService extends UserScoreDao {
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find the top UserScore records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find the top UserScore records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	}	
@@ -82,19 +85,19 @@ public class UserScoreService extends UserScoreDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("UserScore record was not added successfully for Key:" + p_userScore.getUserId());
+						this.m_logger.warning("UserScore record was not added successfully for Key:" + p_userScore.getUserId());
 				}
 				else {
-					this.m_logger.warn("UserScore record was not added - UserScore record already exists for Key:" + p_userScore.getUserId());
+					this.m_logger.warning("UserScore record was not added - UserScore record already exists for Key:" + p_userScore.getUserId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add UserScore record for empty Key!");
+				this.m_logger.warning("Cannot add UserScore record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create a UserScore record for Key: " + p_userScore.getUserId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to create a UserScore record for Key: " + p_userScore.getUserId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -114,21 +117,21 @@ public class UserScoreService extends UserScoreDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("UserScore record was not updated successfully for Key:" + 
+						this.m_logger.warning("UserScore record was not updated successfully for Key:" + 
 								p_userScore.getUserId());
 				}
 				else {
-					this.m_logger.warn("UserScore record was not updated - UserScore record does NOT exists for Key:" 
+					this.m_logger.warning("UserScore record was not updated - UserScore record does NOT exists for Key:" 
 							+ p_userScore.getUserId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot update UserScore record for empty Key!");
+				this.m_logger.warning("Cannot update UserScore record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update a UserScore record for Key: " + p_userScore.getUserId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to update a UserScore record for Key: " + p_userScore.getUserId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -148,16 +151,16 @@ public class UserScoreService extends UserScoreDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("UserScore record was not deleted for Key:" + p_userId);
+						this.m_logger.warning("UserScore record was not deleted for Key:" + p_userId);
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete UserScore record for empty Key!");
+				this.m_logger.warning("Cannot delete UserScore record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete UserScore record for Key: " + p_userId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete UserScore record for Key: " + p_userId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}   

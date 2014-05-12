@@ -2,9 +2,9 @@ package com.crowds.database.dao;
 
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -13,18 +13,18 @@ import com.crowds.database.sql.Sql;
 
 public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(UserScoreDao.class.getName());
 	
-	protected static final String	SQL_TABLE_NAME 		= "USERSCORE";
-	protected static final String	SQL_TABLE_COLUMNS 	= "USERID, NUM_PREDICTIONS_MADE, NUM_PREDICTIONS_CORRECT, NUM_PREDICTIONS_INCORRECT, NUM_PREDICTIONS_PENDING, CURRENT_SCORE";
+	protected static final String	SQL_TABLE_NAME 		= "User_Scores";
+	protected static final String	SQL_TABLE_COLUMNS 	= "User_ID, Predictions_Made, Predictions_Correct, Predictions_Incorrect, Predictions_Pending, Overall_Score";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
-	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE USERID=?";
-	protected static final String	SQL_SELECT_TOP		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " ORDER BY CURRENT_SCORE ASC LIMIT ?";
+	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_ID=?";
+	protected static final String	SQL_SELECT_TOP		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " ORDER BY Overall_Score ASC LIMIT ?";
 	
 	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET NUM_PREDICTIONS_MADE=?, NUM_PREDICTIONS_CORRECT=?, NUM_PREDICTIONS_INCORRECT=?, NUM_PREDICTIONS_PENDING=?, CURRENT_SCORE=? WHERE USERID=?";
-	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE USERID=?";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Predictions_Made=?, Predictions_Correct=?, Predictions_Incorrect=?, Predictions_Pending=?, Overall_Score=? WHERE User_ID=?";
+	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_ID=?";
 	
 	
 	public UserScoreDao() {
@@ -44,7 +44,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 			return userScores;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -63,7 +63,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -76,7 +76,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 			return userScores;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}		
 	}
@@ -97,7 +97,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -118,7 +118,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -138,7 +138,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -171,7 +171,7 @@ public class UserScoreDao extends AbstractDaoJdbc<UserScore>{
 				dto.setCurrentScore(rs.getInt(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

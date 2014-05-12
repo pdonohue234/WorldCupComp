@@ -14,10 +14,10 @@ import com.crowds.database.sql.Sql;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
@@ -28,11 +28,11 @@ public abstract class AbstractDaoJdbc<T> {
 	protected DataSource 	m_dataSource;
 
 	SimpleDateFormat		m_sdf;
-	private Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	private Logger			m_logger	= 	Logger.getLogger(AbstractDaoJdbc.class.getName());
 	
 	public AbstractDaoJdbc() {
 		super();
-		this.m_sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		this.m_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	}
 	
 	
@@ -52,7 +52,7 @@ public abstract class AbstractDaoJdbc<T> {
 			return results;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		
 		return l_list;
@@ -74,7 +74,7 @@ public abstract class AbstractDaoJdbc<T> {
 			return results;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		
 		return l_list;
@@ -91,11 +91,17 @@ public abstract class AbstractDaoJdbc<T> {
 	protected T findById(Sql p_sql, ParameterizedRowMapper<T> p_rowMapper) {
 		try {
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(m_dataSource);
-			T result = (T) jdbcTemplate.queryForObject(p_sql.getSql(), p_sql.getParameters(), p_rowMapper);
-			return result;
+			List<T> result = jdbcTemplate.query(p_sql.getSql(), p_sql.getParameters(), p_rowMapper);
+			
+			if( result.isEmpty() ) 
+				return null;
+			else if( result.size() >= 1 )
+				return result.get(0);
+			else
+				return null;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -110,10 +116,11 @@ public abstract class AbstractDaoJdbc<T> {
 		try {
 			JdbcTemplate jdbcTemplate = new JdbcTemplate(m_dataSource);
 			int rows = jdbcTemplate.update(p_sql.getSql(), p_sql.getParameters());
+			this.m_logger.warning("Record row num affected: " + rows);
 			return rows;
 		}
 		catch( Exception e ) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return -1;
 		}		
 	}

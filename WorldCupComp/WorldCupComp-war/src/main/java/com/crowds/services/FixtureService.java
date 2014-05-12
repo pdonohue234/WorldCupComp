@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.FixtureDao;
 import com.crowds.database.dto.Fixture;
 
 public class FixtureService extends FixtureDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(FixtureService.class.getName());
 	
 	/** 
 	 * Find list of all Fixtures in system
@@ -19,8 +22,8 @@ public class FixtureService extends FixtureDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL Fixture records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL Fixture records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -37,12 +40,12 @@ public class FixtureService extends FixtureDao {
 				return this.findById(p_gameId, p_eventId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find Fixture record because of empty Keys passed!");
+				this.m_logger.warning("Cannot find Fixture record because of empty Keys passed!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Fixture record for Keys: " + p_gameId +" and "+ p_eventId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find Fixture record for Keys: " + p_gameId +" and "+ p_eventId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -53,18 +56,18 @@ public class FixtureService extends FixtureDao {
 	 * @param p_eventId
 	 * @return
 	 */
-	public Fixture getFixture(String p_gameId) { 
+	public Fixture getFixtureByGame(String p_gameId) { 
 		try {
 			if( StringUtils.isNotBlank(p_gameId) ) {
-				return this.findById(p_gameId); 
+				return this.findByGameId(p_gameId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find Fixture record because of empty Key passed!");
+				this.m_logger.warning("Cannot find Fixture record because of empty Key passed!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Fixture record for Keys: " + p_gameId );
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find Fixture record for Keys: " + p_gameId );
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 	
@@ -80,12 +83,12 @@ public class FixtureService extends FixtureDao {
 				return this.findByEventId(p_eventId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find Event's Fixtures records based on empty eventId key!");
+				this.m_logger.warning("Cannot find Event's Fixtures records based on empty eventId key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Event's Fixtures records with eventId: " + p_eventId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find Event's Fixtures records with eventId: " + p_eventId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	}	
@@ -106,22 +109,22 @@ public class FixtureService extends FixtureDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Event Fixture record was not added successfully for Key:" + p_fixture.getGameId()
+						this.m_logger.warning("Event Fixture record was not added successfully for Key:" + p_fixture.getGameId()
 								+ " and " + p_fixture.getEventId());
 				}
 				else {
-					this.m_logger.warn("Event Fixture record was not added - record already exists "
+					this.m_logger.warning("Event Fixture record was not added - record already exists "
 							+ "for Keys:" + p_fixture.getGameId() + " and " + p_fixture.getEventId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add Event Fixture record for empty Key!");
+				this.m_logger.warning("Cannot add Event Fixture record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create an Event Fixture record for Key: " + p_fixture.getGameId() 
+			this.m_logger.severe("Error attemping to create an Event Fixture record for Key: " + p_fixture.getGameId() 
 					+ " and " + p_fixture.getEventId());
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -142,21 +145,21 @@ public class FixtureService extends FixtureDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Event Fixture record was not updated successfully for Key:"  + p_fixture.getGameId() 
+						this.m_logger.warning("Event Fixture record was not updated successfully for Key:"  + p_fixture.getGameId() 
 								+ " and " + p_fixture.getEventId());
 				}
 				else 
-					this.m_logger.warn("Event Fixture record was not updated - record does NOT exists for Key:"  + p_fixture.getGameId() 
+					this.m_logger.warning("Event Fixture record was not updated - record does NOT exists for Key:"  + p_fixture.getGameId() 
 							+ " and " + p_fixture.getEventId());
 			}
 			else {
-				this.m_logger.warn("Cannot update Event Fixture record for empty Key!");
+				this.m_logger.warning("Cannot update Event Fixture record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update an Event Fixture record for Key: "  + p_fixture.getGameId() 
+			this.m_logger.severe("Error attemping to update an Event Fixture record for Key: "  + p_fixture.getGameId() 
 					+ " and " + p_fixture.getEventId());
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -177,18 +180,18 @@ public class FixtureService extends FixtureDao {
 						if(rowCount != -1)
 							return true;	
 						else
-							this.m_logger.warn("Event's Fixture record was not deleted for Key:" + fixture.getGameId() 
+							this.m_logger.warning("Event's Fixture record was not deleted for Key:" + fixture.getGameId() 
 									+ " and " + fixture.getEventId());
 					}
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete Event's Fixture record for empty Key!");
+				this.m_logger.warning("Cannot delete Event's Fixture record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete Event's Fixture record for Key: " + p_eventId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete Event's Fixture record for Key: " + p_eventId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -209,17 +212,17 @@ public class FixtureService extends FixtureDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Fixture record was not deleted for Key:" + p_gameId +" and "+ p_eventId);
+						this.m_logger.warning("Fixture record was not deleted for Key:" + p_gameId +" and "+ p_eventId);
 			
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete Fixture record for empty Key!");
+				this.m_logger.warning("Cannot delete Fixture record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete Fixture record for Key:" + p_gameId +" and "+ p_eventId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete Fixture record for Key:" + p_gameId +" and "+ p_eventId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	

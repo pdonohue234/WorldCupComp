@@ -7,19 +7,19 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	
 	private static final long serialVersionUID = 5357816548361689586L;
 	
-	public static final String MAPPED_TABLE_NAME = "Prediction";
+	public static final String MAPPED_TABLE_NAME = "Predictions";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"USERID", "GAMEID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"User_ID", "Game_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"PREDICTION", "DATE", "TIME"};
+	protected static final String[] FIELD_NAMES = new String[] {"Team1Prediction", "Team2Prediction", "TimeStamp"};
 	
 	public static final int NUMBER_OF_KEYS = 2;
 	public static final int USERID = 0;
 	public static final int GAMEID = 1;	
 	
-	private String	m_prediction;
+	private String	m_team1Prediction;
+	private String	m_team2Prediction;
 	private Date	m_date;
-	private Integer	m_time; //Hhmmss
 	
 	
 	/**
@@ -62,28 +62,28 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	}
 	
 	
-	public final String getPrediction() {
-		return m_prediction;
+	public String getTeam1Prediction() {
+		return m_team1Prediction;
 	}
 
-	public final void setPrediction(String p_prediction) {
-		m_prediction = p_prediction;
+	public void setTeam1Prediction(String p_team1Prediction) {
+		m_team1Prediction = p_team1Prediction;
+	}
+	
+	public String getTeam2Prediction() {
+		return m_team2Prediction;
 	}
 
-	public final Date getDate() {
+	public void setTeam2Prediction(String p_team2Prediction) {
+		m_team2Prediction = p_team2Prediction;
+	}
+
+	public Date getDate() {
 		return m_date;
 	}
 
-	public final void setDate(Date p_date) {
+	public void setDate(Date p_date) {
 		m_date = p_date;
-	}
-
-	public final Integer getTime() {
-		return m_time;
-	}
-
-	public final void setTime(Integer p_time) {
-		m_time = p_time;
 	}
 
 	public String getMappedTableName() {

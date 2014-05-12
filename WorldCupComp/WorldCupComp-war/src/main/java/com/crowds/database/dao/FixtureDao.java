@@ -2,9 +2,9 @@ package com.crowds.database.dao;
 
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -13,19 +13,19 @@ import com.crowds.database.sql.Sql;
 
 public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(FixtureDao.class.getName());
 	
-	protected static final String	SQL_TABLE_NAME 		= "FIXTURE";
-	protected static final String	SQL_TABLE_COLUMNS 	= "GAMEID, EVENTID, GAME_TITLE, GAME_DATE, GAME_TIME, TEAM1, TEAM2, ROUND, LOCATION";
+	protected static final String	SQL_TABLE_NAME 		= "Fixtures";
+	protected static final String	SQL_TABLE_COLUMNS 	= "Game_ID, Event_ID, Game_Date, Team1, Team1_Score, Team2, Team2_Score, Game_Played, Winning_Team, Round, Game_Location";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
-	protected static final String	SQL_SELECT_USINGKEYS= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE GAMEID=? AND EVENTID=?";
-	protected static final String	SQL_SELECT_USINGKEY1= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE GAMEID=? ";
-	protected static final String	SQL_SELECT_USINGKEY2= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE EVENTID=?";
+	protected static final String	SQL_SELECT_USINGKEYS= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Game_ID=? AND Event_ID=?";
+	protected static final String	SQL_SELECT_USINGKEY1= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Game_ID=? ";
+	protected static final String	SQL_SELECT_USINGKEY2= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Event_ID=?";
 	
-	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET GAME_TITLE=?, GAME_DATE=?, GAME_TIME=?, TEAM1=?, TEAM2=?, ROUND=?, LOCATION=? WHERE GAMEID=?";
-	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE GAMEID=?";
+	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Game_Date=?, Team1=?, Team1_Score=?, Team2=?, Team2_Score=?, Game_Played=?, Winning_Team=?, Round=?, Game_Location=? WHERE Game_ID=? AND Event_ID=?";
+	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE Game_ID=? AND Event_ID=?";
 	
 	
 	public FixtureDao() {
@@ -45,7 +45,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			return fixtures;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -65,7 +65,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -75,7 +75,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 	 * @param p_gameId
 	 * @return Fixture record
 	 */
-	protected Fixture findById(String p_gameId) {
+	protected Fixture findByGameId(String p_gameId) {
 		try {
 			if( StringUtils.isNotBlank(p_gameId) ) {
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY1, new Object[] {p_gameId});
@@ -84,7 +84,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -104,7 +104,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -118,14 +118,15 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 		try {
 			if( StringUtils.isNotBlank(p_fixtures.getGameId())) {
 				Sql l_sql = new Sql(SQL_ADD, 
-						new Object[] {p_fixtures.getGameId(), p_fixtures.getGameTitle(), p_fixtures.getGameDate(), 
-						p_fixtures.getGameTitle(), p_fixtures.getTeamOne(), p_fixtures.getTeamTwo(), p_fixtures.getLocation()});
+						new Object[] {p_fixtures.getGameId(), p_fixtures.getEventId(), p_fixtures.getGameDate(), 
+						p_fixtures.getTeamOne(), p_fixtures.getTeamOneScore(), p_fixtures.getTeamTwo(), p_fixtures.getTeamTwoScore(), 
+						p_fixtures.getGamePlayed(), p_fixtures.getWinningTeam(), p_fixtures.getRound(), p_fixtures.getGameLocation()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -139,14 +140,15 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 		try {
 			if( StringUtils.isNotBlank(p_fixtures.getGameId())) {
 				Sql l_sql = new Sql(SQL_UPDATE, 
-						new Object[] {p_fixtures.getGameTitle(), p_fixtures.getGameDate(), p_fixtures.getGameTitle(),
-						p_fixtures.getTeamOne(), p_fixtures.getTeamTwo(), p_fixtures.getLocation(), p_fixtures.getGameId()});
+						new Object[] {p_fixtures.getGameDate(), p_fixtures.getTeamOne(), p_fixtures.getTeamOneScore(), p_fixtures.getTeamTwo(), 
+						p_fixtures.getTeamTwoScore(), p_fixtures.getGamePlayed(), p_fixtures.getWinningTeam(), p_fixtures.getRound(), 
+						p_fixtures.getGameLocation(), p_fixtures.getGameId(), p_fixtures.getEventId()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -158,15 +160,15 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 	 */
 	protected int delete(Fixture p_fixtures) {
 		try {
-			if( StringUtils.isNotBlank(p_fixtures.getGameId())) {
+			if( StringUtils.isNotBlank(p_fixtures.getGameId()) && StringUtils.isNotBlank(p_fixtures.getEventId())) {
 				Sql l_sql = new Sql(SQL_DELETE, 
-						new Object[] {p_fixtures.getGameId()});
+						new Object[] {p_fixtures.getGameId(), p_fixtures.getEventId()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -193,16 +195,19 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			Fixture dto = new Fixture();
 			try {
 				dto.setGameId(rs.getString(seqn++));
-				dto.setGameTitle(rs.getString(seqn++));
-				dto.setGameDate(getDate(rs.getDate(seqn++)));
-				dto.setGameTime(rs.getInt(seqn++));
+				dto.setEventId(rs.getString(seqn++));
+				dto.setGameDate(rs.getDate(seqn++));
 				dto.setTeamOne(rs.getString(seqn++));
+				dto.setTeamOneScore(rs.getInt(seqn++));
 				dto.setTeamTwo(rs.getString(seqn++));
+				dto.setTeamTwoScore(rs.getInt(seqn++));
+				dto.setGamePlayed(rs.getString(seqn++));
+				dto.setWinningTeam(rs.getString(seqn++));
 				dto.setRound(rs.getString(seqn++));
-				dto.setLocation(rs.getString(seqn++));
+				dto.setGameLocation(rs.getString(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

@@ -3,9 +3,9 @@ package com.crowds.database.dao;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -14,19 +14,19 @@ import com.crowds.database.sql.Sql;
 
 public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(PredictionDao.class.getName());
 	
-	protected static final String	SQL_TABLE_NAME 		= "PREDICTION";
-	protected static final String	SQL_TABLE_COLUMNS 	= "USERID, GAMEID, PREDICTION, DATE, TIME";
+	protected static final String	SQL_TABLE_NAME 		= "Predictions";
+	protected static final String	SQL_TABLE_COLUMNS 	= "User_ID, Game_ID, Team1_Prediction, Team2_Prediction, Time_Stamp";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
-	protected static final String	SQL_SELECT_USINGKEYS= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE USERID=? AND GAMEID=?";
-	protected static final String	SQL_SELECT_USINGKEY1= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE USERID=? ";
-	protected static final String	SQL_SELECT_USINGKEY2= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE GAMEID=?";
+	protected static final String	SQL_SELECT_USINGKEYS= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_ID=? AND Game_ID=?";
+	protected static final String	SQL_SELECT_USINGKEY1= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_ID=? ";
+	protected static final String	SQL_SELECT_USINGKEY2= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Game_ID=?";
 	
 	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET PREDICTION=?, DATE=?, TIME=? WHERE USERID=? AND GAMEID=?";
-	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE USERID=? AND GAMEID=?";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Team1_Prediction=?, Team2_Prediction=?, Time_Stamp=? WHERE User_ID=? AND Game_ID=?";
+	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_ID=? AND Game_ID=?";
 	
 	
 	public PredictionDao() {
@@ -46,7 +46,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			return predictions;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -66,7 +66,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -85,7 +85,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -104,7 +104,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}	
@@ -119,20 +119,20 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			if( StringUtils.isNotBlank(p_prediction.getUserId()) && StringUtils.isNotBlank(p_prediction.getGameId())) {
 				validateFields( p_prediction );
 				Sql l_sql = new Sql(SQL_ADD, 
-						new Object[] {p_prediction.getUserId(), p_prediction.getGameId(), p_prediction.getPrediction(), 
-						this.getSdf().format(new Date()), "TIME"});
+						new Object[] {p_prediction.getUserId(), p_prediction.getGameId(), p_prediction.getTeam1Prediction(), 
+						p_prediction.getTeam2Prediction(), this.getSdf().format(new Date())});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
 	
 	/**
-	 * Update a User record in the database
+	 * Update a Prediction record in the database
 	 * @param p_prediction
 	 * @return number of rows affected (-1 if error)
 	 */
@@ -141,14 +141,14 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			if( StringUtils.isNotBlank(p_prediction.getUserId()) && StringUtils.isNotBlank(p_prediction.getGameId())) {
 				validateFields(p_prediction );
 				Sql l_sql = new Sql(SQL_UPDATE, 
-						new Object[] {p_prediction.getPrediction(), this.getSdf().format(new Date()), "TIME",
+						new Object[] {p_prediction.getTeam1Prediction(), p_prediction.getTeam2Prediction(), this.getSdf().format(new Date()),
 						p_prediction.getUserId(), p_prediction.getGameId()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -168,7 +168,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -178,7 +178,8 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 	 * @param p_prediction
 	 */
 	private void validateFields( Prediction p_prediction ) {
-		p_prediction.setPrediction(( p_prediction.getPrediction() == null ? "" : p_prediction.getPrediction() ));
+		p_prediction.setTeam1Prediction(( p_prediction.getTeam1Prediction() == null ? "" : p_prediction.getTeam1Prediction() ));
+		p_prediction.setTeam2Prediction(( p_prediction.getTeam2Prediction() == null ? "" : p_prediction.getTeam2Prediction() ));
 	}
 	
 	@Override
@@ -203,12 +204,12 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			try {
 				dto.setUserId(rs.getString(seqn++));
 				dto.setGameId(rs.getString(seqn++));
-				dto.setPrediction(rs.getString(seqn++));
+				dto.setTeam1Prediction(rs.getString(seqn++));
+				dto.setTeam2Prediction(rs.getString(seqn++));
 				dto.setDate(getDate(rs.getDate(seqn++)));
-				dto.setTime(rs.getInt(seqn++));
 			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

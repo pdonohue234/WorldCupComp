@@ -6,7 +6,7 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<!--script src="js/functions.js"></script-->
+		<script src="js/functions.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.poptrox.min.js"></script>
 		<script src="js/skel.min.js"></script>
@@ -30,7 +30,7 @@
 						<ul>
 
 							<li><a href="#home">Home</a></li>
-							<li><a href="#predictions">Your Predictions</a></li>
+							<li><a href="#predictions" onclick="verifySession()">Your Predictions</a></li>
 							<li><a href="#sponsors">Sponsors</a></li>
 							<li><a href="#charity">Laura Lynn Children's Hospice</a></li>
 							<li><a href="#contact">Contact Us</a></li>
@@ -58,10 +58,10 @@
 					</p>
 					
 					<footer>
-						<a href="#predictions" class="button style2 down">More</a>
+						<a href="#predictions" onclick="verifySession()" class="button style2 down">More</a>
 					</footer>
 				</div>
-			</section>
+			</section>		
 		
 		<!-- Predictions -->
 			<section id="predictions" class="main style2 left dark fullscreen">

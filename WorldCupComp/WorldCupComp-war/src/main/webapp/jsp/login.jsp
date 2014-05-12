@@ -41,18 +41,18 @@
 			</header>
 			
 			
-	 		<section id="register" class="main style3 secondary">
+	 		<section id="login" class="main style3 secondary">
 				<div class="content container">
 					<header>
 						<h2>Please sign in</h2>
-						<p><a href="/login">Click here if you already have an account</a></p>
+						<p><a href="/register">Click here to Create New Account</a></p>
 					</header>
 					<div class="box container small">
 					
 						<!--
 							 Login Form
 						-->
-							<form:form method="post" action="/registerUser" modelAttribute="user">  
+							<form:form method="post" action="/loginUser" modelAttribute="user">  
 								<div class="row half">
 									<div class="6u"><label for="userIdInput">User Name: </label></div>
 						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>
@@ -62,20 +62,11 @@
 									<div class="6u"><label for="passwordInput">Password: </label></div>
 						      		<div class="6u"><form:input path="password" id="passwordInput" /></div>
 								</div> 	
-										      
-								<div class="row half">
-									<div class="6u"><label for="emailInput">Email: </label></div>
-						      		<div class="6u"><form:input path="email" id="emailInput" /></div>
-								</div> 	
-								
-								<div class="row half">
-									<div class="6u"><label for="nameInput">Name: </label></div>
-						      		<div class="6u"><form:input path="name" id="nameInput" /></div>
-								</div> 	
+										 	
 								<div class="row">
 									<div class="12u">
 										<ul class="actions">
-											<li><input type="submit" class="button" value="Save" /></li>
+											<li><input type="submit" class="button" value="Login" /></li>
 										</ul>
 									</div>
 								</div>

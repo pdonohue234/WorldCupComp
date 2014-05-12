@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.PredictionDao;
 import com.crowds.database.dto.Prediction;
 
 public class PredictionService extends PredictionDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(PredictionService.class.getName());
 	
 	/** 
 	 * Find list of all Predictions in system
@@ -19,8 +22,8 @@ public class PredictionService extends PredictionDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL Prediction records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL Prediction records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -37,12 +40,12 @@ public class PredictionService extends PredictionDao {
 				return this.findById(p_userId, p_gameId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find User's Prediction record because of empty Keys passed!");
+				this.m_logger.warning("Cannot find User's Prediction record because of empty Keys passed!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find User's Prediction record for Keys: " + p_userId +" and "+ p_gameId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find User's Prediction record for Keys: " + p_userId +" and "+ p_gameId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -58,12 +61,12 @@ public class PredictionService extends PredictionDao {
 				return this.findByUserId(p_userId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find User's Predictions records based on empty userId key!");
+				this.m_logger.warning("Cannot find User's Predictions records based on empty userId key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find User's Predictions records with userId: " + p_userId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find User's Predictions records with userId: " + p_userId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	}	
@@ -84,22 +87,22 @@ public class PredictionService extends PredictionDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("User's Prediction record was not added successfully for Key:" + p_prediction.getUserId()
+						this.m_logger.warning("User's Prediction record was not added successfully for Key:" + p_prediction.getUserId()
 								+ " and " + p_prediction.getGameId());
 				}
 				else {
-					this.m_logger.warn("User's Prediction record was not added - User's Prediction record already exists "
+					this.m_logger.warning("User's Prediction record was not added - User's Prediction record already exists "
 							+ "for Keys:" + p_prediction.getUserId() + " and " + p_prediction.getGameId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add User's Prediction record for empty Key!");
+				this.m_logger.warning("Cannot add User's Prediction record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create a User's Prediction record for Key: " + p_prediction.getUserId() + 
+			this.m_logger.severe("Error attemping to create a User's Prediction record for Key: " + p_prediction.getUserId() + 
 					" and " + p_prediction.getGameId());
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -120,21 +123,21 @@ public class PredictionService extends PredictionDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("User's Payments record was not updated successfully for Key:"  + p_prediction.getUserId() + 
+						this.m_logger.warning("User's Prediction record was not updated successfully for Key:"  + p_prediction.getUserId() + 
 								" and " + p_prediction.getGameId());
 				}
 				else 
-					this.m_logger.warn("User's Payments record was not updated - User record does NOT exists for Key:"  + p_prediction.getUserId() + 
+					this.m_logger.warning("User's Prediction record was not updated - User record does NOT exists for Key:"  + p_prediction.getUserId() + 
 							" and " + p_prediction.getGameId());
 			}
 			else {
-				this.m_logger.warn("Cannot update User's Payments record for empty Key!");
+				this.m_logger.warning("Cannot update User's Prediction record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update a User's Payments record for Key: "  + p_prediction.getUserId() + 
+			this.m_logger.severe("Error attemping to update a User's Prediction record for Key: "  + p_prediction.getUserId() + 
 					" and " + p_prediction.getGameId());
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -155,18 +158,18 @@ public class PredictionService extends PredictionDao {
 						if(rowCount != -1)
 							return true;	
 						else
-							this.m_logger.warn("User's Predictions record was not deleted for Key:" + prediction.getUserId() 
+							this.m_logger.warning("User's Predictions record was not deleted for Key:" + prediction.getUserId() 
 									+ " and " + prediction.getGameId());
 					}
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete User's Predictions record for empty Key!");
+				this.m_logger.warning("Cannot delete User's Predictions record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete User's Predictions record for Key: " + p_userId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete User's Predictions record for Key: " + p_userId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -186,17 +189,17 @@ public class PredictionService extends PredictionDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("User's Prediction record was not deleted for Key:" + p_userId +" and "+ p_predictionId);
+						this.m_logger.warning("User's Prediction record was not deleted for Key:" + p_userId +" and "+ p_predictionId);
 			
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete User's Prediction record for empty Key!");
+				this.m_logger.warning("Cannot delete User's Prediction record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete User's Prediction record for Key:" + p_userId +" and "+ p_predictionId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete User's Prediction record for Key:" + p_userId +" and "+ p_predictionId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	

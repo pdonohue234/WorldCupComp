@@ -24,18 +24,13 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String loadFormPage(Model m) {
+	public String loadRegisterFormPage(Model m) {
 		m.addAttribute("user", new User());
 		return "register";
 	}
 	
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
 	public ModelAndView registerUser(@ModelAttribute User user) {  
-		System.out.println(user.getUserId());
-		System.out.println(user.getPassword());
-		System.out.println(user.getEmail());
-		System.out.println(user.getName());
-		
 		boolean success = this.getUserService().insertData(user); 
 	  
 		System.out.println(success);
@@ -43,6 +38,21 @@ public class LoginController {
 		Map<String, Object> model = new HashMap<String, Object>();  
 		model.put("added", true);  
 		return new ModelAndView("registerUser", "model", model);  
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loadLoginFormPage(Model m) {
+		m.addAttribute("user", new User());
+		return "login";
+	}
+	
+	@RequestMapping(value="/loginUser", method=RequestMethod.POST)  
+	public ModelAndView loginUser(@ModelAttribute User user) {  
+		User userLoggedIn = this.getUserService().validateUser(user); 
+		
+		Map<String, Object> model = new HashMap<String, Object>();  
+		model.put("found", true);  
+		return new ModelAndView("loginUser", "model", model);  
 	}
 	
 	/**

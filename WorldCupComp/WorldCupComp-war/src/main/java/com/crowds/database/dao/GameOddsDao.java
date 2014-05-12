@@ -3,9 +3,9 @@ package com.crowds.database.dao;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 import com.crowds.database.dao.jdbc.AbstractDaoJdbc;
@@ -14,17 +14,17 @@ import com.crowds.database.sql.Sql;
 
 public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 
-	public Logger			m_logger	= 	Logger.getLogger(this.getClass());
+	public Logger			m_logger	= 	Logger.getLogger(GameOddsDao.class.getName());
 	
-	protected static final String	SQL_TABLE_NAME 		= "GAMEODDS";
-	protected static final String	SQL_TABLE_COLUMNS 	= "GAMEID, TEAM1_ODDS, TEAM2_ODDS, DRAW_ODDS, DATE, TIME";
+	protected static final String	SQL_TABLE_NAME 		= "Game_Odds";
+	protected static final String	SQL_TABLE_COLUMNS 	= "Game_ID, Team1_Odds, Team2_Odds, Draw_Odds, TimeStampEntered";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
-	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE GAMEID=?";
+	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Game_ID=?";
 	
 	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET TEAM1_ODDS=?, TEAM2_ODDS=?, DRAW_ODDS=?, DATE=?, TIME=? WHERE GAMEID=?";
-	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE GAMEID=?";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Team1_Odds=?, Team2_Odds=?, Draw_Odds=?, TimeStampEntered=? WHERE Game_ID=?";
+	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE Game_ID=?";
 	
 	
 	public GameOddsDao() {
@@ -44,7 +44,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			return gameOdds;
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -63,7 +63,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -78,13 +78,13 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			if( StringUtils.isNotBlank(p_gameOdds.getGameId())) {
 				Sql l_sql = new Sql(SQL_ADD, 
 						new Object[] {p_gameOdds.getGameId(), p_gameOdds.getTeamOneOdds(), p_gameOdds.getTeamTwoOdds(), 
-						p_gameOdds.getDrawOdds(), this.getSdf().format(new Date()), "TIME"});
+						p_gameOdds.getDrawOdds(), this.getSdf().format(new Date())});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}
@@ -99,13 +99,13 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			if( StringUtils.isNotBlank(p_gameOdds.getGameId())) {
 				Sql l_sql = new Sql(SQL_UPDATE, 
 						new Object[] {p_gameOdds.getTeamOneOdds(), p_gameOdds.getTeamTwoOdds(), p_gameOdds.getDrawOdds(),
-										this.getSdf().format(new Date()), "TIME", p_gameOdds.getGameId()});
+										this.getSdf().format(new Date()), p_gameOdds.getGameId()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -125,7 +125,7 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error(e);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;		
 	}	
@@ -155,11 +155,9 @@ public class GameOddsDao extends AbstractDaoJdbc<GameOdds>{
 				dto.setTeamOneOdds(rs.getDouble(seqn++));
 				dto.setTeamTwoOdds(rs.getDouble(seqn++));
 				dto.setDrawOdds(rs.getDouble(seqn++));
-				dto.setDate(getDate(rs.getDate(seqn++)));
-				dto.setTime(rs.getInt(seqn++));
-			}
+				dto.setDate(getDate(rs.getDate(seqn++)));			}
 			catch(Exception e) {
-				m_logger.error(e);
+				m_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;

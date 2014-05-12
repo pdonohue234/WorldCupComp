@@ -9,9 +9,9 @@ public class User extends Dto<User> implements Serializable {
 	
 	public static final String MAPPED_TABLE_NAME = "Users";
 	
-	protected static final String[] KEY_FIELD_NAMES = new String[] {"USERID"}; 
+	protected static final String[] KEY_FIELD_NAMES = new String[] {"User_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"PASSWORD", "EMAIL", "NAME", "DATE_REGISTERED"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Password", "Email", "Name", "Date_Registered"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int USERID = 0;

@@ -1,6 +1,7 @@
 package com.crowds.services;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,6 +9,8 @@ import com.crowds.database.dao.EventDao;
 import com.crowds.database.dto.Event;
 
 public class EventService extends EventDao {
+	
+	public Logger			m_logger	= 	Logger.getLogger(EventService.class.getName());
 	
 	/** 
 	 * Find list of all Events in system
@@ -19,8 +22,8 @@ public class EventService extends EventDao {
 			return this.findAll();
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find ALL Event records.");
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find ALL Event records.");
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;		  
 	}
@@ -36,12 +39,12 @@ public class EventService extends EventDao {
 				return this.findById(p_eventId); 
 			}
 			else {
-				this.m_logger.warn("Cannot find a Event record for empty Key!");
+				this.m_logger.warning("Cannot find a Event record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Event record for Key: " + p_eventId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find Event record for Key: " + p_eventId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	} 
@@ -57,38 +60,16 @@ public class EventService extends EventDao {
 				return this.findByEventName(p_eventName); 
 			}
 			else {
-				this.m_logger.warn("Cannot find Event record based on empty event name!");
+				this.m_logger.warning("Cannot find Event record based on empty event name!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Event record with event name: " + p_eventName);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to find Event record with event name: " + p_eventName);
+			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
 	}	
 	
-	/**
-	 * Find an Event based on event name and country
-	 * @param p_eventName
-	 * @param p_eventCountry
-	 * @return Event
-	 */
-	public Event getEventByNameAndCountry(String p_eventName, String p_eventCountry) { 
-		try {
-			if(StringUtils.isNotEmpty(p_eventName) && StringUtils.isNotEmpty(p_eventCountry)) {
-				return this.findByEventNameAndCountry(p_eventName, p_eventCountry); 
-			}
-			else {
-				this.m_logger.warn("Cannot find Event record based on empty event name/country!");
-			}
-		}
-		catch(Exception e) {
-			this.m_logger.error("Error attemping to find Event record with event name: " + p_eventName 
-					+ " and event country: " + p_eventCountry);
-			this.m_logger.error(e);
-		} 
-		return null;
-	}	
 	
 	/** 
 	 * Insert a single Event record into the database
@@ -105,19 +86,19 @@ public class EventService extends EventDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Event record was not added successfully for Key:" + p_event.getEventId());
+						this.m_logger.warning("Event record was not added successfully for Key:" + p_event.getEventId());
 				}
 				else {
-					this.m_logger.warn("Event record was not added - record already exists for Key:" + p_event.getEventId());
+					this.m_logger.warning("Event record was not added - record already exists for Key:" + p_event.getEventId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot add Event record for empty Key!");
+				this.m_logger.warning("Cannot add Event record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to create a Event record for Key: " + p_event.getEventId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to create a Event record for Key: " + p_event.getEventId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}  
@@ -137,19 +118,19 @@ public class EventService extends EventDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Event record was not updated successfully for Key:" + p_event.getEventId());
+						this.m_logger.warning("Event record was not updated successfully for Key:" + p_event.getEventId());
 				}
 				else {
-					this.m_logger.warn("Event record was not updated - record does NOT exists for Key:" + p_event.getEventId());
+					this.m_logger.warning("Event record was not updated - record does NOT exists for Key:" + p_event.getEventId());
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot update Event record for empty Key!");
+				this.m_logger.warning("Cannot update Event record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to update a Event record for Key: " + p_event.getEventId());
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to update a Event record for Key: " + p_event.getEventId());
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	} 	
@@ -169,16 +150,16 @@ public class EventService extends EventDao {
 					if(rowCount != -1)
 						return true;	
 					else
-						this.m_logger.warn("Event record was not deleted for Key:" + p_eventId);
+						this.m_logger.warning("Event record was not deleted for Key:" + p_eventId);
 				}
 			}
 			else {
-				this.m_logger.warn("Cannot delete Event record for empty Key!");
+				this.m_logger.warning("Cannot delete Event record for empty Key!");
 			}
 		}
 		catch(Exception e) {
-			this.m_logger.error("Error attemping to delete Event record for Key: " + p_eventId);
-			this.m_logger.error(e);
+			this.m_logger.severe("Error attemping to delete Event record for Key: " + p_eventId);
+			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
 	}   

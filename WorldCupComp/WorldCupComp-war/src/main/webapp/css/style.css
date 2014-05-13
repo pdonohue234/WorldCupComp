@@ -56,7 +56,8 @@
 	}
 
 	a {
-		color: #98c593;
+		/* color: #98c593; */
+		color: black;
 
 		-moz-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
 		-webkit-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -575,11 +576,11 @@
 	/* Dark */
 
 		.dark {
-			color: #fff;
+			color: black;
 		}
 
 			.dark a {
-				color: #fff;
+				color: #black;
 			}
 		
 			.dark .button.style2 {

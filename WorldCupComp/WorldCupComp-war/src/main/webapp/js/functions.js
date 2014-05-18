@@ -1,5 +1,5 @@
 
-$('#predictions').click(function(){ verifySession(); return false; });
+//$('#predictions').click(function(){ verifySession(); return false; });
 
 //check session is alive before predictions screen
 function verifySession() {

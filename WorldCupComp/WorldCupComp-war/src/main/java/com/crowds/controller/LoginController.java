@@ -116,7 +116,7 @@ public class LoginController {
 			this.m_logger.warning("No user found!");
 		}
 		
-		model.put("fixtureResultList", new ArrayList<FixtureResult>());
+		//model.put("fixtureResultList", new ArrayList<FixtureResult>());
 		
 		return new ModelAndView("predictions", "model", model);  
 	}	
@@ -149,6 +149,21 @@ public class LoginController {
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return results;
+	}
+	
+	
+	
+	@RequestMapping(value="/updatePredictions", method=RequestMethod.POST)    
+	public ModelAndView updatePredictions(@ModelAttribute List<FixtureResult> fixtureResultList) {  
+		Map<String, Object> model = new HashMap<String, Object>();  	
+		
+		this.m_logger.warning("updatePredictions!" + fixtureResultList.size());
+		
+		if(fixtureResultList!= null) {
+			model.put("fixtureResults", fixtureResultList);
+		}
+		
+		return new ModelAndView("predictions", "model", model);  
 	}
 	
 	/**

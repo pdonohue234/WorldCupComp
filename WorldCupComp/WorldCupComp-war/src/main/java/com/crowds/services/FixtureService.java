@@ -79,6 +79,7 @@ public class FixtureService extends FixtureDao {
 	 */
 	public List<Fixture> getEventsFixtures(String p_eventId) { 
 		try {
+			this.m_logger.warning("Find Fixtures for: " + p_eventId );
 			if(StringUtils.isNotEmpty(p_eventId)) {
 				return this.findByEventId(p_eventId); 
 			}
@@ -225,5 +226,5 @@ public class FixtureService extends FixtureDao {
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
-	} 	
+	} 
 }

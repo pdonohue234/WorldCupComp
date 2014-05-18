@@ -29,12 +29,11 @@
 					<nav id="nav">
 						<ul>
 
-							<li><a href="#home">Home</a></li>
-							<li><a href="#predictions" onclick="verifySession()">Your Predictions</a></li>
-							<li><a href="#sponsors">Sponsors</a></li>
-							<li><a href="#charity">Laura Lynn Children's Hospice</a></li>
-							<li><a href="#contact">Contact Us</a></li>
-							<li><a href="#rules">Competition Rules T&Cs</a></li>
+							<li><a href="https://worldcupcomp2014.appspot.com/#home">Home</a></li>
+							<li><a onclick="verifySession()">Your Predictions</a></li>
+							<li><a href="https://worldcupcomp2014.appspot.com/#sponsors">Sponsors</a></li>
+							<li><a href="https://worldcupcomp2014.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
+							<li><a href="https://worldcupcomp2014.appspot.com/#rules">Competition Rules T&Cs</a></li>
 
 						</ul>
 					</nav>

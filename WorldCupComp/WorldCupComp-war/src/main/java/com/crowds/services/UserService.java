@@ -62,6 +62,7 @@ public class UserService extends UserDao {
 				if(dbUser != null) {
 					if(StringUtils.equals(p_user.getPassword(), dbUser.getPassword())) {
 						this.m_logger.warning("User exists & is validated - userId: " + p_user.getUserId());
+						return dbUser;
 					}
 					else {
 						this.m_logger.warning("User exists but invalid password for userId: " + p_user.getUserId());

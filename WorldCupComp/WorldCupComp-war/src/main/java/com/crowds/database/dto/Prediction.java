@@ -17,8 +17,8 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	public static final int USERID = 0;
 	public static final int GAMEID = 1;	
 	
-	private String	m_team1Prediction;
-	private String	m_team2Prediction;
+	private int		m_team1Prediction;
+	private int		m_team2Prediction;
 	private Date	m_date;
 	
 	
@@ -62,19 +62,19 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	}
 	
 	
-	public String getTeam1Prediction() {
+	public int getTeam1Prediction() {
 		return m_team1Prediction;
 	}
 
-	public void setTeam1Prediction(String p_team1Prediction) {
+	public void setTeam1Prediction(int p_team1Prediction) {
 		m_team1Prediction = p_team1Prediction;
 	}
 	
-	public String getTeam2Prediction() {
+	public int getTeam2Prediction() {
 		return m_team2Prediction;
 	}
 
-	public void setTeam2Prediction(String p_team2Prediction) {
+	public void setTeam2Prediction(int p_team2Prediction) {
 		m_team2Prediction = p_team2Prediction;
 	}
 
@@ -84,6 +84,17 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 
 	public void setDate(Date p_date) {
 		m_date = p_date;
+	}
+	
+	public int whichTeamToWin() {
+		if(this.m_team1Prediction > this.m_team2Prediction) 
+			return 1;
+		else if(this.m_team2Prediction > this.m_team1Prediction)
+			return 2;
+		else if(this.m_team2Prediction == this.m_team1Prediction)
+			return 0;
+		else
+			return -1;
 	}
 
 	public String getMappedTableName() {

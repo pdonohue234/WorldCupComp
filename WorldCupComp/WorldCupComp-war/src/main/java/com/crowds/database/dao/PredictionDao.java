@@ -80,7 +80,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 		try {
 			if( StringUtils.isNotBlank(p_userId) ) {
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY1, new Object[] {p_userId});
-				List<Prediction> predictions = this.findAll(l_sql, new PredictionRowMapper());
+				List<Prediction> predictions = this.find(l_sql, new PredictionRowMapper());
 				return predictions;
 			}
 		}
@@ -99,7 +99,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 		try {
 			if( StringUtils.isNotBlank(p_gameId) ) {
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY2, new Object[] {p_gameId});
-				List<Prediction> predictions = this.findAll(l_sql, new PredictionRowMapper());
+				List<Prediction> predictions = this.find(l_sql, new PredictionRowMapper());
 				return predictions;
 			}
 		}
@@ -178,8 +178,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 	 * @param p_prediction
 	 */
 	private void validateFields( Prediction p_prediction ) {
-		p_prediction.setTeam1Prediction(( p_prediction.getTeam1Prediction() == null ? "" : p_prediction.getTeam1Prediction() ));
-		p_prediction.setTeam2Prediction(( p_prediction.getTeam2Prediction() == null ? "" : p_prediction.getTeam2Prediction() ));
+	
 	}
 	
 	@Override
@@ -204,8 +203,8 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			try {
 				dto.setUserId(rs.getString(seqn++));
 				dto.setGameId(rs.getString(seqn++));
-				dto.setTeam1Prediction(rs.getString(seqn++));
-				dto.setTeam2Prediction(rs.getString(seqn++));
+				dto.setTeam1Prediction(rs.getInt(seqn++));
+				dto.setTeam2Prediction(rs.getInt(seqn++));
 				dto.setDate(getDate(rs.getDate(seqn++)));
 			}
 			catch(Exception e) {

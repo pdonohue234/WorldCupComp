@@ -20,25 +20,23 @@
 
 	<body>  
 		<!-- Header -->
-			<header id="header">
+		<header id="header">
 
-				<!-- Logo -->
-					<h1 id="logo"><a href="#">The World Cup Prediction Competition</a></h1>
+			<!-- Logo -->
+			<h1 id="logo"><a href="https://worldcupcomp2014.appspot.com/#">World Cup Prediction Competition</a></h1>
 				
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="https://worldcupcomp2014.appspot.com/#home">Home</a></li>
+					<li><a onclick="verifySession()">Your Predictions</a></li>
+					<li><a href="https://worldcupcomp2014.appspot.com/#sponsors">Sponsors</a></li>
+					<li><a href="https://worldcupcomp2014.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
+					<li><a href="https://worldcupcomp2014.appspot.com/#rules">Rules</a></li>
+				</ul>
+			</nav>
 
-							<li><a href="#home">Home</a></li>
-							<li><a href="#predictions" onclick="verifySession()">Your Predictions</a></li>
-							<li><a href="#sponsors">Sponsors</a></li>
-							<li><a href="#charity">Laura Lynn Children's Hospice</a></li>
-							<li><a href="#contact">Contact Us</a></li>
-							<li><a href="#rules">Competition Rules T&Cs</a></li>
-
-						</ul>
-					</nav>
-			</header>
+		</header>
 			
 			
 	 		<section id="login" class="main style3 secondary">
@@ -52,10 +50,10 @@
 						<!--
 							 Login Form
 						-->
-							<form:form method="post" action="/loginUser" modelAttribute="user">  
+							<form:form method="post" action="/predictions" modelAttribute="user">  
 								<div class="row half">
 									<div class="6u"><label for="userIdInput">User Name: </label></div>
-						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>
+						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>						      		
 								</div>
 								
 								<div class="row half">

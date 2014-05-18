@@ -10,7 +10,9 @@ import com.crowds.database.dto.Event;
 
 public class EventService extends EventDao {
 	
-	public Logger			m_logger	= 	Logger.getLogger(EventService.class.getName());
+	public Logger			m_logger				= 	Logger.getLogger(EventService.class.getName());
+	
+	public static final String	WORLD_CUP_2014_ID	= "FifaWC2014";
 	
 	/** 
 	 * Find list of all Events in system

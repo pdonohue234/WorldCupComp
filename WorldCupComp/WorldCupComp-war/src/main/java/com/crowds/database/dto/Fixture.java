@@ -3,6 +3,8 @@ package com.crowds.database.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
 public class Fixture extends Dto<Fixture> implements Serializable {
 	
 	private static final long serialVersionUID = 5357816548361689586L;
@@ -18,15 +20,15 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 	public static final int GAMEID = 0;
 	public static final int EVENTID = 1;
 	
-	private Date	m_gameDate;
-	private String	m_teamOne;
-	private int		m_teamOneScore;
-	private String	m_teamTwo;
-	private int		m_teamTwoScore;
-	private String	m_gamePlayed;
-	private String	m_winningTeam;
-	private String	m_round;
-	private String	m_gameLocation;
+	private Date	gameDate;
+	private String	teamOne;
+	private int		teamOneScore;
+	private String	teamTwo;
+	private int		teamTwoScore;
+	private String	gamePlayed;
+	private String	winningTeam;
+	private String	round;
+	private String	gameLocation;
 	
 	/**
 	 * Default Constructor
@@ -68,86 +70,113 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 	}
 
 	public Date getGameDate() {
-		return m_gameDate;
+		return gameDate;
 	}
 
 
 	public void setGameDate(Date p_gameDate) {
-		m_gameDate = p_gameDate;
+		gameDate = p_gameDate;
 	}
 
 
 	public String getTeamOne() {
-		return m_teamOne;
+		return teamOne;
 	}
 
 
 	public void setTeamOne(String p_teamOne) {
-		m_teamOne = p_teamOne;
+		teamOne = p_teamOne;
 	}
 
 	public int getTeamOneScore() {
-		return m_teamOneScore;
+		return teamOneScore;
 	}
 
 
 	public void setTeamOneScore(int p_teamOneScore) {
-		m_teamOneScore = p_teamOneScore;
+		teamOneScore = p_teamOneScore;
 	}
 
 
 	public String getTeamTwo() {
-		return m_teamTwo;
+		return teamTwo;
 	}
 
 
 	public void setTeamTwo(String p_teamTwo) {
-		m_teamTwo = p_teamTwo;
+		teamTwo = p_teamTwo;
 	}
 
 	public int getTeamTwoScore() {
-		return m_teamTwoScore;
+		return teamTwoScore;
 	}
 
 
 	public void setTeamTwoScore(int p_teamTwoScore) {
-		m_teamTwoScore = p_teamTwoScore;
+		teamTwoScore = p_teamTwoScore;
 	}
 	
 	public String getGamePlayed() {
-		return m_gamePlayed;
+		return gamePlayed;
 	}
 
 
 	public void setGamePlayed(String p_gamePlayed) {
-		m_gamePlayed = p_gamePlayed;
+		gamePlayed = p_gamePlayed;
 	}
 	
+	public boolean isGamePlayed() {
+		if(StringUtils.isNotEmpty(this.gamePlayed)){
+			if(StringUtils.equalsIgnoreCase(this.gamePlayed, "Y") ||
+				StringUtils.equalsIgnoreCase(this.gamePlayed, "Yes") ||
+				StringUtils.equalsIgnoreCase(this.gamePlayed, "T") ||
+				StringUtils.equalsIgnoreCase(this.gamePlayed, "True"))
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}		
+	
 	public String getWinningTeam() {
-		return m_winningTeam;
+		return winningTeam;
 	}
 
 
 	public void setWinningTeam(String p_winningTeam) {
-		m_winningTeam = p_winningTeam;
+		winningTeam = p_winningTeam;
 	}
 	
 	public String getRound() {
-		return m_round;
+		return round;
 	}
 
 
 	public void setRound(String p_round) {
-		m_round = p_round;
+		round = p_round;
 	}
 	
 	public String getGameLocation() {
-		return m_gameLocation;
+		return gameLocation;
 	}
 
 
 	public void setGameLocation(String p_gameLocation) {
-		m_gameLocation = p_gameLocation;
+		gameLocation = p_gameLocation;
+	}
+	
+	public int whichTeamWon() {
+		if(isGamePlayed()) {
+			if(StringUtils.equalsIgnoreCase(this.teamOne,this.winningTeam) )
+				return 1;
+			else if(StringUtils.equalsIgnoreCase(this.teamTwo,this.winningTeam) )
+				return 2;
+			else 
+				return 0;
+		}
+		else
+			return -1;
 	}
 
 	public String getMappedTableName() {

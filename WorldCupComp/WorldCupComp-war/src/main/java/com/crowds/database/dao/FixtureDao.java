@@ -99,7 +99,7 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 		try {
 			if( StringUtils.isNotBlank(p_eventId) ) {
 				Sql l_sql = new Sql(SQL_SELECT_USINGKEY2, new Object[] {p_eventId});
-				List<Fixture> fixtures = this.findAll(l_sql, new FixtureRowMapper());
+				List<Fixture> fixtures = this.find(l_sql, new FixtureRowMapper());
 				return fixtures;
 			}
 		}

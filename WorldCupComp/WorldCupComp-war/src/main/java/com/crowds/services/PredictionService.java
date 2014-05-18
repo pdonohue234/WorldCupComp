@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.apache.commons.lang.StringUtils;
 
 import com.crowds.database.dao.PredictionDao;
+import com.crowds.database.dto.Fixture;
 import com.crowds.database.dto.Prediction;
 
 public class PredictionService extends PredictionDao {
@@ -202,5 +203,50 @@ public class PredictionService extends PredictionDao {
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return false;
-	} 	
+	} 
+	
+	/**
+	 * 1. One for correct result (team1win/team2win/draw)
+	 * 2. Two for each score you get correct
+	 * 3. Max Total can be 5
+	 */
+	public double calcuateUserPredictionScore(List<Fixture> p_fixtures, List<Prediction> p_predictions ) {
+		int score = 0;
+		try {
+			if(p_fixtures!= null && p_fixtures.size() != 0) {
+				for(Fixture fixture : p_fixtures) {
+					if(p_predictions!= null && p_predictions.size() != 0) {
+						for(Prediction prediction : p_predictions) {
+							if(StringUtils.isNotEmpty(fixture.getGameId()) && StringUtils.isNotEmpty(prediction.getGameId())) {
+								if(StringUtils.equalsIgnoreCase(fixture.getGameId(), prediction.getGameId())) {
+									if(fixture.isGamePlayed() ) {
+										//1. One for correct result (team1win/team2win/draw)
+										if(fixture.whichTeamWon() != -1 && prediction.whichTeamToWin() != -1)  {
+											if(fixture.whichTeamWon() == prediction.whichTeamToWin())  
+												score++;
+										}
+										
+										//2. Two for each score you get correct
+										if(fixture.getTeamOneScore() == prediction.getTeam1Prediction() ) {
+											score = score + 2;
+										}
+										if(fixture.getTeamTwoScore() == prediction.getTeam2Prediction() ) {
+											score = score + 2;
+										}
+									}
+								}
+								break;
+							}		
+						}
+					}
+				}
+			}
+		}
+		catch(Exception e) {
+			this.m_logger.severe("Error attemping to calculate User's Prediction score for User:" + p_predictions.get(0).getUserId() );
+			this.m_logger.severe(e.getLocalizedMessage());
+			return -1;
+		}
+		return score;
+	}
 }

@@ -1,4 +1,6 @@
-var contextPath = "https://worldcupcomp2014.appspot.com";
+
+$('#predictions').click(function(){ verifySession(); return false; });
+
 //check session is alive before predictions screen
 function verifySession() {
 	//1. Check does the user have a valid session

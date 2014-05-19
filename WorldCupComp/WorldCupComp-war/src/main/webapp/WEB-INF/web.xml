@@ -33,4 +33,16 @@
 	<welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+    
+	
+<!-- https://developers.google.com/appengine/docs/java/config/webxml#Secure_URLs -->
+<!-- <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>profile</web-resource-name>
+            <url-pattern>/profile/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint> -->
 </web-app>

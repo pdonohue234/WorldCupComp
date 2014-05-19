@@ -41,11 +41,17 @@
 	 -->  
 	 
 	 
-	 <!-- Production Only -->
+	 <!-- OLD - Production Only 
 	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
 	 	<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver" />  
 	  	<property name="url" value="jdbc:google:mysql://worldcupcomp2014:v002/WorldCupCompDB?user=root" />
-	 </bean>  
+	 </bean>  -->
+	 
+	 <!-- Production Only -->
+	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+	 	<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver" />  
+	  	<property name="url" value="jdbc:google:mysql://worldcuppredictioncomp:v01/WorldCupCompDB?user=root" />
+	 </bean>  	 	 
      
 	 <!--  	 
 	 <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  

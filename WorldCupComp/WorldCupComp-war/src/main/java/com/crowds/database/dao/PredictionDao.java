@@ -17,15 +17,15 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 	public Logger			m_logger	= 	Logger.getLogger(PredictionDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "Predictions";
-	protected static final String	SQL_TABLE_COLUMNS 	= "User_ID, Game_ID, Team1_Prediction, Team2_Prediction, Time_Stamp";
+	protected static final String	SQL_TABLE_COLUMNS 	= "User_ID, Game_ID, Team1_Prediction, Team2_Prediction, Result_Prediction, Time_Stamp";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
 	protected static final String	SQL_SELECT_USINGKEYS= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_ID=? AND Game_ID=?";
 	protected static final String	SQL_SELECT_USINGKEY1= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_ID=? ";
 	protected static final String	SQL_SELECT_USINGKEY2= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Game_ID=?";
 	
-	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Team1_Prediction=?, Team2_Prediction=?, Time_Stamp=? WHERE User_ID=? AND Game_ID=?";
+	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?, ?)";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Team1_Prediction=?, Team2_Prediction=?, Result_Prediction=?, Time_Stamp=? WHERE User_ID=? AND Game_ID=?";
 	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_ID=? AND Game_ID=?";
 	
 	
@@ -120,7 +120,8 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 				validateFields( p_prediction );
 				Sql l_sql = new Sql(SQL_ADD, 
 						new Object[] {p_prediction.getUserId(), p_prediction.getGameId(), p_prediction.getTeam1Prediction(), 
-						p_prediction.getTeam2Prediction(), this.getSdf().format(new Date())});
+						p_prediction.getTeam2Prediction(), p_prediction.getWinningTeamPrediction(),
+						this.getSdf().format(new Date())});
 				int rows = this.update(l_sql);
 				return rows;
 			}
@@ -141,7 +142,8 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 			if( StringUtils.isNotBlank(p_prediction.getUserId()) && StringUtils.isNotBlank(p_prediction.getGameId())) {
 				validateFields(p_prediction );
 				Sql l_sql = new Sql(SQL_UPDATE, 
-						new Object[] {p_prediction.getTeam1Prediction(), p_prediction.getTeam2Prediction(), this.getSdf().format(new Date()),
+						new Object[] {p_prediction.getTeam1Prediction(), p_prediction.getTeam2Prediction(), 
+						p_prediction.getWinningTeamPrediction(), this.getSdf().format(new Date()),
 						p_prediction.getUserId(), p_prediction.getGameId()});
 				int rows = this.update(l_sql);
 				return rows;
@@ -205,6 +207,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 				dto.setGameId(rs.getString(seqn++));
 				dto.setTeam1Prediction(rs.getInt(seqn++));
 				dto.setTeam2Prediction(rs.getInt(seqn++));
+				dto.setWinningTeamPrediction(rs.getString(seqn++));
 				dto.setDate(getDate(rs.getDate(seqn++)));
 			}
 			catch(Exception e) {

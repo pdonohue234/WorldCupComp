@@ -1,6 +1,7 @@
 package com.crowds.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.HashMap;
@@ -69,9 +70,14 @@ public class LoginController {
 		return "login";
 	}
 	
+	/**
 	@ModelAttribute("fixtureResultList")
 	public List<FixtureResult> createModel() {
 	    return new ArrayList<FixtureResult>();
+	}*/
+	@ModelAttribute("fixtureResultList")
+	public FixtureResultList createModel() {
+	    return new FixtureResultList();
 	}
 	
 	@RequestMapping(value="/predictions", method=RequestMethod.POST)    
@@ -85,32 +91,7 @@ public class LoginController {
 			model.put("found", true);
 			model.put("userLoggedIn", userLoggedIn);
 			
-			List<Prediction> predictions = this.getPredictionService().getUsersPredictions(userLoggedIn.getUserId());
-			
-			List<Fixture> fixtures = this.getFixtureService().getEventsFixtures(EventService.WORLD_CUP_2014_ID);
-			if(fixtures != null) {
-				
-				if(predictions != null) {
-					List<FixtureResult> results = getResults(fixtures, predictions);
-					if(results!= null) {
-						model.put("fixtureResults", results);
-					}
-				}
-				else { 
-					List<FixtureResult> results = getResults(fixtures, null);
-					if(results!= null) {
-						model.put("fixtureResults", results);
-					}
-				}
-			}
-			else {
-				this.m_logger.warning("No fixtures found!");
-			}
-			
-			double score = this.getPredictionService().calcuateUserPredictionScore(fixtures, predictions);
-			if(score != -1) {
-				model.put("score", score); 
-			}
+			model = getFixtureResultList(model, userLoggedIn.getUserId());	
 		}
 		else {
 			this.m_logger.warning("No user found!");
@@ -119,9 +100,43 @@ public class LoginController {
 		//model.put("fixtureResultList", new ArrayList<FixtureResult>());
 		
 		return new ModelAndView("predictions", "model", model);  
-	}	
+	}
 	
-	public List<FixtureResult> getResults(List<Fixture> p_fixtures, List<Prediction> p_predictions ) {
+	public Map<String, Object> getFixtureResultList(Map<String, Object> model, String userLoggedIn) {
+		List<Prediction> predictions = this.getPredictionService().getUsersPredictions(userLoggedIn);
+		
+		List<Fixture> fixtures = this.getFixtureService().getEventsFixtures(EventService.WORLD_CUP_2014_ID);
+		if(fixtures != null) {
+			if(predictions != null) {
+				List<FixtureResult> results = getResults(fixtures, predictions, userLoggedIn);
+				if(results!= null) {
+					FixtureResultList fixtureResultList = new FixtureResultList();
+					fixtureResultList.setFixtureResults(results);
+					model.put("fixtureResultList", fixtureResultList);
+				}
+			}
+			else { 
+				List<FixtureResult> results = getResults(fixtures, null, userLoggedIn);
+				if(results!= null) {
+					FixtureResultList fixtureResultList = new FixtureResultList();
+					fixtureResultList.setFixtureResults(results);
+					model.put("fixtureResultList", fixtureResultList);
+				}
+			}
+		}
+		else {
+			this.m_logger.warning("No fixtures found!");
+		}
+		
+		double score = this.getPredictionService().calcuateUserPredictionScore(fixtures, predictions);
+		if(score != -1) {
+			model.put("score", score); 
+		}
+		
+		return model;
+	}
+	
+	public List<FixtureResult> getResults(List<Fixture> p_fixtures, List<Prediction> p_predictions, String p_userId ) {
 		List<FixtureResult> results = new ArrayList<FixtureResult>();
 		try {
 			if(p_fixtures!= null && p_fixtures.size() != 0) {
@@ -140,7 +155,7 @@ public class LoginController {
 						results.add( new FixtureResult(fixture, p) );
 					else
 						//Add new fixture
-						results.add( new FixtureResult(fixture) );
+						results.add( new FixtureResult(fixture, p_userId ) );
 				}
 			}
 		}
@@ -154,14 +169,34 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="/updatePredictions", method=RequestMethod.POST)    
-	public ModelAndView updatePredictions(@ModelAttribute List<FixtureResult> fixtureResultList) {  
+	public ModelAndView updatePredictions(@ModelAttribute FixtureResultList fixtureResultList) {  
 		Map<String, Object> model = new HashMap<String, Object>();  	
 		
-		this.m_logger.warning("updatePredictions!" + fixtureResultList.size());
+		String userId = "";
 		
-		if(fixtureResultList!= null) {
-			model.put("fixtureResults", fixtureResultList);
+		//Update each entry amended
+		if(fixtureResultList!= null && fixtureResultList.getFixtureResults().size() > 0) {
+			for(FixtureResult fixtureResult : fixtureResultList.getFixtureResults() ) {
+				//Check if values have changed
+				if(fixtureResult.isChanged()) {
+					//Ensure that we have the keys to update with
+					if(fixtureResult.keysAreSet()) {
+						userId = fixtureResult.getUserId();
+						//If scores have been set
+						if(fixtureResult.scoresAreSet()) {
+							Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
+							prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
+							prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
+							prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
+							prediction.setDate(new Date());
+							boolean success = this.getPredictionService().saveOrUpdate(prediction);
+						}
+					}
+				}				
+			}
 		}
+		
+		model = getFixtureResultList(model, userId);
 		
 		return new ModelAndView("predictions", "model", model);  
 	}

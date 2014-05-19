@@ -70,7 +70,45 @@ public class PredictionService extends PredictionDao {
 			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return null;
-	}	
+	}
+	
+	/**
+	 * If record does not exist then insert it
+	 */
+	public boolean saveOrUpdate(Prediction p_prediction) {
+		try {
+			if(p_prediction != null && StringUtils.isNotEmpty(p_prediction.getUserId()) && 
+					StringUtils.isNotEmpty(p_prediction.getGameId() )) {
+				//Check if record exists for that id already
+				Prediction predictionExists = this.findById(p_prediction.getUserId(), p_prediction.getGameId());
+				if( predictionExists == null ) {
+					int rowCount = this.insert(p_prediction);
+					if(rowCount != -1)
+						return true;	
+					else
+						this.m_logger.warning("User's Prediction record was not added successfully for Key:" + p_prediction.getUserId()
+								+ " and " + p_prediction.getGameId());
+				}
+				else {
+					int rowCount = this.update(p_prediction);
+					if(rowCount != -1)
+						return true;	
+					else
+						this.m_logger.warning("User's Prediction record was not updated successfully for Key:"  + p_prediction.getUserId() + 
+								" and " + p_prediction.getGameId());
+				}
+			}
+			else {
+				this.m_logger.warning("Cannot add User's Prediction record for empty Key!");
+			}
+		}
+		catch(Exception e) {
+			this.m_logger.severe("Error attemping to update/Save a User's Prediction record for Key: " + p_prediction.getUserId() + 
+					" and " + p_prediction.getGameId());
+			this.m_logger.severe(e.getLocalizedMessage());
+		}
+		return false;
+	}
 	
 	/** 
 	 * Insert a single Prediction record into the database

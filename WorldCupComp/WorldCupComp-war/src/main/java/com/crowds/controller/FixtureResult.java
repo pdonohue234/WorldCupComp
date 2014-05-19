@@ -8,7 +8,8 @@ import com.crowds.database.dto.Fixture;
 import com.crowds.database.dto.Prediction;
 
 public class FixtureResult {
-	
+
+	private String	userId;
 	private String	gameId;
 	private String	eventId;
 	private Date	gameDate;
@@ -31,7 +32,8 @@ public class FixtureResult {
 	/**
 	 * Overloaded Constructor - Accepts GameId
 	 */
-	public FixtureResult(Fixture fixture) {
+	public FixtureResult(Fixture fixture, String userId) {
+		this.userId = userId;
 		this.gameId = fixture.getGameId();
 		this.eventId = fixture.getEventId();
 		this.gameDate = fixture.getGameDate();
@@ -61,6 +63,7 @@ public class FixtureResult {
 	 * Overloaded Constructor - Accepts GameId
 	 */
 	public FixtureResult(Fixture fixture, Prediction prediction) {
+		this.userId = prediction.getUserId();
 		this.gameId = fixture.getGameId();
 		this.eventId = fixture.getEventId();
 		this.gameDate = fixture.getGameDate();
@@ -85,6 +88,13 @@ public class FixtureResult {
 		hasGameStarted();
 	}
 	
+	public String getUserId() {
+		return userId;
+	}
+	
+	public void setUserId( String p_userId ) {
+		this.userId = p_userId;
+	}
 	
 	public String getGameId() {
 		return gameId;
@@ -227,5 +237,29 @@ public class FixtureResult {
 
 	public void setActive(boolean p_active) {
 		active = p_active;
+	}
+	
+	public boolean isChanged() {
+		if(StringUtils.isNotBlank(this.winningTeam)) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public boolean keysAreSet() {
+		if(StringUtils.isNotBlank(this.userId) && StringUtils.isNotBlank(this.gameId) && StringUtils.isNotBlank(this.eventId)) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public boolean scoresAreSet() {
+		if(StringUtils.isNotBlank(this.teamOneScore) && StringUtils.isNotBlank(this.teamTwoScore)) {
+			return true;
+		}
+		else
+			return false;
 	}
 }

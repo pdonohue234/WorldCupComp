@@ -28,11 +28,11 @@
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
-					<li><a href="https://worldcupcomp2014.appspot.com/#home">Home</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
 					<li><a onclick="verifySession()">Your Predictions</a></li>
-					<li><a href="https://worldcupcomp2014.appspot.com/#sponsors">Sponsors</a></li>
-					<li><a href="https://worldcupcomp2014.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
-					<li><a href="https://worldcupcomp2014.appspot.com/#rules">Rules</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Rules</a></li>
 				</ul>
 			</nav>
 

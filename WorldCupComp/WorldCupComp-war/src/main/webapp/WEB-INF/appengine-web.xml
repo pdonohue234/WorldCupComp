@@ -4,7 +4,7 @@
     <version>${appengine.app.version}</version>
     <threadsafe>true</threadsafe>
     
-    <system-properties>
+    <system-properties> 
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
     
@@ -12,5 +12,5 @@
     	but it's not included in an app unless the app explicitly asks for it
    	-->
     <use-google-connector-j>true</use-google-connector-j>        
-    
+
 </appengine-web-app>

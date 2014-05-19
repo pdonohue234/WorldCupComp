@@ -11,7 +11,7 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	
 	protected static final String[] KEY_FIELD_NAMES = new String[] {"User_ID", "Game_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"Team1Prediction", "Team2Prediction", "TimeStamp"};
+	protected static final String[] FIELD_NAMES = new String[] {"Team1Prediction", "Team2Prediction", "Result_Prediction", "TimeStamp"};
 	
 	public static final int NUMBER_OF_KEYS = 2;
 	public static final int USERID = 0;
@@ -19,6 +19,7 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	
 	private int		m_team1Prediction;
 	private int		m_team2Prediction;
+	private int		m_winningTeamPrediction;
 	private Date	m_date;
 	
 	
@@ -95,6 +96,14 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 			return 0;
 		else
 			return -1;
+	}
+	
+	public String getWinningTeamPrediction() {
+		return this.m_winningTeamPrediction;
+	}
+	
+	public void setWinningTeamPrediction( String p_winningTeamPrediction ) {
+		this.m_winningTeamPrediction = p_winningTeamPrediction;
 	}
 
 	public String getMappedTableName() {

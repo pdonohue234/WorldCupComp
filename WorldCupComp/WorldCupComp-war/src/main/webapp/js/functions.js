@@ -35,5 +35,5 @@ function calculateWinningTeam(row, team1, team2) {
 		}
 	}
 	
-	//document.getElementById("predictionsTable").rows[1].cells[8].innerHTML);
+	//var test = document.getElementById("predictionsTable").rows[1].cells[5].innerHTML;
 }

@@ -18,6 +18,20 @@
       </pluginManagement>
   </build>
   
+    <pluginRepositories>
+        <pluginRepository>
+            <id>google-snapshots</id>
+            <name>Google Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>  
+  
   <dependencies>
     <dependency>
         <groupId>com.google.appengine</groupId>

@@ -30,17 +30,17 @@ Product : Crowds - World Cup 2014 Application
 		<header id="header">
 
 			<!-- Logo -->
-			<h1 id="logo"><a href="https://worldcupcomp2014.appspot.com/#">World Cup Prediction Competition</a></h1>
+			<h1 id="logo"><a href="https://worldcuppredictioncomp.appspot.com/#">World Cup Prediction Competition</a></h1>
 				
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
-					<li><a href="https://worldcupcomp2014.appspot.com/#home">Home</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
 					<li><a href=\"javascript:verifySession();\">Your Predictions</a></li>
 					<!--<li><a onclick="verifySession()">Your Predictions</a></li>-->
-					<li><a href="https://worldcupcomp2014.appspot.com/#sponsors">Sponsors</a></li>
-					<li><a href="https://worldcupcomp2014.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
-					<li><a href="https://worldcupcomp2014.appspot.com/#rules">Rules</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
+					<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Rules</a></li>
 				</ul>
 			</nav>
 
@@ -67,18 +67,25 @@ Product : Crowds - World Cup 2014 Application
 							<td>Result</td>
 							<td>Played</td>
 						</tr>
-				        <c:forEach items="${model.fixtureResults}" var="fixture" varStatus="loop">
+				        <c:forEach items="${model.fixtureResultList.fixtureResults}" var="fixture" varStatus="loop">
 				            <tr>
-				            
+				            	<form:hidden path="fixtureResults[${loop.index}].userId" value="${fixture.userId}"/>
+				            	<form:hidden path="fixtureResults[${loop.index}].gameId" value="${fixture.gameId}"/>
+				            	<form:hidden path="fixtureResults[${loop.index}].eventId" value="${fixture.eventId}"/>
+				            	
 				            	<td>${loop.index}</td>
+				            	
 				                <td>${fixture.gameDate}</td>
+				                
 				                <td>${fixture.round}</td>
+				                
 				                <td>${fixture.gameLocation}</td>
+				                
 				                <td>${fixture.teamOne}</td>
 				                
 				                <c:if test="${fixture.active eq true}">
 				                	<td>
-				                	<form:input type="number" path="${fixture.teamOneScore}" min="0" max="20" size="2" 
+				                	<form:input type="number" path="fixtureResults[${loop.index}].teamOneScore" min="0" max="20" size="2" 
 				                		value="${fixture.teamOneScore}" id="teamOneScore${loop.index}" 
 				                		onBlur="javascript:calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
@@ -91,7 +98,7 @@ Product : Crowds - World Cup 2014 Application
 				                
 				                <c:if test="${fixture.active eq true}">
 				                	<td>
-				                	<form:input type="number" path="${fixture.teamTwoScore}" min="0" max="20" size="2" 
+				                	<form:input type="number" path="fixtureResults[${loop.index}].teamTwoScore"  min="0" max="20" size="2" 
 				                		value="${fixture.teamTwoScore}" id="teamTwoScore${loop.index}" 
 				                		onBlur="javascript:calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
@@ -101,12 +108,12 @@ Product : Crowds - World Cup 2014 Application
 				                </c:if>		
 				                			                
 				                <td>
-				                <select id="winningTeam${loop.index}">
-				                   <option value = "1"></option>
-					               <option value = "2">${fixture.teamOne}</option>
-					               <option value = "3">${fixture.teamTwo}</option>
-					               <option value = "4">Draw</option>
-					             </select>
+				                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" >
+				                   <form:option value="1" label="--- Select ---"/>
+					               <form:option value="2" label="${fixture.teamOne}"/>
+					               <form:option value="3" label="${fixture.teamTwo}"/>
+					               <form:option value="4" label="Draw"/>
+					             </form:select>
 				                </td>
 				                
 				                <td>${fixture.gamePlayed}</td>
@@ -119,7 +126,7 @@ Product : Crowds - World Cup 2014 Application
 					</center>	
 				</form:form>  		
 			</div>
-			<center><a href="https://worldcupcomp2014.appspot.com/#sponsors" class="button style2 down">Next</a></center>
+			<center><a href="https://worldcuppredictioncomp.appspot.com/#sponsors" class="button style2 down">Next</a></center>
 		</section>
 	</body>  
 </html>  

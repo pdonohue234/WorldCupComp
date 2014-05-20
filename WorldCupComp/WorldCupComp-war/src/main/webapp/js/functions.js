@@ -37,42 +37,20 @@ function calculateWinningTeam(row, team1, team2) {
 	
 	//var test = document.getElementById("predictionsTable").rows[1].cells[5].innerHTML;
 }
-/*
-function checkLoginForm() {
-    var username = $('#userIdInput'),
-        password = $('#passwordInput');
-
-    $('#login').submit(function(ev){
-        // check if all fields is not empty
-        if(username.val() === '' || password.val() === '') {
-            ev.preventDefault(); // prevent form submit
-            alert('Both fields are required.'); //alert message
-            //check if password and confirm password is equal
-        } else {
-            return true; // submit form if validation has passed.
-        }
-    });
-}
-*/
 
 function checkLoginForm() {
 	
   var username = document.getElementById('userIdInput');
   var password = document.getElementById('passwordInput');
-  /*alert("User: "+ username);
-  alert("Password: "+ password);
-  alert("User: "+ document.getElementById("userIdInput"));
-  alert("Password: "+ document.getElementById("passwordInput"));
-  alert("User: "+ document.getElementById("user"));
-  alert("Password: "+ document.getElementById("password"));*/
-  if(username == false) {
+  
+  if(username.value == false) {
     alert("Error: Email cannot be blank!");
     username.focus();
     return false;
   }
 
-  if(password = true) {
-    if(password.length < 6) {
+  if(password.value == true) {
+    if(password.value.length < 6) {
       alert("Error: Password must contain at least six characters!");
       password.focus();
       return false;

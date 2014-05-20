@@ -18,21 +18,36 @@ function calculateWinningTeam(row, team1, team2) {
 	if(document.getElementById('teamOneScore'+row) != 'undefined' && document.getElementById('teamOneScore'+row).value != '') {
 		var team1Score = document.getElementById('teamOneScore'+row).value;
 
-		if(document.getElementById('teamTwoScore'+row) != 'undefined' && document.getElementById('teamTwoScore'+row).value != '') {
-			var team2Score = document.getElementById('teamTwoScore'+row).value;
-
-			var result = team1Score.localeCompare(team2Score);
-
-			if( result === 0 ) {
-				document.getElementById('winningTeam'+row).value = "Draw";
-			}
-			else if( result > 0 ) {
-				document.getElementById('winningTeam'+row).value = team1;
-			}
-			else if( result < 0 ) {
-				document.getElementById('winningTeam'+row).value = team3;
+		if(isNaN(team1Score)) {
+			alert('Error: Must enter a number for team score one.');
+			document.getElementById('teamOneScore'+row).focus();
+			return false;
+		}
+		else {			
+			if(document.getElementById('teamTwoScore'+row) != 'undefined' && document.getElementById('teamTwoScore'+row).value != '') {
+				var team2Score = document.getElementById('teamTwoScore'+row).value;
+	
+				if(isNaN(team2Score)) {
+					alert('Error: Must enter a number for team score two.');
+					document.getElementById('teamTwoScore'+row).focus();
+					return false;
+				}
+				else {
+					var result = team1Score.localeCompare(team2Score);
+		
+					if( result === 0 ) {
+						document.getElementById('winningTeam'+row).value = "Draw";
+					}
+					else if( result > 0 ) {
+						document.getElementById('winningTeam'+row).value = team1;
+					}
+					else if( result < 0 ) {
+						document.getElementById('winningTeam'+row).value = team2;
+					}
+				}
 			}
 		}
+		return true;
 	}
 	
 	//var test = document.getElementById("predictionsTable").rows[1].cells[5].innerHTML;

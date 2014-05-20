@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 @Controller 
 public class LoginController {
@@ -57,7 +58,7 @@ public class LoginController {
 	 * Method to initially register a use and direct them to the predictions page
 	 */
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
-	public ModelAndView registerUser(@ModelAttribute User user) { 
+	public ModelAndView registerUser(@ModelAttribute User user, BindingResult result) { 
 		user.setEmail(user.getUserId());
 		
 		if(StringUtils.endsWith(user.getPassword(), ","))
@@ -77,6 +78,7 @@ public class LoginController {
 		else {
 			this.m_logger.warning("User has NOT been added: " + user.getUserId());
 			//Add in error message here
+			result.rejectValue("userId","userId.notvalid","Email already exists in system!");
 			return new ModelAndView("register", "model", model);
 		}  
 	}
@@ -93,7 +95,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/predictions", method=RequestMethod.POST)    
-	public ModelAndView loginUser(@ModelAttribute User user) {  
+	public ModelAndView loginUser(@ModelAttribute User user, BindingResult result) {  
 		User userLoggedIn = this.getUserService().validateUser(user); 
 		
 		Map<String, Object> model = new HashMap<String, Object>();  
@@ -106,7 +108,10 @@ public class LoginController {
 			model = getFixtureResultList(model, userLoggedIn.getUserId());	
 		}
 		else {
-			this.m_logger.warning("No user found!");
+			this.m_logger.warning("No user found for: " + user.getUserId());
+			//Add in error message here
+			result.rejectValue("userId","userId.notvalid","Email entered is invalid!");
+			return new ModelAndView("register", "model", model);
 		}
 		
 		return new ModelAndView("predictions", "model", model);  

@@ -50,6 +50,7 @@
 								<div class="row half">
 									<div class="6u"><label for="userIdInput">Email: </label></div>
 						      		<div class="6u"><form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" /></div>
+						      		<form:errors path="userId" />
 								</div>
 								
 								<div class="row half">

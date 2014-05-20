@@ -85,7 +85,7 @@ Product : Crowds - World Cup 2014 Application
 				                	<form:input type="number" path="fixtureResults[${loop.index}].teamOneScore" 
 				                		min="0" max="20" size="2" pattern="[0-9]*"
 				                		value="${fixture.teamOneScore}" id="teamOneScore${loop.index}" 
-				                		onBlur="javascript:calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
+				                		onBlur="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
 				                </c:if>		
 				                <c:if test="${fixture.active eq false}">
@@ -99,7 +99,7 @@ Product : Crowds - World Cup 2014 Application
 				                	<form:input type="number" path="fixtureResults[${loop.index}].teamTwoScore"  
 				                		min="0" max="20" size="2" pattern="[0-9]*"
 				                		value="${fixture.teamTwoScore}" id="teamTwoScore${loop.index}" 
-				                		onBlur="javascript:calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
+				                		onBlur="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
 				                </c:if>		
 				                <c:if test="${fixture.active eq false}">

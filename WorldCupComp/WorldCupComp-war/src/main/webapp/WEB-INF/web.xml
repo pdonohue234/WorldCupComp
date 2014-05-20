@@ -36,7 +36,7 @@
     
 	
 <!-- https://developers.google.com/appengine/docs/java/config/webxml#Secure_URLs -->
-<!-- <security-constraint>
+ 	<security-constraint>
         <web-resource-collection>
             <web-resource-name>profile</web-resource-name>
             <url-pattern>/profile/*</url-pattern>
@@ -44,5 +44,5 @@
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
-    </security-constraint> -->
+    </security-constraint> 
 </web-app>

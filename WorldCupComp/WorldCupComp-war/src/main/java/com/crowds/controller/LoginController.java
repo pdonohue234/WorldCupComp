@@ -185,24 +185,21 @@ public class LoginController {
 			this.m_logger.warning("Updating Predictions for: " + userId);
 			for(FixtureResult fixtureResult : fixtureResultList.getFixtureResults() ) {
 				this.m_logger.warning("For fixture: " + fixtureResult.getGameId());
-				if(fixtureResult.isActive()) {
-					this.m_logger.warning("It's active");
-					//Check if values have changed
-					if(fixtureResult.isChanged()) {
-						this.m_logger.warning("It's changed");
-						//Ensure that we have the keys to update with
-						if(fixtureResult.keysAreSet()) {
-							this.m_logger.warning("It's keys are set");
-							//If scores have been set
-							if(fixtureResult.scoresAreSet()) {
-								this.m_logger.warning("Updating Prediction record: " + fixtureResult.getUserId() +"-"+ fixtureResult.getGameId());
-								Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
-								prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
-								prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
-								prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
-								prediction.setDate(new Date());
-								boolean success = this.getPredictionService().saveOrUpdate(prediction);
-							}
+				//Check if values have changed
+				if(fixtureResult.isChanged()) {
+					this.m_logger.warning("It's changed");
+					//Ensure that we have the keys to update with
+					if(fixtureResult.keysAreSet()) {
+						this.m_logger.warning("It's keys are set");
+						//If scores have been set
+						if(fixtureResult.scoresAreSet()) {
+							this.m_logger.warning("Updating Prediction record: " + fixtureResult.getUserId() +"-"+ fixtureResult.getGameId());
+							Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
+							prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
+							prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
+							prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
+							prediction.setDate(new Date());
+							boolean success = this.getPredictionService().saveOrUpdate(prediction);
 						}
 					}
 				}

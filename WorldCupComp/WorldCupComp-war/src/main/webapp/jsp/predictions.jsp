@@ -85,7 +85,8 @@ Product : Crowds - World Cup 2014 Application
 				                
 				                <c:if test="${fixture.active eq true}">
 				                	<td>
-				                	<form:input type="number" path="fixtureResults[${loop.index}].teamOneScore" min="0" max="20" size="2" 
+				                	<form:input type="number" path="fixtureResults[${loop.index}].teamOneScore" 
+				                		min="0" max="20" size="2" pattern="[0-9]*"
 				                		value="${fixture.teamOneScore}" id="teamOneScore${loop.index}" 
 				                		onBlur="javascript:calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
@@ -98,7 +99,8 @@ Product : Crowds - World Cup 2014 Application
 				                
 				                <c:if test="${fixture.active eq true}">
 				                	<td>
-				                	<form:input type="number" path="fixtureResults[${loop.index}].teamTwoScore"  min="0" max="20" size="2" 
+				                	<form:input type="number" path="fixtureResults[${loop.index}].teamTwoScore"  
+				                		min="0" max="20" size="2" pattern="[0-9]*"
 				                		value="${fixture.teamTwoScore}" id="teamTwoScore${loop.index}" 
 				                		onBlur="javascript:calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
@@ -106,36 +108,40 @@ Product : Crowds - World Cup 2014 Application
 				                <c:if test="${fixture.active eq false}">
 				                	<td>${fixture.teamTwoScore}</td>
 				                </c:if>		
-				                			                
+				                
+				                				                			                
 				                <td>
-				                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" >
-				                   <form:option value="1" label=""/>
-							      
-							       <c:if test="${fixture.winningTeam eq fixture.teamOne}">
-							      		<form:option selected="selected" value="2" label="${fixture.teamOne}"/> 
-							       </c:if>	
-							       <c:if test="${fixture.winningTeam ne fixture.teamOne}">
-							       		<form:option value="2" label="${fixture.teamOne}"/> 
-								   </c:if>  
-								   
-								   
-								    <c:if test="${fixture.winningTeam eq fixture.teamTwo}">
-							      		<form:option selected="selected" value="3" label="${fixture.teamTwo}"/> 
-							       </c:if>	
-							       <c:if test="${fixture.winningTeam ne fixture.teamTwo}">
-							       		<form:option value="3" label="${fixture.teamTwo}"/> 
-								   </c:if> 
-								   
-								   
-								   <c:if test="${fixture.winningTeam eq 'Draw'}">
-							      		<form:option selected="selected" value="4" label="Draw"/> 
-							       </c:if>	
-							       <c:if test="${fixture.winningTeam ne 'Draw'}">
-							       		<form:option value="4" label="Draw"/> 
-								   </c:if>  
-								    
-							       <form:option value="5" label="${fixture.winningTeam}"/> 
-					             </form:select>
+				                <c:if test="${fixture.active eq true}">
+					                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" >
+					                   <form:option value="" label=""/>
+								      
+								       <c:if test="${fixture.winningTeam eq fixture.teamOne}">
+								      		<form:option selected="selected" value="${fixture.teamOne}" label="${fixture.teamOne}"/> 
+								       </c:if>	
+								       <c:if test="${fixture.winningTeam ne fixture.teamOne}">
+								       		<form:option value="${fixture.teamOne}" label="${fixture.teamOne}"/> 
+									   </c:if>  
+									   
+									   
+									    <c:if test="${fixture.winningTeam eq fixture.teamTwo}">
+								      		<form:option selected="selected" value="${fixture.teamTwo}" label="${fixture.teamTwo}"/> 
+								       </c:if>	
+								       <c:if test="${fixture.winningTeam ne fixture.teamTwo}">
+								       		<form:option value="${fixture.teamTwo}" label="${fixture.teamTwo}"/> 
+									   </c:if> 
+									   
+									   
+									   <c:if test="${fixture.winningTeam eq 'Draw'}">
+								      		<form:option selected="selected" value="Draw" label="Draw"/> 
+								       </c:if>	
+								       <c:if test="${fixture.winningTeam ne 'Draw'}">
+								       		<form:option value="Draw" label="Draw"/> 
+									   </c:if>  								    
+						             </form:select>
+						        </c:if>		
+				                <c:if test="${fixture.active eq false}">
+				                	${fixture.winningTeam}
+				                </c:if>	
 				                </td>
 				                
 				                <td>${fixture.gamePlayed}</td>

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 
 <html>  
@@ -50,21 +54,21 @@
 						<!--
 							 Login Form
 						-->
-							<form:form method="post" action="/predictions" modelAttribute="user">  
+							<form:form method="post" id="login" action="/predictions" modelAttribute="user">  
 								<div class="row half">
 									<div class="6u"><label for="userIdInput">User Name: </label></div>
-						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>						      		
+						      		<div class="6u"><form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" /></div>						      		
 								</div>
 								
 								<div class="row half">
 									<div class="6u"><label for="passwordInput">Password: </label></div>
-						      		<div class="6u"><form:input path="password" id="passwordInput" /></div>
+						      		<div class="6u"><form:password path="password" id="passwordInput" placeholder="Enter Password" /></div>
 								</div> 	
 										 	
 								<div class="row">
 									<div class="12u">
 										<ul class="actions">
-											<li><input type="submit" class="button" value="Login" /></li>
+											<li><input type="submit" class="button" value="Login" onclick="Javascript:return checkLoginForm();" /></li>
 										</ul>
 									</div>
 								</div>

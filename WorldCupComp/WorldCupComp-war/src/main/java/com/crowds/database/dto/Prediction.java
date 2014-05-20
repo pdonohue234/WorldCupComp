@@ -19,7 +19,7 @@ public class Prediction extends Dto<Prediction> implements Serializable {
 	
 	private int		m_team1Prediction;
 	private int		m_team2Prediction;
-	private int		m_winningTeamPrediction;
+	private String	m_winningTeamPrediction;
 	private Date	m_date;
 	
 	

@@ -67,22 +67,20 @@ public class FixtureResult {
 		this.gameId = fixture.getGameId();
 		this.eventId = fixture.getEventId();
 		this.gameDate = fixture.getGameDate();
-		this.teamOne = fixture.getTeamOne();
-		
-		if(fixture.isGamePlayed()) {
-			this.teamOneScore = fixture.getTeamOneScore() + "(" + prediction.getTeam1Prediction() + ")";
-		} else 
-			this.teamOneScore = prediction.getTeam1Prediction() +"";
-			
+		this.teamOne = fixture.getTeamOne();	
 		this.teamTwo = fixture.getTeamTwo();
 		
 		if(fixture.isGamePlayed()) {
+			this.teamOneScore = fixture.getTeamOneScore() + "(" + prediction.getTeam1Prediction() + ")";
 			this.teamTwoScore = fixture.getTeamTwoScore() + "(" + prediction.getTeam2Prediction() + ")";
-		} else 
+			this.winningTeam = fixture.getWinningTeam() + "(" + prediction.getWinningTeamPrediction() + ")";
+		} else {
+			this.teamOneScore = prediction.getTeam1Prediction() +"";
 			this.teamTwoScore = prediction.getTeam2Prediction() +"";
+			this.winningTeam = prediction.getWinningTeamPrediction();
+		}
 		
 		this.gamePlayed = fixture.getGamePlayed();
-		this.winningTeam = fixture.getWinningTeam();
 		this.round = fixture.getRound();
 		this.gameLocation = fixture.getGameLocation();
 		hasGameStarted();
@@ -222,12 +220,15 @@ public class FixtureResult {
 			return -1;
 	}
 	
-	public void hasGameStarted() {
+	public boolean hasGameStarted() {
 		Date now = new Date();
-		if(gameDate.compareTo(now) > 0)
+		if(gameDate.compareTo(now) > 0) {
 			this.active = true;
-		else
+			return true;
+		} else {
 			this.active = false;
+			return false;
+		}
 	}
 	
 	public boolean getActive() {
@@ -237,6 +238,13 @@ public class FixtureResult {
 
 	public void setActive(boolean p_active) {
 		active = p_active;
+	}
+	
+	public boolean isActive() {
+		if(this.active)
+			return true;
+		else
+			return false;
 	}
 	
 	public boolean isChanged() {

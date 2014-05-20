@@ -258,8 +258,8 @@ public class PredictionService extends PredictionDao {
 							if(StringUtils.isNotEmpty(fixture.getGameId()) && StringUtils.isNotEmpty(prediction.getGameId())) {
 								if(StringUtils.equalsIgnoreCase(fixture.getGameId(), prediction.getGameId())) {
 									if(fixture.isGamePlayed() ) {
-										//1. One for correct result (team1win/team2win/draw)
-										if(fixture.whichTeamWon() != -1 && prediction.whichTeamToWin() != -1)  {
+										//1. One for correct result (team1win/team2win/draw)										
+										if(StringUtils.equalsIgnoreCase(fixture.getWinningTeam(), prediction.getWinningTeamPrediction()))  {
 											if(fixture.whichTeamWon() == prediction.whichTeamToWin())  
 												score++;
 										}

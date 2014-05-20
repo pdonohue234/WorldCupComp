@@ -109,10 +109,32 @@ Product : Crowds - World Cup 2014 Application
 				                			                
 				                <td>
 				                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" >
-				                   <form:option value="1" label="--- Select ---"/>
-					               <form:option value="2" label="${fixture.teamOne}"/>
-					               <form:option value="3" label="${fixture.teamTwo}"/>
-					               <form:option value="4" label="Draw"/>
+				                   <form:option value="1" label=""/>
+							      
+							       <c:if test="${fixture.winningTeam eq fixture.teamOne}">
+							      		<form:option selected="selected" value="2" label="${fixture.teamOne}"/> 
+							       </c:if>	
+							       <c:if test="${fixture.winningTeam ne fixture.teamOne}">
+							       		<form:option value="2" label="${fixture.teamOne}"/> 
+								   </c:if>  
+								   
+								   
+								    <c:if test="${fixture.winningTeam eq fixture.teamTwo}">
+							      		<form:option selected="selected" value="3" label="${fixture.teamTwo}"/> 
+							       </c:if>	
+							       <c:if test="${fixture.winningTeam ne fixture.teamTwo}">
+							       		<form:option value="3" label="${fixture.teamTwo}"/> 
+								   </c:if> 
+								   
+								   
+								   <c:if test="${fixture.winningTeam eq 'Draw'}">
+							      		<form:option selected="selected" value="4" label="Draw"/> 
+							       </c:if>	
+							       <c:if test="${fixture.winningTeam ne 'Draw'}">
+							       		<form:option value="4" label="Draw"/> 
+								   </c:if>  
+								    
+							       <form:option value="5" label="${fixture.winningTeam}"/> 
 					             </form:select>
 				                </td>
 				                

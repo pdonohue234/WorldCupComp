@@ -53,15 +53,27 @@ public class LoginController {
 		return "register";
 	}
 	
+	/**
+	 * Method to initially register a use and direct them to the predictions page
+	 */
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
 	public ModelAndView registerUser(@ModelAttribute User user) {  
 		boolean success = this.getUserService().insertData(user); 
-	  
-		System.out.println(success);
-		
+
 		Map<String, Object> model = new HashMap<String, Object>();  
-		model.put("added", true);  
-		return new ModelAndView("registerUser", "model", model);  
+		model.put("added", success);  
+
+		if(success) {
+			this.m_logger.warning("User has been added: " + user.getUserId());
+			model = getFixtureResultList(model, user.getUserId());
+			
+			return new ModelAndView("predictions", "model", model); 
+		}
+		else {
+			this.m_logger.warning("User has NOT been added: " + user.getUserId());
+			//Add in error message here
+			return new ModelAndView("register", "model", model);
+		}  
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -70,11 +82,6 @@ public class LoginController {
 		return "login";
 	}
 	
-	/**
-	@ModelAttribute("fixtureResultList")
-	public List<FixtureResult> createModel() {
-	    return new ArrayList<FixtureResult>();
-	}*/
 	@ModelAttribute("fixtureResultList")
 	public FixtureResultList createModel() {
 	    return new FixtureResultList();
@@ -96,8 +103,6 @@ public class LoginController {
 		else {
 			this.m_logger.warning("No user found!");
 		}
-		
-		//model.put("fixtureResultList", new ArrayList<FixtureResult>());
 		
 		return new ModelAndView("predictions", "model", model);  
 	}
@@ -145,8 +150,10 @@ public class LoginController {
 					if(p_predictions!= null && p_predictions.size() != 0) {
 						for(Prediction prediction : p_predictions) {
 							if(StringUtils.isNotEmpty(fixture.getGameId()) && StringUtils.isNotEmpty(prediction.getGameId())) {
-								p = prediction;
-								break;
+								if(StringUtils.equalsIgnoreCase(fixture.getGameId(), prediction.getGameId())) {
+									p = prediction;
+									break;
+								}
 							}		
 						}
 					}
@@ -169,33 +176,43 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="/updatePredictions", method=RequestMethod.POST)    
-	public ModelAndView updatePredictions(@ModelAttribute FixtureResultList fixtureResultList) {  
-		Map<String, Object> model = new HashMap<String, Object>();  	
-		
+	public ModelAndView updatePredictions(@ModelAttribute FixtureResultList fixtureResultList) {  		
 		String userId = "";
 		
 		//Update each entry amended
 		if(fixtureResultList!= null && fixtureResultList.getFixtureResults().size() > 0) {
+			userId = fixtureResultList.getFixtureResults().get(0).getUserId();
+			this.m_logger.warning("Updating Predictions for: " + userId);
 			for(FixtureResult fixtureResult : fixtureResultList.getFixtureResults() ) {
-				//Check if values have changed
-				if(fixtureResult.isChanged()) {
-					//Ensure that we have the keys to update with
-					if(fixtureResult.keysAreSet()) {
-						userId = fixtureResult.getUserId();
-						//If scores have been set
-						if(fixtureResult.scoresAreSet()) {
-							Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
-							prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
-							prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
-							prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
-							prediction.setDate(new Date());
-							boolean success = this.getPredictionService().saveOrUpdate(prediction);
+				this.m_logger.warning("For fixture: " + fixtureResult.getGameId());
+				if(fixtureResult.isActive()) {
+					this.m_logger.warning("It's active");
+					//Check if values have changed
+					if(fixtureResult.isChanged()) {
+						this.m_logger.warning("It's changed");
+						//Ensure that we have the keys to update with
+						if(fixtureResult.keysAreSet()) {
+							this.m_logger.warning("It's keys are set");
+							//If scores have been set
+							if(fixtureResult.scoresAreSet()) {
+								this.m_logger.warning("Updating Prediction record: " + fixtureResult.getUserId() +"-"+ fixtureResult.getGameId());
+								Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
+								prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
+								prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
+								prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
+								prediction.setDate(new Date());
+								boolean success = this.getPredictionService().saveOrUpdate(prediction);
+							}
 						}
 					}
-				}				
+				}
+				else {
+					//TODO: Need error message to let them know they can't edit it, game has started!
+				}
 			}
 		}
 		
+		Map<String, Object> model = new HashMap<String, Object>();  
 		model = getFixtureResultList(model, userId);
 		
 		return new ModelAndView("predictions", "model", model);  

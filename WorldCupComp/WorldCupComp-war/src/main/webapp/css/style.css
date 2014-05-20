@@ -471,7 +471,8 @@
 		
 			.main.style1 {
 				text-align: center;
-				padding: 10em 0 10em 0;
+				/* padding: 10em 0 10em 0; */
+				padding: 5em 0 5em 0;
 			}
 			
 				.main.style1 h2 {
@@ -506,7 +507,8 @@
 				}
 		
 			.main.style2 {
-				padding: 10em 0 10em 0;
+				/* padding: 10em 0 10em 0; */
+				padding: 5em 0 5em 0;
 				overflow: hidden;
 			}
 			

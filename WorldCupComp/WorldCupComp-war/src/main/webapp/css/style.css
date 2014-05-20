@@ -494,6 +494,8 @@
 					-o-transform: translateZ(0);
 					-ms-transform: translateZ(0);
 					transform: translateZ(0);
+					
+					
 				}
 				
 			.main.style1.inactive {
@@ -1094,10 +1096,10 @@
 /*********************************************************************************/
 
 	#home {
-		background: url('images/overlayXXX.png'), url('../images/FeetAndBall_vintage.jpg');
+		background: url('images/overlay.png'), url('../images/intro.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
-		background-position: top left, center center;
+		background-position: top left, bottom center;
 		background-repeat: repeat, no-repeat;
 	}
 
@@ -1117,7 +1119,7 @@
 /*********************************************************************************/
 
 	#sponsors {
-		background: url('images/overlayXXX.png'), url('../images/14IRSB_10490.jpg');
+		background: url('images/overlay.png'), url('../images/14IRSB_10490.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1128,7 +1130,7 @@
 /*********************************************************************************/
 
 	#charity {
-		background: url('images/overlayXXX.png'), url('../images/FeetAndBall_vintage.jpg');
+		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1272,7 +1274,7 @@
 /*********************************************************************************/
 
 	#rules {
-		background: url('images/overlayXXX.png'), url('../images/DSC_4742.jpg');
+		background: url('images/overlay.png'), url('../images/DSC_4742.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;

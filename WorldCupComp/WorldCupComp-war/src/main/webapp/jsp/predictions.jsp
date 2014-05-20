@@ -28,10 +28,7 @@ Product : Crowds - World Cup 2014 Application
 	<body> 
 		<!-- Header -->
 		<header id="header">
-
-			<!-- Logo -->
-			<h1 id="logo"><a href="https://worldcuppredictioncomp.appspot.com/#">World Cup Prediction Competition</a></h1>
-				
+	
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>

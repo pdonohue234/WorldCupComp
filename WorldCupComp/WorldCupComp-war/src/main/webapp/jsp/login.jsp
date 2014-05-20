@@ -24,16 +24,12 @@
 
 	<body>  
 		<!-- Header -->
-		<header id="header">
-
-			<!-- Logo -->
-			<h1 id="logo"><a href="https://worldcupcomp2014.appspot.com/#">World Cup Prediction Competition</a></h1>
-				
+		<header id="header">	
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
-					<li><a onclick="verifySession()">Your Predictions</a></li>
+					<li><a onclick="Javascript:verifySession();">Your Predictions</a></li>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Rules</a></li>
@@ -56,7 +52,7 @@
 						-->
 							<form:form method="post" id="login" action="/predictions" modelAttribute="user">  
 								<div class="row half">
-									<div class="6u"><label for="userIdInput">User Name: </label></div>
+									<div class="6u"><label for="userIdInput">Email: </label></div>
 						      		<div class="6u"><form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" /></div>						      		
 								</div>
 								

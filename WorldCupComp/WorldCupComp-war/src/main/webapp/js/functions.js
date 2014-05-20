@@ -49,64 +49,77 @@ function checkLoginForm() {
     return false;
   }
 
-  if(password.value == true) {
-    if(password.value.length < 6) {
-      alert("Error: Password must contain at least six characters!");
-      password.focus();
-      return false;
-    }
-  } else {
-    alert("Error: Password cannot be blank!");
-    password.focus();
-    return false;
-  }
+  if(password.value == false) {
+	  alert("Error: Password cannot be blank!");
+	  password.focus();
+	  return false;
+  } 
+  
   return true;
 }
 
 
-function checkForm(form)
-{
-  if(form.userId.value == "") {
-    alert("Error: Username cannot be blank!");
-    form.userId.focus();
-    return false;
-  }
+function checkRegisterForm() {
 
-  if(form.password.value != "") {
-    if(form.password.value.length < 6) {
-      alert("Error: Password must contain at least six characters!");
-      form.password.focus();
-      return false;
-    }
-    if(form.pwd1.value == form.username.value) {
-      alert("Error: Password must be different from Username!");
-      form.pwd1.focus();
-      return false;
-    }
-    re = /[0-9]/;
-    if(!re.test(form.pwd1.value)) {
-      alert("Error: password must contain at least one number (0-9)!");
-      form.pwd1.focus();
-      return false;
-    }
-    re = /[a-z]/;
-    if(!re.test(form.pwd1.value)) {
-      alert("Error: password must contain at least one lowercase letter (a-z)!");
-      form.pwd1.focus();
-      return false;
-    }
-    re = /[A-Z]/;
-    if(!re.test(form.pwd1.value)) {
-      alert("Error: password must contain at least one uppercase letter (A-Z)!");
-      form.pwd1.focus();
-      return false;
-    }
-  } else {
-    alert("Error: Please check that you've entered and confirmed your password!");
-    form.pwd1.focus();
-    return false;
-  }
+	var username = document.getElementById('userIdInput');
+	var password = document.getElementById('passwordInput');
+	var password2 = document.getElementById('password2Input');
 
-  alert("You entered a valid password: " + form.pwd1.value);
-  return true;
+	
+	if(username.value == false) {
+		alert("Error: Email cannot be blank!");
+		username.focus();
+		return false;
+	}	
+	
+	if(password.value == false) {
+		alert("Error: Password cannot be blank!");
+		password.focus();
+		return false;
+	}
+	else {
+	    if(password.value.length < 6) {
+	      alert("Error: Password must contain at least six characters!");
+	      password.focus();
+	      return false;
+	    }
+	    if(password.value == username.value) {
+	      alert("Error: Password must be different from Email!");
+	      password.focus();
+	      return false;
+	    }
+	    re = /[0-9]/;
+	    if(!re.test(password.value)) {
+	      alert("Error: password must contain at least one number (0-9)!");
+	      password.focus();
+	      return false;
+	    }
+	    re = /[a-z]/;
+	    if(!re.test(password.value)) {
+	      alert("Error: password must contain at least one lowercase letter (a-z)!");
+	      password.focus();
+	      return false;
+	    }
+	    re = /[A-Z]/;
+	    if(!re.test(password.value)) {
+	      alert("Error: password must contain at least one uppercase letter (A-Z)!");
+	      password.focus();
+	      return false;
+	    }
+	    
+		if(password2.value == false) {
+			alert("Error: Please confirm your password!");
+			password.focus();
+			return false;
+		}
+		else {
+			if(password.value != password2.value) {
+				alert("Error: Two Passwords entered are not the same!");
+				password.focus();
+				return false;
+			}			
+		}
+	} 
+	password2.value = "";
+	return true;
 }

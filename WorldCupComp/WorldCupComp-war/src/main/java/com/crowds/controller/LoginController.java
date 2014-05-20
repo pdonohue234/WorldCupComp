@@ -57,7 +57,12 @@ public class LoginController {
 	 * Method to initially register a use and direct them to the predictions page
 	 */
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
-	public ModelAndView registerUser(@ModelAttribute User user) {  
+	public ModelAndView registerUser(@ModelAttribute User user) { 
+		user.setEmail(user.getUserId());
+		
+		if(StringUtils.endsWith(user.getPassword(), ","))
+			user.setPassword( StringUtils.remove(user.getPassword(), ",") );
+			
 		boolean success = this.getUserService().insertData(user); 
 
 		Map<String, Object> model = new HashMap<String, Object>();  

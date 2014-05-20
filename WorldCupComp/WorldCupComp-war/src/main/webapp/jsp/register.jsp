@@ -21,22 +21,17 @@
 	<body>  
 		<!-- Header -->
 			<header id="header">
-
-				<!-- Logo -->
-					<h1 id="logo"><a href="#">The World Cup Prediction Competition</a></h1>
-				
 				<!-- Nav -->
-					<nav id="nav">
-						<ul>
+				<nav id="nav">
+					<ul>
 
-							<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
-							<li><a onclick="verifySession()">Your Predictions</a></li>
-							<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
-							<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
-							<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Competition Rules T&Cs</a></li>
-
-						</ul>
-					</nav>
+						<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
+						<li><a onclick="Javascript:verifySession();">Your Predictions</a></li>
+						<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
+						<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
+						<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Competition Rules T&Cs</a></li>
+					</ul>
+				</nav>
 			</header>
 			
 			
@@ -53,28 +48,29 @@
 						-->
 							<form:form method="post" action="/registerUser" modelAttribute="user">  
 								<div class="row half">
-									<div class="6u"><label for="userIdInput">User Name: </label></div>
-						      		<div class="6u"><form:input path="userId" id="userIdInput" /></div>
+									<div class="6u"><label for="userIdInput">Email: </label></div>
+						      		<div class="6u"><form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" /></div>
 								</div>
 								
 								<div class="row half">
 									<div class="6u"><label for="passwordInput">Password: </label></div>
-						      		<div class="6u"><form:input path="password" id="passwordInput" /></div>
+						      		<div class="6u"><form:password path="password" id="passwordInput" placeholder="Enter Password" /></div>
 								</div> 	
 										      
 								<div class="row half">
-									<div class="6u"><label for="emailInput">Email: </label></div>
-						      		<div class="6u"><form:input path="email" id="emailInput" /></div>
+									<div class="6u"><label for="password2Input">Confirm Password: </label></div>
+						      		<div class="6u"><form:password path="password" id="password2Input" placeholder="Confirm Password" /></div>
 								</div> 	
 								
 								<div class="row half">
 									<div class="6u"><label for="nameInput">Name: </label></div>
 						      		<div class="6u"><form:input path="name" id="nameInput" /></div>
 								</div> 	
+								
 								<div class="row">
 									<div class="12u">
 										<ul class="actions">
-											<li><input type="submit" class="button" value="Save" /></li>
+											<li><input type="submit" class="button" value="Save" onclick="Javascript:return checkRegisterForm();" /></li>
 										</ul>
 									</div>
 								</div>

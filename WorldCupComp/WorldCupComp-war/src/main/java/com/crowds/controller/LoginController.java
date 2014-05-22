@@ -111,7 +111,7 @@ public class LoginController {
 			this.m_logger.warning("No user found for: " + user.getUserId());
 			//Add in error message here
 			result.rejectValue("userId","userId.notvalid","Email entered is invalid!");
-			return new ModelAndView("register", "model", model);
+			return new ModelAndView("login", "model", model);
 		}
 		
 		return new ModelAndView("predictions", "model", model);  

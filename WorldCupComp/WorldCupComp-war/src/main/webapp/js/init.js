@@ -118,40 +118,43 @@
 		            b = f.data(a + "-id");
 		            a = "scroll." + a + "-" + b;
 		            d.off(a).on(a, function () {
-		                var a = f.offset().top,
-		                    b = f.outerHeight();
-		                h.height();
-		                switch (e.scope) {
-		                    default:
-		                case "element":
-		                    switch (e.anchor) {
-		                        default:
-		                    case "top":
-		                        a = -1 * ((a - d.scrollTop()) / b);
-		                        break;
-		                    case "center":
-		                        a = -1 * ((a - d.scrollTop() - (d.height() - b) / 2) / b);
-		                        break;
-		                    case "bottom":
-		                        a = -1 * ((a - d.scrollTop() - (d.height() - b)) / b)
-		                    }
-		                    break;
-		                case "window":
-		                    switch (e.anchor) {
-		                        default:
-		                    case "top":
-		                        a = -1 * ((a - d.scrollTop()) / d.height());
-		                        break;
-		                    case "center":
-		                        a = -1 * ((a - d.scrollTop() - (d.height() - b) / 2) / d.height());
-		                        break;
-		                    case "bottom":
-		                        a = -1 * ((a - d.scrollTop() - (d.height() - b)) / d.height())
-		                    }
+		                var offset = f.offset();
+		                if(offset != undefined) {
+			            	var a = offset.top;
+			                var b = f.outerHeight();
+			                h.height();
+			                switch (e.scope) {
+			                    default:
+			                case "element":
+			                    switch (e.anchor) {
+			                        default:
+			                    case "top":
+			                        a = -1 * ((a - d.scrollTop()) / b);
+			                        break;
+			                    case "center":
+			                        a = -1 * ((a - d.scrollTop() - (d.height() - b) / 2) / b);
+			                        break;
+			                    case "bottom":
+			                        a = -1 * ((a - d.scrollTop() - (d.height() - b)) / b)
+			                    }
+			                    break;
+			                case "window":
+			                    switch (e.anchor) {
+			                        default:
+			                    case "top":
+			                        a = -1 * ((a - d.scrollTop()) / d.height());
+			                        break;
+			                    case "center":
+			                        a = -1 * ((a - d.scrollTop() - (d.height() - b) / 2) / d.height());
+			                        break;
+			                    case "bottom":
+			                        a = -1 * ((a - d.scrollTop() - (d.height() - b)) / d.height())
+			                    }
+			                }
+			                "forwards" == e.direction ? a = Math.max(0, a) : "backwards" == e.direction && (a = Math.min(0, a));
+			                0 < a ? a = Math.max(0, a - e.easing / 100) : 0 > a && (a = Math.min(0, a + e.easing / 100));
+			                c(a, f)
 		                }
-		                "forwards" == e.direction ? a = Math.max(0, a) : "backwards" == e.direction && (a = Math.min(0, a));
-		                0 < a ? a = Math.max(0, a - e.easing / 100) : 0 > a && (a = Math.min(0, a + e.easing / 100));
-		                c(a, f)
 		            }).trigger("scroll");
 		            return f
 		        };

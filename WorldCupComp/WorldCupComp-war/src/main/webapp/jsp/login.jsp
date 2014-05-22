@@ -9,17 +9,21 @@
 
 <html>  
 	<head>  
-		<title>World Cup Charity Competition | Registration Form</title>  
-		
+		<title>World Cup Predictions Competition</title> 
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />		
 		<link type="text/css" rel="stylesheet" href="../css/skel-noscript.css"/>
-		<link type="text/css" rel="stylesheet" href="../css/style.css"/>
-		
+		<link type="text/css" rel="stylesheet" href="../css/style.css"/>		
 		<script src="../js/functions.js" type="text/javascript"></script>
 		<script src="../js/jquery.min.js" type="text/javascript"></script>
 		<script src="../js/jquery.poptrox.min.js" type="text/javascript"></script>
 		<script src="../js/skel.min.js" type="text/javascript"></script>
 		<script src="../js/init.js" type="text/javascript"></script>
-	
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+		</noscript>	
 	</head>  
 
 	<body>  
@@ -39,27 +43,26 @@
 		</header>
 			
 			
-	 		<section id="login" class="main style3 secondary">
-				<div class="content container">
+	 		<section id="login" class="main style2 left dark fullscreen">
+				<div class="content container" align="center">
 					<header>
 						<h2>Please sign in</h2>
 						<p><a href="/register">Click here to Create New Account</a></p>
 					</header>
-					<div class="box container small">
-					
 						<!--
 							 Login Form
 						-->
-							<form:form method="post" id="login" action="/predictions" modelAttribute="user">  
+							<form:form method="post" action="/predictions" modelAttribute="user">  
 								<div class="row half">
 									<div class="6u"><label for="userIdInput">Email: </label></div>
 						      		<div class="6u"><form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" /></div>						      		
-									<form:errors path="userId" />
+									<div class="6u"><form:errors path="userId" /></div>	
 								</div>
 								
 								<div class="row half">
 									<div class="6u"><label for="passwordInput">Password: </label></div>
 						      		<div class="6u"><form:password path="password" id="passwordInput" placeholder="Enter Password" /></div>
+						      		<div class="6u"><form:errors path="password" /></div>	
 								</div> 	
 										 	
 								<div class="row">
@@ -70,8 +73,6 @@
 									</div>
 								</div>
 						   </form:form>  
-
-					</div>
 				</div>
 			</section>			
 	</body>  

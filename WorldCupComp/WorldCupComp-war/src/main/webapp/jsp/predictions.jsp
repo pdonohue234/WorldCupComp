@@ -13,18 +13,23 @@ Product : Crowds - World Cup 2014 Application
 
 <html>  
 	<head>  
-		<title>World Cup Charity Competition | Registration Form</title>  
-		
+		<title>World Cup Predictions Competition</title> 
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />		
 		<link type="text/css" rel="stylesheet" href="../css/skel-noscript.css"/>
-		<link type="text/css" rel="stylesheet" href="../css/style.css"/>
-		
+		<link type="text/css" rel="stylesheet" href="../css/style.css"/>		
 		<script src="../js/functions.js" type="text/javascript"></script>
 		<script src="../js/jquery.min.js" type="text/javascript"></script>
 		<script src="../js/jquery.poptrox.min.js" type="text/javascript"></script>
 		<script src="../js/skel.min.js" type="text/javascript"></script>
 		<script src="../js/init.js" type="text/javascript"></script>
-	
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+		</noscript>	
 	</head>  
+	 
 	<body> 
 		<!-- Header -->
 		<header id="header">
@@ -56,13 +61,11 @@ Product : Crowds - World Cup 2014 Application
 							<td>Game</td>
 							<td>Date/Time</td>
 							<td>Round</td>
-							<td>Location</td>
 							<td>Team 1</td>
 							<td>Score</td>
 							<td>Team 2</td>
 							<td>Score</td>
 							<td>Result</td>
-							<td>Played</td>
 						</tr>
 				        <c:forEach items="${model.fixtureResultList.fixtureResults}" var="fixture" varStatus="loop">
 				            <tr>
@@ -72,11 +75,7 @@ Product : Crowds - World Cup 2014 Application
 				            	
 				            	<td>${loop.index}</td>
 				            	
-				                <td>${fixture.gameDate}</td>
-				                
-				                <td>${fixture.round}</td>
-				                
-				                <td>${fixture.gameLocation}</td>
+				                <td>${fixture.gameDate}</td>				              			        
 				                
 				                <td>${fixture.teamOne}</td>
 				                
@@ -140,8 +139,7 @@ Product : Crowds - World Cup 2014 Application
 				                	${fixture.winningTeam}
 				                </c:if>	
 				                </td>
-				                
-				                <td>${fixture.gamePlayed}</td>
+				               
 				            </tr>
 						</c:forEach>							
 					</table>

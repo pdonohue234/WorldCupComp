@@ -54,7 +54,7 @@ public class UserService extends UserDao {
 	 * @param id
 	 * @return
 	 */
-	public User validateUser(User p_user) { 
+	public String validateUser(User p_user) { 
 		try {
 			if(StringUtils.isNotEmpty(p_user.getUserId()) && StringUtils.isNotEmpty(p_user.getPassword()) ){
 				User dbUser = this.getUser(p_user.getUserId()); 
@@ -62,18 +62,21 @@ public class UserService extends UserDao {
 				if(dbUser != null) {
 					if(StringUtils.equals(p_user.getPassword(), dbUser.getPassword())) {
 						this.m_logger.warning("User exists & is validated - userId: " + p_user.getUserId());
-						return dbUser;
+						return "found";
 					}
 					else {
 						this.m_logger.warning("User exists but invalid password for userId: " + p_user.getUserId());
+						return "password";
 					}
 				}
 				else {
 					this.m_logger.warning("User does not exist for userId: " + p_user.getUserId());
+					return "userId";
 				}
 			}
 			else {
 				this.m_logger.warning("Cannot find a User record for empty credentials!");
+				return "empty";
 			}
 		}
 		catch(Exception e) {

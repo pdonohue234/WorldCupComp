@@ -78,7 +78,7 @@ public class LoginController {
 		else {
 			this.m_logger.warning("User has NOT been added: " + user.getUserId());
 			//Add in error message here
-			result.rejectValue("userId","userId.notvalid","Email already exists in system!");
+			result.rejectValue("userId","userId.notvalid","Account already in place with that email!");
 			return new ModelAndView("register", "model", model);
 		}  
 	}
@@ -96,25 +96,44 @@ public class LoginController {
 	
 	@RequestMapping(value="/predictions", method=RequestMethod.POST)    
 	public ModelAndView loginUser(@ModelAttribute User user, BindingResult result) {  
-		User userLoggedIn = this.getUserService().validateUser(user); 
+		String error = this.getUserService().validateUser(user); 
 		
 		Map<String, Object> model = new HashMap<String, Object>();  
 		
-		if(userLoggedIn != null) {
-			this.m_logger.warning("User found!" + userLoggedIn.getUserId());
-			model.put("found", true);
-			model.put("userLoggedIn", userLoggedIn);
-			
-			model = getFixtureResultList(model, userLoggedIn.getUserId());	
+		if(StringUtils.isNotBlank( error )) {
+			if( StringUtils.equalsIgnoreCase("found", error) ) {
+				model.put("found", true);
+				User userLoggedIn = this.getUserService().getUser(user.getUserId());
+				model.put("userLoggedIn", userLoggedIn );
+				
+				model = getFixtureResultList(model, userLoggedIn.getUserId());
+				
+				return new ModelAndView("predictions", "model", model);  
+			}
+			else if( StringUtils.equalsIgnoreCase("password", error) ) {
+				//Add in error message here
+				result.rejectValue("password","password.notvalid","Password entered is invalid!");
+			}
+			else if( StringUtils.equalsIgnoreCase("userId", error) ) {
+				//Add in error message here
+				result.rejectValue("userId","userId.notvalid","Email entered is invalid!");
+			}
+			else if( StringUtils.equalsIgnoreCase("empty", error) ) {
+				//Add in error message here
+				result.rejectValue("userId","userId.notvalid","Credentials submitted are empty!");
+			}
+			else {
+				this.m_logger.warning("Server Error Occurred retrieving user: " + user.getUserId());
+				//Add in error message here
+				result.rejectValue("userId","userId.notvalid","Server Error Occurred retrieving user - try again!");
+			}
 		}
 		else {
-			this.m_logger.warning("No user found for: " + user.getUserId());
+			this.m_logger.warning("Server Error Occurred retrieving user: " + user.getUserId());
 			//Add in error message here
-			result.rejectValue("userId","userId.notvalid","Email entered is invalid!");
-			return new ModelAndView("login", "model", model);
+			result.rejectValue("userId","userId.notvalid","Server Error Occurred retrieving user - try again!");			
 		}
-		
-		return new ModelAndView("predictions", "model", model);  
+		return new ModelAndView("login", "model", model);
 	}
 	
 	public Map<String, Object> getFixtureResultList(Map<String, Object> model, String userLoggedIn) {

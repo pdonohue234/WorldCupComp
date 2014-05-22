@@ -263,6 +263,8 @@
 				display: block;
 			}
 		
+			form input[type="number"],
+			form input[type="email"],
 			form input[type="text"],
 			form input[type="password"],
 			form select,
@@ -275,6 +277,7 @@
 				color: inherit;
 				border-radius: 0.5em;
 				outline: none;
+				box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
 
 				-moz-appearance: none;
 				-webkit-appearance: none;
@@ -289,19 +292,25 @@
 				transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
 			}
 
+				form input[type="number"]:hover,
+				form input[type="email"]:hover,
 				form input[type="text"]:hover,
 				form input[type="password"]:hover,
 				form select:hover,
 				form textarea:hover {
 				}
 
+				form input[type="number"]:focus,
+				form input[type="email"]:focus,
 				form input[type="text"]:focus,
 				form input[type="password"]:focus,
 				form select:focus,
 				form textarea:focus {
 					border-color: #9ac8e9;
 				}
-
+				
+			form input[type="number"],
+			form input[type="email"],
 			form input[type="text"],
 			form input[type="password"],
 			form select {
@@ -334,6 +343,14 @@
 
 			form ::-moz-focus-inner {
 				border: 0;
+			}
+			
+			form errors {
+				display: block;
+				width: 100%;
+				padding: 0.75em;
+				background: none;
+				color: red;			
 			}
 			
 	/* Tables */
@@ -1110,7 +1127,7 @@
 /*********************************************************************************/
 
 	#predictions {
-		background: url('images/overlay.png'), url('../images/one.jpg');
+		background: url('images/overlay.png'), url('../images/14IRSB_10490.JPG');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, center center;
@@ -1137,6 +1154,28 @@
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
 	}
+	
+/*********************************************************************************/
+/* Login                                                                         */
+/*********************************************************************************/
+
+	#login {
+		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, bottom center;
+	}
+	
+/*********************************************************************************/
+/* Register                                                                      */
+/*********************************************************************************/
+
+	#register {
+		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, bottom center;
+	}	
 	
 /*********************************************************************************/
 /* Work                                                                          */
@@ -1181,7 +1220,9 @@
 				#work .row.images.inactive .image.r {
 					left: 14em;
 				}
+		
 			
+					
 /*********************************************************************************/
 /* Contact                                                                       */
 /*********************************************************************************/

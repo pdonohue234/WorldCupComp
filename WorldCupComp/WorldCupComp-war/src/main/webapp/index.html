@@ -74,7 +74,7 @@
 							<td width="60%" style="text-align:center; vertical-align:middle;">
 								<form method="post" action="/predictions" modelAttribute="user">  
 									
-										<label for="userIdInput">Email: </label>
+										<!-- <label for="userIdInput">Email: </label>
 							      		<input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
 										<errors path="userId" />	
 									
@@ -83,11 +83,39 @@
 							      		<errors path="password" />
 									
 											<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
-											<p><i>...if you already have an account</i></p>
+											<p><i>...if you already have an account</i></p> -->
 										
+										<table>
+										<tr>
+											<td width="20%" style="padding:10px 20px">
+												<label for="userIdInput" style="text-align:right">Email </label>
+											</td>
+											<td width="80%" style="padding:10px 20px">
+									      		<input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
+													
+											</td>
+										</tr>
+										<tr>
+											<td style="padding:10px 20px">
+												<label for="passwordInput" style="text-align:right">Password </label>
+											</td>
+											<td style="padding:10px 20px">
+									      		<input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />
+									      		
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="padding:20px 20px">
+												<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
+												<p><i>...if you already have an account</i></p>
+											</td>
+										</tr>
+					</table>
 							   </form>
 						  </td>
 					</table>
+					
+					
 				</div>
 			</section>			
 			

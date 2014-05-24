@@ -93,7 +93,7 @@
 								<div class="row">
 									<div class="12u">						
 										<a href="/register" class="button style2 login">New Registration</a>
-										<p><i>...if you have not already created an account<i></i></p>
+										<p><i>...if you have not already created an account</i></p>
 										<hr>									
 									</div>
 								</div>
@@ -105,20 +105,35 @@
 						<tr>						
 							<td width="60%" style="text-align:center; vertical-align:middle;">
 								<form:form method="post" action="/predictions" modelAttribute="user">  
-									
-										<label for="userIdInput">Email: </label>
-							      		<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
-										<form:errors path="userId" />	
-									
-										<label for="passwordInput">Password: </label>
-							      		<form:password path="password" id="passwordInput" placeholder="Enter a Password" />
-							      		<form:errors path="password" />
-									
-										<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
-										<p><i>...if you already have an account</i></p>
-										
-							   </form>
-						  </td>
+									<table>
+										<tr>
+											<td width="20%" style="padding:10px 20px">
+												<label for="userIdInput" style="text-align:right">Email: </label>
+											</td>
+											<td width="80%" style="padding:10px 20px">
+									      		<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
+												<br><form:errors path="userId" />	
+											</td>
+										</tr>
+										<tr>
+											<td width="20%" style="padding:10px 20px">
+												<label for="passwordInput" style="text-align:right">Password: </label>
+											</td>
+											<td width="80%" style="padding:10px 20px">
+									      		<form:password path="password" id="passwordInput" placeholder="Enter a Password" />
+									      		<br><form:errors path="password" />
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" style="padding:20px 20px">
+												<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
+												<p><i>...if you already have an account</i></p>
+											</td>
+										</tr>
+									</table>
+								</form:form>		
+						  	</td>
+						  </tr>
 					</table>
 				</div>
 			</section>		

@@ -80,7 +80,7 @@
 	
 	hr {
 		border: 0;
-		border-top: solid 1px #ddd;
+		border-top: solid 3px black;
 	}
 	
 	blockquote {
@@ -260,7 +260,9 @@
 		}
 		
 			form label {
-				display: block;
+				/* display: block; */
+				text-align: right;
+				padding: 0.50em;
 			}
 		
 			form input[type="number"],
@@ -269,9 +271,9 @@
 			form input[type="password"],
 			form select,
 			form textarea {
-				display: block;
-				width: 100%;
-				padding: 0.75em;
+				/* display: block; */
+				width: 50%;
+				padding: 0.50em;
 				background: none;
 				border: solid 2px rgba(185,186,187,0.25);
 				color: inherit;
@@ -346,8 +348,8 @@
 			}
 			
 			form errors {
-				display: block;
-				width: 100%;
+				/* display: block; */
+				width: 50%;
 				padding: 0.75em;
 				background: none;
 				color: red;			
@@ -465,6 +467,7 @@
 				.button.style2.down {
 					background-image: url('images/arrow.svg');
 				}
+				
 
 	/* Box */
 
@@ -622,6 +625,11 @@
 				.dark .button.style2.down {
 					background-image: url('images/arrow5.png');
 					background-size: 100% 100%;
+				}
+				
+				.dark .button.style2.login {
+					background-color: rgba(192, 192, 192, 0.85);
+					font-weight: bold;
 				}
 		
 /*********************************************************************************/

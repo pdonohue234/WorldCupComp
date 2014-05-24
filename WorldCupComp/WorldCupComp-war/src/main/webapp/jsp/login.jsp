@@ -43,7 +43,7 @@
 		</header>
 			
 			
-	 		<section id="login" class="main style2 left dark fullscreen">
+	 		<%-- <section id="login" class="main style2 left dark fullscreen">
 				<div class="content container" align="center">
 					<header>
 						<h2>Please sign in</h2>
@@ -74,6 +74,53 @@
 								</div>
 						   </form:form>  
 				</div>
-			</section>			
+			</section>			 --%>
+			
+			<section id="login" class="main style2 left dark fullscreen">
+				<div class="content container" align="center">
+					<header>
+						<h2>Please Register/Login</h2>
+					</header>
+						<!--
+							 Login Form
+						-->
+					<table>
+						<tr>
+							<td rowspan="2" width="20%" style="text-align:center; vertical-align:middle;">
+								<img src="images/719px-WC-2014-Brasil.svg.png" width="40%"/>
+							</td>
+							<td width="60%" style="text-align:center; vertical-align:middle;">
+								<div class="row">
+									<div class="12u">						
+										<a href="/register" class="button style2 login">New Registration</a>
+										<p><i>...if you have not already created an account<i></i></p>
+										<hr>									
+									</div>
+								</div>
+							</td>
+							<td rowspan="2" width="20%" style="text-align:center; vertical-align:middle;">
+								<img src="images/719px-WC-2014-Brasil.svg.png" width="40%"/>
+							</td>
+						</tr>
+						<tr>						
+							<td width="60%" style="text-align:center; vertical-align:middle;">
+								<form:form method="post" action="/predictions" modelAttribute="user">  
+									
+										<label for="userIdInput">Email: </label>
+							      		<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
+										<form:errors path="userId" />	
+									
+										<label for="passwordInput">Password: </label>
+							      		<form:password path="password" id="passwordInput" placeholder="Enter a Password" />
+							      		<form:errors path="password" />
+									
+										<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
+										<p><i>...if you already have an account</i></p>
+										
+							   </form>
+						  </td>
+					</table>
+				</div>
+			</section>		
 	</body>  
 </html>  

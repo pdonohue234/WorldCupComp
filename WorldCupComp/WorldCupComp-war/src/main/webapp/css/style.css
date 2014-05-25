@@ -1128,7 +1128,7 @@
 /*********************************************************************************/
 
 	#home {
-		background: url('images/overlay.png'), url('../images/intro.jpg');
+		background: url('images/overlay.png'), url('../images/feetandball_vintage.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1140,7 +1140,7 @@
 /*********************************************************************************/
 
 	#predictions {
-		background: url('images/overlay.png'), url('../images/14IRSB_10490.JPG');
+		background: url('images/overlay.png'), url('../images/football_cup.JPG');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, center center;
@@ -1151,7 +1151,7 @@
 /*********************************************************************************/
 
 	#sponsors {
-		background: url('images/overlay.png'), url('../images/14IRSB_10490.JPG');
+		background: url('images/overlay.png'), url('../images/aviva.JPG');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1162,7 +1162,18 @@
 /*********************************************************************************/
 
 	#charity {
-		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
+		background: url('images/overlay.png'), url('../images/football_field.jpg');
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, bottom center;
+	}
+
+/*********************************************************************************/
+/* Rules                                                            */
+/*********************************************************************************/
+
+	#rules {
+		background: url('images/overlay.png'), url('../images/stadium.JPG');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1173,7 +1184,7 @@
 /*********************************************************************************/
 
 	#login {
-		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
+		background: url('images/overlay.png'), url('../images/fans.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1184,7 +1195,7 @@
 /*********************************************************************************/
 
 	#register {
-		background: url('images/overlay.png'), url('../images/FeetAndBall_vintage.jpg');
+		background: url('images/overlay.png'), url('../images/ball.jpg');
 		background-size: 256px 256px, cover;
 		background-attachment: fixed, fixed;
 		background-position: top left, bottom center;
@@ -1325,17 +1336,7 @@
 				font-size: 0.9em;
 			}
 
-/*********************************************************************************/
-/* Rules                                                            */
-/*********************************************************************************/
 
-	#rules {
-		background: url('images/overlay.png'), url('../images/DSC_4742.JPG');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
-	}
-	
 /*********************************************************************************/
 /* Poptrox                                                                       */
 /*********************************************************************************/

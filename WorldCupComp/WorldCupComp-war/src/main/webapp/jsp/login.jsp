@@ -24,6 +24,30 @@
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>	
+        <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        
+        <script>
+            $(function() {
+ 				if(supports_html5_storage() === true ) {
+	 
+	                $('#remember_me').click(function() {
+	                    if ($('#remember_me').is(':checked')) {
+	                        // save userId and password
+	                        if($('#userIdInput').val() != undefined && $('#passwordInput').val() != undefined ) {
+		                        localStorage.userId = $('#userIdInput').val();
+		                        localStorage.password = $('#passwordInput').val();
+		                        localStorage.chkbx = $('#remember_me').val();		                        
+	                       	}
+	                    } else {
+	                        localStorage.userId = '';
+	                        localStorage.password = '';
+	                        localStorage.chkbx = '';
+	                    }
+	                });
+	           	}
+            });
+ 
+        </script>		
 	</head>  
 
 	<body>  
@@ -33,7 +57,7 @@
 			<nav id="nav">
 				<ul>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
-					<li><a onclick="Javascript:verifySession();">Your Predictions</a></li>
+					<li><a onclick="verifySession()">Your Predictions</a></li>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
 					<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Rules</a></li>
@@ -124,6 +148,15 @@
 									      		<br><form:errors path="password" />
 											</td>
 										</tr>
+											<tr>
+												<td width="20%" style="padding:10px 20px">
+												</td>
+												<td width="80%" style="padding:10px 20px">
+													<label class="checkbox">
+									                <input type="checkbox" value="remember-me" id="remember_me"> Remember me
+									                </label>
+								                </td>
+								            </tr>
 										<tr>
 											<td colspan="2" style="padding:20px 20px">
 												<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />

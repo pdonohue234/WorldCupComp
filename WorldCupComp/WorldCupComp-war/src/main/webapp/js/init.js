@@ -234,7 +234,9 @@
 					$('form').formerize();
 
 			// Gallery
-				$('.gallery').poptrox(_settings.poptrox);
+				if($('.gallery') != '' && $('.gallery').value != undefined) {
+					$('.gallery').poptrox(_settings.poptrox);
+				}
 
 			// Events
 			

@@ -1,4 +1,4 @@
-
+//document.write("<script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js' / >");
 //$('#predictions').click(function(){ verifySession(); return false; });
 
 //check session is alive before predictions screen
@@ -6,7 +6,35 @@ function verifySession() {
 	//1. Check does the user have a valid session
 	var validSession = false;
 	
-	//2. If not then redirect to login/register page
+	
+	if(supports_html5_storage() === true ) {			
+		if (localStorage.chkbx && localStorage.chkbx != '') {
+			if(localStorage.userId != undefined && localStorage.password != undefined) {
+				validSession = true;
+				$('#remember_me').attr('checked', 'checked');
+				$('#userIdInput').val(localStorage.userId);
+				$('#passwordInput').val(localStorage.password);
+			}
+		} else {
+			validSession = false;
+			$('#remember_me').removeAttr('checked');
+			$('#userIdInput').val('');
+			$('#passwordInput').val('');
+		}
+	}
+	
+	//Call login directly and redirect to predictions page
+	if(validSession) {
+		alert('Should log in automatically-' + $('#passwordInput').val() + '-');
+		$.post( "/predictions", { userId: $('#userIdInput').val(), password: $('#passwordInput').val() }, 
+				function( data ) {
+					alert( "Data Loaded: " + data );
+					window.html( data );
+					//$( ".result" ).html( data );
+				} );
+	}
+	
+	//Else If not then redirect to login/register page
 	if(!validSession) {
 		window.location.href = "/login";
 	}
@@ -137,4 +165,14 @@ function checkRegisterForm() {
 	} 
 	password2.value = "";
 	return true;
+}
+
+
+function supports_html5_storage() {
+	try {
+		return 'localStorage' in window && window['localStorage'] !== null;
+	} catch (e) {
+		alert('returning false');
+		return false;
+	}
 }

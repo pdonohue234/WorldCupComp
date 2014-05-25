@@ -96,6 +96,9 @@ public class LoginController {
 	
 	@RequestMapping(value="/predictions", method=RequestMethod.POST)    
 	public ModelAndView loginUser(@ModelAttribute User user, BindingResult result) {  
+		this.m_logger.warning("Finding user: " + user.getUserId());
+		this.m_logger.warning("Finding password: " + user.getPassword());
+		
 		String error = this.getUserService().validateUser(user); 
 		
 		Map<String, Object> model = new HashMap<String, Object>();  
@@ -121,6 +124,7 @@ public class LoginController {
 			else if( StringUtils.equalsIgnoreCase("empty", error) ) {
 				//Add in error message here
 				result.rejectValue("userId","userId.notvalid","Credentials submitted are empty!");
+				this.m_logger.warning("BindingResult: " + result.getFieldError().getField());
 			}
 			else {
 				this.m_logger.warning("Server Error Occurred retrieving user: " + user.getUserId());

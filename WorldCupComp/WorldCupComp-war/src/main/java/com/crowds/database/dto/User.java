@@ -16,10 +16,10 @@ public class User extends Dto<User> implements Serializable {
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int USERID = 0;
 	
-	private String	m_password;
-	private String 	m_email;
-	private String	m_name;
-	private Date	m_dateRegistered;
+	private String	password;
+	private String 	email;
+	private String	name;
+	private Date	dateRegistered;
 	
 	
 	/**
@@ -47,28 +47,28 @@ public class User extends Dto<User> implements Serializable {
 	}
 	
 	public String getPassword() {
-		return m_password;
+		return password;
 	}
 	public void setPassword(String p_password) {
-		m_password = p_password;
+		password = p_password;
 	}
 	public String getEmail() {
-		return m_email;
+		return email;
 	}
 	public void setEmail(String p_email) {
-		m_email = p_email;
+		email = p_email;
 	}
 	public String getName() {
-		return m_name;
+		return name;
 	}
 	public void setName(String p_name) {
-		m_name = p_name;
+		name = p_name;
 	}
 	public Date getDateRegistered() {
-		return m_dateRegistered;
+		return dateRegistered;
 	}
 	public void setDateRegistered(Date p_dateRegistered) {
-		m_dateRegistered = p_dateRegistered;
+		dateRegistered = p_dateRegistered;
 	}
 	
 	public String getMappedTableName() {

@@ -24,7 +24,7 @@
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>	
-        <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
         
         <script>
             $(function() {

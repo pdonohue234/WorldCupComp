@@ -28,7 +28,7 @@ function verifySession() {
 			$('#passwordInput').val('');
 		}
 	}
-	
+	validSession = false;
 	//Call login directly and redirect to predictions page
 	if(validSession) {
 		$.post( "/predictions", { userId: localStorage.userId, password: localStorage.password }, 

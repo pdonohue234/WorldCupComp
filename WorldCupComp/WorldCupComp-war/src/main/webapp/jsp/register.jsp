@@ -20,6 +20,31 @@
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>	
+		
+        <script src="https://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        
+        <script>
+            $(function() {
+ 				if(supports_html5_storage() === true ) {
+	 
+	                $('#remember_me').click(function() {
+	                    if ($('#remember_me').is(':checked')) {
+	                        // save userId and password
+	                        if($('#userIdInput').val() != undefined && $('#passwordInput').val() != undefined ) {
+		                        localStorage.userId = $('#userIdInput').val();
+		                        localStorage.password = $('#passwordInput').val();
+		                        localStorage.chkbx = $('#remember_me').val();		                        
+	                       	}
+	                    } else {
+	                        localStorage.userId = '';
+	                        localStorage.password = '';
+	                        localStorage.chkbx = '';
+	                    }
+	                });
+	           	}
+            });
+ 
+        </script>			
 	</head>  
 
 	<body>  
@@ -82,6 +107,13 @@
 								      		<form:input path="name" id="nameInput" placeholder="Your Name" />
 							      		</td>
 						      		</tr>
+									<tr>
+										<td colspan="2" style="text-align:center; padding:0px 2px">
+											<label class="checkbox">
+								            	<input type="checkbox" value="remember-me" id="remember_me"/> Remember me
+								            </label>
+							            </td>
+							    	</tr>						      		
 						      		<tr>
 										<td colspan="2" style="text-align:center; padding:2px 2px">
 											<input type="submit" class="button style2 login" value="Register" onclick="Javascript:return checkRegisterForm();" />

@@ -274,11 +274,11 @@
 		}
 		
 			form label {
-				/* display: block; */
+				display: block;
 				padding: 0.50em;
 				
-				width: 100%;
-				/* text-align:right;
+				/* width: 100%;
+				text-align:center;
 				border-style:solid;
 				border-width:3px;
 				border-color:blue; */
@@ -292,6 +292,7 @@
 			form textarea {
 				/* display: block; */
 				width: 100%;
+				max-width: 250px;
 				padding: 0.50em;
 				background: none;
 				border: solid 2px rgba(185,186,187,0.25);
@@ -1142,10 +1143,10 @@
 /*********************************************************************************/
 
 	#home {
-		background: url('images/overlay.png'), url('../images/feetandball_vintage.jpg');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
+		background: url('../images/FeetAndBall_vintage.jpg');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: bottom center;
 		background-repeat: repeat, no-repeat;
 	}
 
@@ -1154,10 +1155,10 @@
 /*********************************************************************************/
 
 	#predictions {
-		background: url('images/overlay.png'), url('../images/football_cup.JPG');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, center center;
+		background: url('../images/football_cup.JPG');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: center center;
 	}
 
 /*********************************************************************************/
@@ -1165,10 +1166,10 @@
 /*********************************************************************************/
 
 	#sponsors {
-		background: url('images/overlay.png'), url('../images/aviva.JPG');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
+		background: url('../images/aviva.JPG');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: bottom center;
 	}
 
 /*********************************************************************************/
@@ -1176,10 +1177,10 @@
 /*********************************************************************************/
 
 	#charity {
-		background: url('images/overlay.png'), url('../images/football_field.jpg');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
+		background: url('../images/football_field.jpg');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: bottom center;
 	}
 
 /*********************************************************************************/
@@ -1187,10 +1188,10 @@
 /*********************************************************************************/
 
 	#rules {
-		background: url('images/overlay.png'), url('../images/stadium.JPG');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
+		background: url('../images/stadium.JPG');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: bottom center;
 	}
 	
 /*********************************************************************************/
@@ -1198,10 +1199,10 @@
 /*********************************************************************************/
 
 	#login {
-		background: url('images/overlay.png'), url('../images/fans.jpg');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
+		background: url('../images/Fans.jpg');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: bottom center;
 	}
 	
 /*********************************************************************************/
@@ -1209,10 +1210,10 @@
 /*********************************************************************************/
 
 	#register {
-		background: url('images/overlay.png'), url('../images/ball.jpg');
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, bottom center;
+		background: url('../images/ball.jpg');
+		background-size: cover;
+		background-attachment: fixed;
+		background-position: bottom center;
 	}	
 	
 /*********************************************************************************/

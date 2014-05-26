@@ -105,66 +105,61 @@
 					<header>
 						<h2>Please Register/Login</h2>
 					</header>
-						<!--
-							 Login Form
-						-->
+					<!--
+						 Login Form
+					-->
 					<table>
 						<tr>
-							<td rowspan="2" width="20%" style="text-align:center; vertical-align:middle;">
-								<img src="images/719px-WC-2014-Brasil.svg.png" width="40%"/>
-							</td>
-							<td width="60%" style="text-align:center; vertical-align:middle;">
+							
+							<td style="text-align:center; vertical-align:middle;">
 								<div class="row">
 									<div class="12u">						
 										<a href="/register" class="button style2 login">New Registration</a>
 										<p><i>...if you have not already created an account</i></p>
-										<hr>									
+										<hr style="width:75%">									
 									</div>
 								</div>
 							</td>
-							<td rowspan="2" width="20%" style="text-align:center; vertical-align:middle;">
-								<img src="images/719px-WC-2014-Brasil.svg.png" width="40%"/>
-							</td>
+							
 						</tr>
 						<tr>						
-							<td width="60%" style="text-align:center; vertical-align:middle;">
+							<td align="center">
+							
 								<form:form method="post" action="/predictions" modelAttribute="user">  
-									<table>
+									<table style="max-width:500px;">
 										<tr>
-											<td width="20%" style="padding:10px 20px">
+											<td style="padding:1px 2px;">
 												<label for="userIdInput" style="text-align:right">Email: </label>
 											</td>
-											<td width="80%" style="padding:10px 20px">
+											<td style="padding:1px 2px;">
 									      		<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
 												<br><form:errors path="userId" />	
 											</td>
 										</tr>
 										<tr>
-											<td width="20%" style="padding:10px 20px">
+											<td style="padding:1px 2px">
 												<label for="passwordInput" style="text-align:right">Password: </label>
 											</td>
-											<td width="80%" style="padding:10px 20px">
+											<td style="padding:1px 2px">
 									      		<form:password path="password" id="passwordInput" placeholder="Enter a Password" />
 									      		<br><form:errors path="password" />
 											</td>
 										</tr>
-											<tr>
-												<td width="20%" style="padding:10px 20px">
-												</td>
-												<td width="80%" style="padding:10px 20px">
-													<label class="checkbox">
-									                <input type="checkbox" value="remember-me" id="remember_me"> Remember me
-									                </label>
-								                </td>
-								            </tr>
 										<tr>
-											<td colspan="2" style="padding:20px 20px">
-												<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
+											<td colspan="2" style="text-align:center; padding:0px 2px">
+												<label class="checkbox">
+								                <form:input type="checkbox" value="remember-me" id="remember_me"/> Remember me
+								                </label>
+							                </td>
+							            </tr>
+										<tr>
+											<td colspan="2" style="text-align:center; padding:2px 2px">
+												<form:input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
 												<p><i>...if you already have an account</i></p>
 											</td>
 										</tr>
 									</table>
-								</form:form>		
+								</form:form>
 						  	</td>
 						  </tr>
 					</table>

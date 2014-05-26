@@ -2,6 +2,19 @@
 /* Basic                                                                         */
 /*********************************************************************************/
 
+	form {		
+			form label {
+				display: block;
+				padding: 0.50em;
+				
+				width: 100%;
+				text-align:center;
+				border-style:solid;
+				border-width:3px;
+				border-color:green;
+			}
+		}
+
 	body {
 		min-width: 320px;
 	}

@@ -28,7 +28,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-
+ 
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
 						<li><a onclick="verifySession()">Your Predictions</a></li>
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>

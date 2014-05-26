@@ -38,7 +38,7 @@ function verifySession() {
 					//$( ".result" ).html( data );
 				} );
 	}*/
-	validSession = true;
+	validSession = false;
 	//Else If not then redirect to login/register page
 	if(!validSession) {
 		window.location.href = "/login";

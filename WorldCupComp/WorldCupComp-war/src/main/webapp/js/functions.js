@@ -33,8 +33,10 @@ function verifySession() {
 	if(validSession) {
 		$.post( "/predictions", { userId: localStorage.userId, password: localStorage.password }, 
 				function( data ) {
+					window.document.open();
 					window.document.write(data);
 					window.document.close();
+					//window.location.reload();
 				} );
 	}
 

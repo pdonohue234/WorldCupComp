@@ -69,6 +69,15 @@
 						<h2>Please Register</h2>
 						<p><a href="/login">Click here if you already have an account</a></p>
 					</header>
+					
+					<!-- Code for payments. Can move to wherever needed -->
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="88FCJXL7J55WC">
+						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+					</form>
+					
 						<!--
 							 Register Form
 						-->
@@ -93,7 +102,7 @@
 									</tr>
 									<tr>
 										<td style="padding:1px 2px">
-											<label for="password2Input" style="text-align:right">Confirm Password: </label>
+											<!--<label for="password2Input" style="text-align:right">Confirm Password: </label> -->
 						      			</td>
 						      			<td>	
 						      				<form:password path="password" id="password2Input" placeholder="Confirm Password" /> 	
@@ -113,7 +122,8 @@
 								            	<input type="checkbox" value="remember-me" id="remember_me"/> Remember me
 								            </label>
 							            </td>
-							    	</tr>						      		
+							    	</tr>	
+					      		
 						      		<tr>
 										<td colspan="2" style="text-align:center; padding:2px 2px">
 											<input type="submit" class="button style2 login" value="Register" onclick="Javascript:return checkRegisterForm();" />

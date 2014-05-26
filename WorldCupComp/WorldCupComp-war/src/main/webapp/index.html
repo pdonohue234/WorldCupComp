@@ -43,6 +43,61 @@
 
 			</header>
 			
+			<section id="register" class="main style2 left dark fullscreen">
+				<div class="content container" align="center">
+					<header>
+						<h2>Please Register</h2>
+						<p><a href="/login">Click here if you already have an account</a></p>
+					</header>
+						<!--
+							 Register Form
+						-->
+						
+							<form method="post" action="/registerUser" modelAttribute="user">  
+								<table style="max-width:500px;">
+									<tr>
+										<td style="padding:1px 2px;">
+											<label for="userIdInput" style="text-align:right">Email: </label>
+										</td>
+										<td style="padding:1px 2px;">
+							      			<input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />
+							      			<errors path="userId" />
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="passwordInput" style="text-align:right">Password: </label>
+										</td>
+										<td style="padding:1px 2px">
+						      				<password path="password" id="passwordInput" placeholder="Enter Password" />					     
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="password2Input" style="text-align:right">Confirm Password: </label>
+						      			</td>
+						      			<td style="padding:1px 2px">
+						      				<password path="password" id="password2Input" placeholder="Confirm Password" /> 	
+										</td>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="nameInput" style="text-align:right">Name: </label>
+										</td>
+										<td>
+								      		<input path="name" id="nameInput" placeholder="Your name" />
+							      		</td>
+						      		</tr>
+						      		<tr>
+										<td colspan="2" style="text-align:center; padding:2px 2px">
+											<input type="submit" class="button style2 login" value="Register" onclick="Javascript:return checkRegisterForm();" />
+										</td>
+									</tr>
+								</table>
+						   </form>  
+					
+				</div>
+			</section>			
+			
 		<!-- Home -->
 			<section id="home" class="main style2 dark fullscreen">
 				<div class="content container big">

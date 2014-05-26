@@ -45,37 +45,49 @@
 						<p><a href="/login">Click here if you already have an account</a></p>
 					</header>
 						<!--
-							 Login Form
+							 Register Form
 						-->
 							<form:form method="post" action="/registerUser" modelAttribute="user">  
-								<div class="row half">
-									<div class="6u"><label for="userIdInput">Email: </label></div>
-						      		<div class="6u"><form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" /></div>
-						      		<div class="6u"><form:errors path="userId" /></div>	
-								</div>
-								
-								<div class="row half">
-									<div class="6u"><label for="passwordInput">Password: </label></div>
-						      		<div class="6u"><form:password path="password" id="passwordInput" placeholder="Enter Password" /></div>						     
-								</div> 	
-										      
-								<div class="row half">
-									<div class="6u"><label for="password2Input">Confirm Password: </label></div>
-						      		<div class="6u"><form:password path="password" id="password2Input" placeholder="Confirm Password" /></div>
-								</div> 	
-								
-								<div class="row half">
-									<div class="6u"><label for="nameInput">Name: </label></div>
-						      		<div class="6u"><form:input path="name" id="nameInput" /></div>
-								</div> 	
-								
-								<div class="row">
-									<div class="12u">
-										<ul class="actions">
-											<li><input type="submit" class="button" value="Save" onclick="Javascript:return checkRegisterForm();" /></li>
-										</ul>
-									</div>
-								</div>
+								<table style="max-width:500px;">
+									<tr>
+										<td style="padding:1px 2px;">
+											<label for="userIdInput" style="text-align:right">Email: </label>
+										</td>
+										<td style="padding:1px 2px;">
+							      			<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />
+							      			<form:errors path="userId" />
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="passwordInput" style="text-align:right">Password: </label>
+										</td>
+										<td style="padding:1px 2px">
+						      				<form:password path="password" id="passwordInput" placeholder="Enter Password" />					     
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="password2Input" style="text-align:right">Confirm Password: </label>
+						      			</td>
+						      			<td>	
+						      				<form:password path="password" id="password2Input" placeholder="Confirm Password" /> 	
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="nameInput" style="text-align:right">Name: </label>
+										</td>
+										<td>
+								      		<form:input path="name" id="nameInput" placeholder="Your Name" />
+							      		</td>
+						      		</tr>
+						      		<tr>
+										<td colspan="2" style="text-align:center; padding:2px 2px">
+											<input type="submit" class="button style2 login" value="Register" onclick="Javascript:return checkRegisterForm();" />
+										</td>
+									</tr>
+								</table>
 						   </form:form>  
 				</div>
 			</section>			

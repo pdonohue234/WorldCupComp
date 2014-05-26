@@ -148,13 +148,13 @@
 										<tr>
 											<td colspan="2" style="text-align:center; padding:0px 2px">
 												<label class="checkbox">
-								                <form:input type="checkbox" value="remember-me" id="remember_me"/> Remember me
+								                <input type="checkbox" value="remember-me" id="remember_me"/> Remember me
 								                </label>
 							                </td>
 							            </tr>
 										<tr>
 											<td colspan="2" style="text-align:center; padding:2px 2px">
-												<form:input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
+												<input type="submit" class="button style2 login" value="Login" onclick="Javascript:return checkLoginForm();" />
 												<p><i>...if you already have an account</i></p>
 											</td>
 										</tr>

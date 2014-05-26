@@ -30,15 +30,14 @@ function verifySession() {
 	}
 	
 	//Call login directly and redirect to predictions page
-	/**if(validSession) {
-		alert('Should log in automatically-' + $('#passwordInput').val() + '-');
-		$.post( "/predictions", { userId: $('#userIdInput').val(), password: $('#passwordInput').val() }, 
+	if(validSession) {
+		$.post( "/predictions", { userId: localStorage.userId, password: localStorage.password }, 
 				function( data ) {
-					window.html( data );
-					//$( ".result" ).html( data );
+					window.document.write(data);
+					window.document.close();
 				} );
-	}*/
-	validSession = false;
+	}
+
 	//Else If not then redirect to login/register page
 	if(!validSession) {
 		window.location.href = "/login";

@@ -22,8 +22,10 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 	
 	private Date	gameDate;
 	private String	teamOne;
+	private String	teamOneFullName;
 	private int		teamOneScore;
 	private String	teamTwo;
+	private String	teamTwoFullName;
 	private int		teamTwoScore;
 	private String	gamePlayed;
 	private String	winningTeam;
@@ -87,6 +89,15 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 	public void setTeamOne(String p_teamOne) {
 		teamOne = p_teamOne;
 	}
+	
+	public String getTeamOneFullName() {
+		return teamOneFullName;
+	}
+
+
+	public void setTeamOneFullName(String p_teamOneFullName) {
+		teamOneFullName = p_teamOneFullName;
+	}
 
 	public int getTeamOneScore() {
 		return teamOneScore;
@@ -107,6 +118,15 @@ public class Fixture extends Dto<Fixture> implements Serializable {
 		teamTwo = p_teamTwo;
 	}
 
+	public String getTeamTwoFullName() {
+		return teamTwoFullName;
+	}
+
+
+	public void setTeamTwoFullName(String p_teamTwoFullName) {
+		teamTwoFullName = p_teamTwoFullName;
+	}
+	
 	public int getTeamTwoScore() {
 		return teamTwoScore;
 	}

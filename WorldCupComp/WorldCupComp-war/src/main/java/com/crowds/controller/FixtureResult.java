@@ -17,8 +17,10 @@ public class FixtureResult {
 	private Date	gameDate;
 	private String	gameDateAsString;
 	private String	teamOne;
+	private String	teamOneFullName;
 	private String	teamOneScore;
 	private String	teamTwo;
+	private String	teamTwoFullName;
 	private String	teamTwoScore;
 	private String	gamePlayed;
 	private String	winningTeam;
@@ -44,8 +46,10 @@ public class FixtureResult {
 		if(this.gameDate != null)
 			gameDateAsString = convertDateToString();
 		this.teamOne = fixture.getTeamOne();
+		this.teamOneFullName = fixture.getTeamOneFullName();
 		this.teamOneScore = "";
 		this.teamTwo = fixture.getTeamTwo();	
+		this.teamTwoFullName = fixture.getTeamTwoFullName();
 		this.teamTwoScore = "";
 		this.gamePlayed = fixture.getGamePlayed();
 		this.winningTeam = fixture.getWinningTeam();
@@ -70,8 +74,10 @@ public class FixtureResult {
 		this.gameDate = fixture.getGameDate();
 		if(this.gameDate != null)
 			gameDateAsString = convertDateToString();		
-		this.teamOne = fixture.getTeamOne();	
+		this.teamOne = fixture.getTeamOne();
+		this.teamOneFullName = fixture.getTeamOneFullName();
 		this.teamTwo = fixture.getTeamTwo();
+		this.teamTwoFullName = fixture.getTeamTwoFullName();
 		this.teamOneScore = prediction.getTeam1Prediction() +"";
 		this.teamTwoScore = prediction.getTeam2Prediction() +"";
 		this.winningTeam = prediction.getWinningTeamPrediction();
@@ -128,6 +134,15 @@ public class FixtureResult {
 	public void setTeamOne(String p_teamOne) {
 		teamOne = p_teamOne;
 	}
+	
+	public String getTeamOneFullName() {
+		return teamOneFullName;
+	}
+
+
+	public void setTeamOneFullName(String p_teamOneFullName) {
+		teamOneFullName = p_teamOneFullName;
+	}
 
 	public String getTeamOneScore() {
 		return teamOneScore;
@@ -146,6 +161,15 @@ public class FixtureResult {
 
 	public void setTeamTwo(String p_teamTwo) {
 		teamTwo = p_teamTwo;
+	}
+	
+	public String getTeamTwoFullName() {
+		return teamTwoFullName;
+	}
+
+
+	public void setTeamTwoFullName(String p_teamTwoFullName) {
+		teamTwoFullName = p_teamTwoFullName;
 	}
 
 	public String getTeamTwoScore() {

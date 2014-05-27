@@ -12,6 +12,7 @@
 		<script src="js/jquery.poptrox.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/init.js"></script>
+		<script src="js/oneSimpleTablePaging-1.0.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -47,16 +48,21 @@
 		<section id="predictions" class="main style2 left dark fullscreen">
 			<div class="content container big">
 				<header>
-					<h2>Predictions</h2>
-					<h3>Your current score is: 100</h3>
+					<div style="float:left;"><h2>Predictions</h2></div>
+					<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: 100</h3></div>
+					<br>
 				</header>
 				
 				<style>
+<<<<<<< HEAD
 						table,th,td{
 							/* border:1px solid black; */
 							text-align:center;
 						} 
 						
+=======
+											
+>>>>>>> branch 'master' of https://github.com/pauliewallie/WorldCupComp.git
 						/*   Styling for small screens. Split table rows into boxes   */
 							/*	 http://css-tricks.com/responsive-data-tables/   */		
 							@media 
@@ -78,7 +84,11 @@
 								
 								/* Zebra striping */
 								tbody tr:nth-of-type(odd) { 
+<<<<<<< HEAD
 									background: rgba(210, 210, 210, 0.50); 
+=======
+									background: rgba(240, 240, 240, 0.50); 
+>>>>>>> branch 'master' of https://github.com/pauliewallie/WorldCupComp.git
 								}
 													
 								tr { border: 1px solid #ccc; }
@@ -116,11 +126,35 @@
 								td:nth-of-type(9):before { content: "Actual Result"; }
 							}
 						
+						table,th,td{
+							border-style:solid;
+							border-color: black;
+							border-width: 0px 0px 1px 0px;
+							text-align:center;
+						} 
+						
 										
 				</style>
 				
+				<script>
+					$(document).ready(function(){
+				       $('.predictionsTable').oneSimpleTablePagination({rowsPerPage: 8});
+				   });  
+				
+				</script>
+				
+				
 				<form>
-					<table id="predictionsTable">
+					<table class="predictionsTable">
+						<col width="60px">
+						<col width="70px">
+						<col width="125px">
+						<col width="250px">
+						<col width="70px">
+						<col width="250px">
+						<col width="70px">
+						<col width="130px">
+						<col width="80px">
 						<thead>
 						<tr>
 							<th><label>Game</label></th>
@@ -178,6 +212,130 @@
 							<td><input type="number" /></td>
 							<td><select type="text"><option></option><option>Bel</option><option>Fra</option><option>Draw</option></select></td>
 							<td><label></label></td>
+<<<<<<< HEAD
+=======
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+						</tr>
+						<tr>
+							<td><label>3</label></td>
+							<td><label>Semi</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Bosnia-Herzegovina</label></td>
+							<td><input type="number" /></td>
+							<td><label>Cameroon</label></td>
+							<td><input type="number" /></td>
+							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
+							<td><label></label></td>
+>>>>>>> branch 'master' of https://github.com/pauliewallie/WorldCupComp.git
 						</tr>
 				       	</tbody>
 					</table>
@@ -185,6 +343,7 @@
 					<center>
 						<input type="submit" class="button style2 login" value="Submit" />
 						
+<<<<<<< HEAD
 						<div style="font-style:italic; font-size:0.8em;">
 							<br><u>Instructions</u>
 							<br>You can re-enter predictions as often as you before the game starts
@@ -193,6 +352,15 @@
 							<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
 							<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
 							<br>
+=======
+						<br><br><a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
+						<div id="hiddenText" style="display:none; font-style:italic; font-size:0.8em;">
+							<br>You can re-enter predictions as often as you before the game starts
+							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available in each game)
+							<br>1 point is awarded for a predicting the correct winning team (or draw)
+							<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
+							<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
+>>>>>>> branch 'master' of https://github.com/pauliewallie/WorldCupComp.git
 						</div>
 					</center>	
 				</form>

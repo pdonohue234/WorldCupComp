@@ -1,6 +1,9 @@
 package com.crowds.database.dao;
 
 import java.sql.ResultSet;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -196,7 +199,9 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			try {
 				dto.setGameId(rs.getString(seqn++));
 				dto.setEventId(rs.getString(seqn++));
-				dto.setGameDate(rs.getDate(seqn++));
+				Time t = rs.getTime(seqn);
+				Date d = rs.getDate(seqn++);
+				dto.setGameDate(getDate(d, t) );
 				dto.setTeamOne(rs.getString(seqn++));
 				dto.setTeamOneScore(rs.getInt(seqn++));
 				dto.setTeamTwo(rs.getString(seqn++));
@@ -212,5 +217,16 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 			
 			return dto;
 		}
+		
+		public java.util.Date getDate(Date date, Time time) {
+            Calendar calendar=Calendar.getInstance();
+            calendar.setTime(date);
+            Calendar calendar1=Calendar.getInstance();
+            calendar1.setTime(time);
+            calendar.set(Calendar.MINUTE, calendar1.get(Calendar.MINUTE));
+            calendar.set(Calendar.SECOND, calendar1.get(Calendar.SECOND));
+            calendar.set(Calendar.HOUR_OF_DAY, calendar1.get(Calendar.HOUR_OF_DAY));
+            return calendar.getTime();
+        }
 	}
 }

@@ -57,27 +57,33 @@ Product : Crowds - World Cup 2014 Application
 				</header>
 				<form:form method="post" action="/updatePredictions" modelAttribute="fixtureResultList">   
 					<table id="predictionsTable">
+						<thead>
 						<tr>
-							<td>Game</td>
-							<td>Date/Time</td>
-							<td>Round</td>
-							<td>Team 1</td>
-							<td>Score</td>
-							<td>Team 2</td>
-							<td>Score</td>
-							<td>Result</td>
+							<th><label>Game</label></th>
+							<th><label>Round</label></th>
+							<th><label>Date</label></th>
+							<th><label>Team 1</label></th>
+							<th><label>Score</label></th>
+							<th><label>Team 2</label></th>
+							<th><label>Score</label></th>
+							<th><label>Prediction</label></th>
+							<th><label>Result</label></th>
 						</tr>
+						</thead>
+						<tbody>
 				        <c:forEach items="${model.fixtureResultList.fixtureResults}" var="fixture" varStatus="loop">
 				            <tr>
 				            	<form:hidden path="fixtureResults[${loop.index}].userId" value="${fixture.userId}"/>
 				            	<form:hidden path="fixtureResults[${loop.index}].gameId" value="${fixture.gameId}"/>
 				            	<form:hidden path="fixtureResults[${loop.index}].eventId" value="${fixture.eventId}"/>
 				            	
-				            	<td>${loop.index}</td>
-				            	
-				                <td>${fixture.gameDate}</td>				              			        
-				                
-				                <td>${fixture.teamOne}</td>
+				            	<td><label>${loop.index}</label></td>
+
+				            	<td><label>${fixture.round}</label></td>	
+
+				                <td><label>${fixture.gameDateAsString}</label></td>			              			        
+
+				                <td><label>${fixture.teamOne}</label></td>	
 				                
 				                <c:if test="${fixture.active eq true}">
 				                	<td>
@@ -88,7 +94,7 @@ Product : Crowds - World Cup 2014 Application
 				                	</td>
 				                </c:if>		
 				                <c:if test="${fixture.active eq false}">
-				                	<td>${fixture.teamOneScore}</td>
+				                	<td><label>${fixture.teamOneScore}</label></td>
 				                </c:if>	
 				                				                                		
 				                <td>${fixture.teamTwo}</td>
@@ -102,12 +108,12 @@ Product : Crowds - World Cup 2014 Application
 				                	</td>
 				                </c:if>		
 				                <c:if test="${fixture.active eq false}">
-				                	<td>${fixture.teamTwoScore}</td>
+				                	<td><label>${fixture.teamTwoScore}</label></td>
 				                </c:if>		
 				                
-				                				                			                
-				                <td>
+				                				                			               
 				                <c:if test="${fixture.active eq true}">
+				                	<td>
 					                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" >
 					                   <form:option value="" label=""/>
 								      
@@ -134,18 +140,29 @@ Product : Crowds - World Cup 2014 Application
 								       		<form:option value="Draw" label="Draw"/> 
 									   </c:if>  								    
 						             </form:select>
+						             </td>
 						        </c:if>		
 				                <c:if test="${fixture.active eq false}">
-				                	${fixture.winningTeam}
+				                	<td><label>${fixture.winningTeam}</label></td>
 				                </c:if>	
-				                </td>
+				                
+				                <td><label>${fixture.result}</label></td>	
 				               
 				            </tr>
-						</c:forEach>							
+						</c:forEach>	
+						</tbody>						
 					</table>
 					<center>
-						<input type="submit" class="button" value="Submit" />
-						<p><i>You can re-enter predictions as often as you like until the game actually starts</i></p>
+						<input type="submit" class="button style2 login" value="Submit" />
+						<div style="font-style:italic; font-size:0.8em;">
+							<br><u>Instructions</u>
+							<br>You can re-enter predictions as often as you before the game starts
+							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available)
+							<br>1 point is awarded for a predicting the correct winning team (or draw)
+							<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
+							<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
+							<br>
+						</div>
 					</center>	
 				</form:form>  		
 			</div>

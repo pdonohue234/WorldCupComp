@@ -89,8 +89,8 @@
 										</td>
 										<td style="padding:1px 2px;">
 							      			<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />
-							      			<br><form:errors path="userId" />
-							      			<span id='userIdClientError'></span>
+							      			<br><form:errors path="userId" style="color:red" />
+							      			<span id='userIdClientError' style="color:red"></span>
 										</td>
 									</tr>
 									<tr>
@@ -99,8 +99,8 @@
 										</td>
 										<td style="padding:1px 2px">
 						      				<form:password path="password" id="passwordInput" placeholder="Enter Password" />	
-						      				<br><form:errors path="password" />
-						      				<span id='errorClientError'></span>				     
+						      				<br><form:errors path="password" style="color:red" />
+						      				<span id='errorClientError' style="color:red"></span>				     
 										</td>
 									</tr>
 									<tr>

@@ -275,7 +275,7 @@
 		
 			form label {
 				display: block;
-				padding: 0.50em;
+				padding: 0.25em;
 				
 				/* width: 100%;
 				text-align:center;
@@ -316,9 +316,10 @@
 			
 			form input[type="number"] {
 				/* display: block; */
+				text-align:center;
 				width: 100%;
-				max-width: 60px;
-				padding: 0.50em;
+				max-width: 40px;
+				padding: 0.1em;
 				background: none;
 				border: solid 2px rgba(185,186,187,0.25);
 				color: inherit;
@@ -342,9 +343,10 @@
 			
 			form select[type="text"] {
 				/* display: block; */
+				text-align:center;
 				width: 100%;
-				max-width: 80px;
-				padding: 0.50em;
+				max-width: 60px;
+				padding: 0.1em;
 				background: none;
 				border: solid 2px rgba(185,186,187,0.25);
 				color: inherit;
@@ -441,12 +443,7 @@
 				table.default tbody tr:nth-child(2n+2) {
 					background: #f4f4f4;
 				}
-				
-				/* Zebra striping */
-				tbody tr:nth-of-type(odd) { 
-					background: rgba(210, 210, 210, 0.50); 
-				}
-				
+								
 				thead tr{
 					font-weight: bold;
 				}

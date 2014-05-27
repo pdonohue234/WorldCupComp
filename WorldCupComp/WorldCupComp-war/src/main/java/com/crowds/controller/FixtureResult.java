@@ -1,6 +1,8 @@
 package com.crowds.controller;
 
 import java.util.Date;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -8,11 +10,12 @@ import com.crowds.database.dto.Fixture;
 import com.crowds.database.dto.Prediction;
 
 public class FixtureResult {
-
+	
 	private String	userId;
 	private String	gameId;
 	private String	eventId;
 	private Date	gameDate;
+	private String	gameDateAsString;
 	private String	teamOne;
 	private String	teamOneScore;
 	private String	teamTwo;
@@ -22,6 +25,7 @@ public class FixtureResult {
 	private String	round;
 	private String	gameLocation;
 	private boolean active;
+	private String	result;
 	
 	/**
 	 * Default Constructor
@@ -37,26 +41,23 @@ public class FixtureResult {
 		this.gameId = fixture.getGameId();
 		this.eventId = fixture.getEventId();
 		this.gameDate = fixture.getGameDate();
+		if(this.gameDate != null)
+			gameDateAsString = convertDateToString();
 		this.teamOne = fixture.getTeamOne();
-		
-		if(fixture.isGamePlayed()) {
-			this.teamOneScore = fixture.getTeamOneScore() +"";
-		} else 
-			this.teamOneScore = "";
-			
-		this.teamTwo = fixture.getTeamTwo();
-		
-		if(fixture.isGamePlayed()) {
-			this.teamTwoScore = fixture.getTeamTwoScore() +"";
-		} else 
-			this.teamTwoScore = "";
-		
+		this.teamOneScore = "";
+		this.teamTwo = fixture.getTeamTwo();	
+		this.teamTwoScore = "";
 		this.gamePlayed = fixture.getGamePlayed();
 		this.winningTeam = fixture.getWinningTeam();
 		this.round = fixture.getRound();
 		this.gameLocation = fixture.getGameLocation();
 		
 		hasGameStarted();
+		
+		if(fixture.isGamePlayed()) {
+			this.result = fixture.getTeamOneScore() +"-" + fixture.getTeamTwoScore();
+		} else 
+			this.result = "";		
 	}
 	
 	/**
@@ -67,23 +68,22 @@ public class FixtureResult {
 		this.gameId = fixture.getGameId();
 		this.eventId = fixture.getEventId();
 		this.gameDate = fixture.getGameDate();
+		if(this.gameDate != null)
+			gameDateAsString = convertDateToString();		
 		this.teamOne = fixture.getTeamOne();	
 		this.teamTwo = fixture.getTeamTwo();
-		
-		if(fixture.isGamePlayed()) {
-			this.teamOneScore = fixture.getTeamOneScore() + "(" + prediction.getTeam1Prediction() + ")";
-			this.teamTwoScore = fixture.getTeamTwoScore() + "(" + prediction.getTeam2Prediction() + ")";
-			this.winningTeam = fixture.getWinningTeam() + "(" + prediction.getWinningTeamPrediction() + ")";
-		} else {
-			this.teamOneScore = prediction.getTeam1Prediction() +"";
-			this.teamTwoScore = prediction.getTeam2Prediction() +"";
-			this.winningTeam = prediction.getWinningTeamPrediction();
-		}
-		
+		this.teamOneScore = prediction.getTeam1Prediction() +"";
+		this.teamTwoScore = prediction.getTeam2Prediction() +"";
+		this.winningTeam = prediction.getWinningTeamPrediction();
 		this.gamePlayed = fixture.getGamePlayed();
 		this.round = fixture.getRound();
 		this.gameLocation = fixture.getGameLocation();
 		hasGameStarted();
+		
+		if(fixture.isGamePlayed()) {
+			this.result = fixture.getTeamOneScore() +"-" + fixture.getTeamTwoScore();
+		} else 
+			this.result = "";			
 	}
 	
 	public String getUserId() {
@@ -271,5 +271,29 @@ public class FixtureResult {
 		}
 		else
 			return false;
+	}
+	
+	public void setResult(String p_result) {
+		result = p_result;
+	}
+	
+	public String getResult() {
+		return result;
+	}	
+	
+	public void setGameDateAsString(String p_gameDateAsString) {
+		gameDateAsString = p_gameDateAsString;
+	}
+	
+	public String getGameDateAsString() {
+		return gameDateAsString;
+	}	
+	
+	public String convertDateToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM ha");
+		DateFormatSymbols symbols = new DateFormatSymbols();
+	    symbols.setAmPmStrings(new String[] { "am", "pm" });
+	    sdf.setDateFormatSymbols(symbols);
+	    return sdf.format(this.gameDate);
 	}
 }

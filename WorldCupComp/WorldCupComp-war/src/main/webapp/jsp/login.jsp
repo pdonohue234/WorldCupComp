@@ -134,6 +134,7 @@
 											<td style="padding:1px 2px;">
 									      		<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />						      		
 												<br><form:errors path="userId" />	
+												<span id='userIdClientError'></span>
 											</td>
 										</tr>
 										<tr>
@@ -143,6 +144,7 @@
 											<td style="padding:1px 2px">
 									      		<form:password path="password" id="passwordInput" placeholder="Enter a Password" />
 									      		<br><form:errors path="password" />
+									      		<span id='errorClientError'></span>
 											</td>
 										</tr>
 										<tr>

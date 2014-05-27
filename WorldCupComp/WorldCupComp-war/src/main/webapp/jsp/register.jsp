@@ -89,7 +89,8 @@
 										</td>
 										<td style="padding:1px 2px;">
 							      			<form:input type="email" path="userId" id="userIdInput" placeholder="Enter email address" />
-							      			<form:errors path="userId" />
+							      			<br><form:errors path="userId" />
+							      			<span id='userIdClientError'></span>
 										</td>
 									</tr>
 									<tr>
@@ -97,7 +98,9 @@
 											<label for="passwordInput" style="text-align:right">Password: </label>
 										</td>
 										<td style="padding:1px 2px">
-						      				<form:password path="password" id="passwordInput" placeholder="Enter Password" />					     
+						      				<form:password path="password" id="passwordInput" placeholder="Enter Password" />	
+						      				<br><form:errors path="password" />
+						      				<span id='errorClientError'></span>				     
 										</td>
 									</tr>
 									<tr>

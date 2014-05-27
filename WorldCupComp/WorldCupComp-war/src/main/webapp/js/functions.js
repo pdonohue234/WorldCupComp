@@ -90,19 +90,35 @@ function calculateWinningTeam(row, team1, team2) {
 function checkLoginForm() {
 	
   var username = document.getElementById('userIdInput');
-  var password = document.getElementById('passwordInput');
+  var password = document.getElementById('passwordInput'); 
+  var userIdClientError = document.getElementById('userIdClientError');
+  var passwordClientError = document.getElementById('passwordClientError');  
   
   if(username.value == false) {
-    alert("Error: Email cannot be blank!");
+    username.setCustomValidity("Email is required!");
+    username.validity.valid = false;
+    userIdClientError.innerHTML = "Email is required!";
     username.focus();
     return false;
   }
+  else {
+	  username.validity.valid = true;	  
+	  username.setCustomValidity("");
+	  userIdClientError.innerHTML = "";
+  }
 
   if(password.value == false) {
-	  alert("Error: Password cannot be blank!");
+	  password.setCustomValidity("Password is required!");
+	  password.validity.valid = false;
+	  passwordClientError.innerHTML = "Password is required!";
 	  password.focus();
 	  return false;
   } 
+  else {
+	  password.validity.valid = true;
+	  password.setCustomValidity("");
+	  passwordClientError.innerHTML = "";	  
+  }  
   
   return true;
 }
@@ -113,36 +129,55 @@ function checkRegisterForm() {
 	var username = document.getElementById('userIdInput');
 	var password = document.getElementById('passwordInput');
 	var password2 = document.getElementById('password2Input');
+	
+	var userIdClientError = document.getElementById('userIdClientError');
+	var passwordClientError = document.getElementById('passwordClientError');  
 
 	
 	if(username.value == false) {
-		alert("Error: Email cannot be blank!");
-		username.focus();
+	    username.setCustomValidity("Email is required!");
+	    username.validity.valid = false;
+	    userIdClientError.innerHTML = "Email is required!";
+	    username.focus();
 		return false;
 	}	
+	else {
+		username.validity.valid = true;	  
+		username.setCustomValidity("");	
+		userIdClientError.innerHTML = "";
+	}
 	
 	if(password.value == false) {
-		alert("Error: Password cannot be blank!");
+		password.setCustomValidity("Password is required!");
+		password.validity.valid = false;
+		passwordClientError.innerHTML = "Password is required!";
 		password.focus();
 		return false;
 	}
 	else {
 	    if(password.value.length < 6) {
-	      alert("Error: Password must contain at least six characters!");
+	      password.setCustomValidity("Password must contain at least 6 chars!");
+	      password.validity.valid = false;	   
+	      passwordClientError.innerHTML = "Password must contain at least 6 chars!";
 	      password.focus();
 	      return false;
 	    }
 	    if(password.value == username.value) {
-	      alert("Error: Password must be different from Email!");
+	      password.setCustomValidity("Password must be different from Email!");
+	      password.validity.valid = false;	   
+	      passwordClientError.innerHTML = "Password must be different from Email!";
 	      password.focus();
 	      return false;
 	    }
 	    re = /[0-9]/;
 	    if(!re.test(password.value)) {
-	      alert("Error: password must contain at least one number (0-9)!");
+	      password.setCustomValidity("Password must contain at least one number (0-9)!");
+	      password.validity.valid = false;	  
+	      passwordClientError.innerHTML = "Password must contain at least one number (0-9)!";
 	      password.focus();
 	      return false;
 	    }
+	    /**
 	    re = /[a-z]/;
 	    if(!re.test(password.value)) {
 	      alert("Error: password must contain at least one lowercase letter (a-z)!");
@@ -155,19 +190,26 @@ function checkRegisterForm() {
 	      password.focus();
 	      return false;
 	    }
-	    
+	    */
 		if(password2.value == false) {
-			alert("Error: Please confirm your password!");
+			password.setCustomValidity("Please confirm your password!");
+			password.validity.valid = false;
+			passwordClientError.innerHTML = "Please confirm your password!";
 			password.focus();
 			return false;
 		}
 		else {
 			if(password.value != password2.value) {
-				alert("Error: Two Passwords entered are not the same!");
+				password.setCustomValidity("Two Passwords entered are not the same!");
+				password.validity.valid = false;	
+				passwordClientError.innerHTML = "Two Passwords entered are not the same!";
 				password.focus();
 				return false;
 			}			
 		}
+		password.validity.valid = true;
+		password.setCustomValidity("");
+		passwordClientError.innerHTML = "";
 	} 
 	password2.value = "";
 	return true;

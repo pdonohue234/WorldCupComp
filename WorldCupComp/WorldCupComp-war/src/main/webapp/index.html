@@ -52,10 +52,10 @@
 				</header>
 				
 				<style>
-						/* table,th,td
-						{
-						border:1px solid black;
-						} */
+						table,th,td{
+							/* border:1px solid black; */
+							text-align:center;
+						} 
 						
 						/*   Styling for small screens. Split table rows into boxes   */
 							/*	 http://css-tricks.com/responsive-data-tables/   */		
@@ -118,39 +118,39 @@
 					<table id="predictionsTable">
 						<thead>
 						<tr>
-							<th>Game</th>
-							<th>Round</th>
-							<th>Date/Time</th>
-							<th>Team 1</th>
-							<th>Score</th>
-							<th>Team 2</th>
-							<th>Score</th>
-							<th>Predicted Result</th>
-							<th>Actual Result</th>
+							<th><label>Game</label></th>
+							<th><label>Round</label></th>
+							<th><label>Date</label></th>
+							<th><label>Team 1</label></th>
+							<th><label>Score</label></th>
+							<th><label>Team 2</label></th>
+							<th><label>Score</label></th>
+							<th><label>Prediction</label></th>
+							<th><label>Result</label></th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
-							<td>1</td>
-							<td>Grp A</td>
-							<td>22 Jul 10pm</td>
-							<td>Brazil</td>
-							<td>4</td>
-							<td>Ivory Coast</td>
-							<td>3</td>
-							<td>Bra</td>
-							<td>4-3</td>
+							<td><label>1</label></td>
+							<td><label>Grp A</label></td>
+							<td><label>22 Jul 10pm</label></td>
+							<td><label>Brazil</label></td>
+							<td><label>4</label></td>
+							<td><label>Ivory Coast</label></td>
+							<td><label>3</label></td>
+							<td><label>Bra</label></td>
+							<td><label>4-3</label></td>
 						</tr>
 						<tr>
-							<td>2</td>
-							<td>Qtr</td>
-							<td>22 Jun 7pm</td>
-							<td>Argentina</td>
-							<td>10</td>
-							<td>England</td>
-							<td>11</td>
-							<td>Eng</td>
-							<td>10-11</td>
+							<td><label>2</label></td>
+							<td><label>Qtr</label></td>
+							<td><label>22 Jun 7pm</label></td>
+							<td><label>Argentina</label></td>
+							<td><label>10</label></td>
+							<td><label>England</label></td>
+							<td><label>11</label></td>
+							<td><label>Eng</label></td>
+							<td><label>10-11</label></td>
 						</tr>
 						<tr>
 							<td><label>3</label></td>
@@ -164,26 +164,35 @@
 							<td><label></label></td>
 						</tr>
 						<tr>
-							<td>24</td>
-							<td>Final</td>
-							<td>12 Jul 7pm</td>
-							<td>Belgium</td>
+							<td><label>24</label></td>
+							<td><label>Final</label></td>
+							<td><label>12 Jul 7pm</label></td>
+							<td><label>Belgium</label></td>
 							<td><input type="number" /></td>
-							<td>France</td>
+							<td><label>France</label></td>
 							<td><input type="number" /></td>
 							<td><select type="text"><option></option><option>Bel</option><option>Fra</option><option>Draw</option></select></td>
-							<td></td>
+							<td><label></label></td>
 						</tr>
 				       	</tbody>
 					</table>
 					
 					<center>
 						<input type="submit" class="button style2 login" value="Submit" />
-						<p><i>You can re-enter predictions as often as you like until the game actually starts</i></p>
+						
+						<div style="font-style:italic; font-size:0.8em;">
+							<br><u>Instructions</u>
+							<br>You can re-enter predictions as often as you before the game starts
+							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available)
+							<br>1 point is awarded for a predicting the correct winning team (or draw)
+							<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
+							<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
+							<br>
+						</div>
 					</center>	
 				</form>
 			</div>
-			<center><a href="https://worldcuppredictioncomp.appspot.com/#sponsors" class="button style2 down">Next</a></center>
+			<!-- <center><a href="https://worldcuppredictioncomp.appspot.com/#sponsors" class="button style2 down">Next</a></center> -->
 		</section>
 
 
@@ -331,7 +340,6 @@
 					<ul>
 						<li>This is a "not for profit" competition with all the proceeds going to charity. No expenses will be taken for set-up, administration or prizes</li>
 						<li>All prizes have been kindly donated by the sponsors</li>
-						<li>A permit for the competition has been received from An Garda Siochana</li>
 						<li>Winners will be contacted and published on this website within 7 days of the World Cup Final on 13th July 2014</li>
 						<li>The competition organisers decision is final</li>
 						<li>In the event of a tie, the prize money will be equally split</li>

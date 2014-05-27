@@ -3,9 +3,9 @@
 
 //check session is alive before predictions screen
 function verifySession() {
+	
 	//1. Check does the user have a valid session
 	var validSession = false;
-	
 	
 	if(supports_html5_storage() === true ) {			
 		if (localStorage.chkbx && localStorage.chkbx != '') {

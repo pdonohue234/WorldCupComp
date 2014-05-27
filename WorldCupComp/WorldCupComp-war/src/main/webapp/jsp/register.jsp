@@ -55,7 +55,7 @@
 					<ul>
  
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#home">Home</a></li>
-						<li><a onclick="verifySession()">Your Predictions</a></li>
+						<li><a href="javascript:verifySession();">Your Predictions</a></li>
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn Children's Hospice</a></li>
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Competition Rules T&Cs</a></li>

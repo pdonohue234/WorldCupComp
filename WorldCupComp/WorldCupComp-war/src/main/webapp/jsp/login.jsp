@@ -125,7 +125,7 @@
 						<tr>						
 							<td align="center">
 							
-								<form:form method="post" action="/predictions" modelAttribute="user">  
+								<form:form id="loginForm" method="post" action="/predictions" modelAttribute="user">  
 									<table style="max-width:500px;">
 										<tr>
 											<td style="padding:1px 2px;">

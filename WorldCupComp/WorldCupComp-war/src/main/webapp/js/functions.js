@@ -1,5 +1,3 @@
-//document.write("<script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.js' / >");
-//$('#predictions').click(function(){ verifySession(); return false; });
 
 //check session is alive before predictions screen
 function verifySession() {
@@ -8,36 +6,44 @@ function verifySession() {
 	var validSession = false;
 	
 	if(supports_html5_storage() === true ) {			
-		if (localStorage.chkbx && localStorage.chkbx != '') {
-			if(localStorage.userId != undefined && localStorage.password != undefined) {
-				validSession = true;
-				$('#remember_me').attr('checked', 'checked');
-				$('#userIdInput').val(localStorage.userId);
-				$('#passwordInput').val(localStorage.password);
-			}
-			else {
-				validSession = false;
-				$('#remember_me').removeAttr('checked');
-				$('#userIdInput').val('');
-				$('#passwordInput').val('');				
-			}
-		} else {
-			validSession = false;
-			$('#remember_me').removeAttr('checked');
-			$('#userIdInput').val('');
-			$('#passwordInput').val('');
+		if (localStorage.chkbx && localStorage.chkbx != '' && localStorage.userId != undefined && localStorage.password != undefined) {
+
+			//Call login directly and redirect to predictions page
+			/*
+			 * Commented this out because although it loads the page, none of the links in header work wwithout refreshing after you click them
+			$.post( "/predictions", { userId: localStorage.userId, password: localStorage.password }, 
+					function( data ) {
+						window.document.open();
+						window.document.write(data);
+						window.document.close();
+						//window.location.reload();
+					}, "html" );		
+			*/
+			validation = true;
+			
+			var form = document.createElement("form");
+			form.action = "https://worldcuppredictioncomp.appspot.com/predictions";
+			form.method = "POST";
+			  
+			var usernode = document.createElement("input");
+			usernode.name  = "userId";
+			usernode.value = localStorage.userId;
+			form.appendChild(usernode.cloneNode());
+			    
+			var passnode = document.createElement("input");
+			passnode.name  = "password";
+			passnode.value = localStorage.password;
+			form.appendChild(passnode.cloneNode());
+			
+			// To be sent, the form needs to be attached to the main document.
+			form.style.display = "none";
+			document.body.appendChild(form);
+			  
+			form.submit();
+			  
+			// But once the form is sent, it's useless to keep it.
+			document.body.removeChild(form);
 		}
-	}
-	validSession = false;
-	//Call login directly and redirect to predictions page
-	if(validSession) {
-		$.post( "/predictions", { userId: localStorage.userId, password: localStorage.password }, 
-				function( data ) {
-					window.document.open();
-					window.document.write(data);
-					window.document.close();
-					//window.location.reload();
-				} );
 	}
 
 	//Else If not then redirect to login/register page

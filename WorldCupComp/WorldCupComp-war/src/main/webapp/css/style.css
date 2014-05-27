@@ -443,12 +443,7 @@
 				table.default tbody tr:nth-child(2n+2) {
 					background: #f4f4f4;
 				}
-				
-				/* Zebra striping */
-				tbody tr:nth-of-type(odd) { 
-					background: rgba(210, 210, 210, 0.50); 
-				}
-				
+								
 				thead tr{
 					font-weight: bold;
 				}

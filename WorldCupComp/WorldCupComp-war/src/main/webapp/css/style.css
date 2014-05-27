@@ -284,11 +284,11 @@
 				border-color:blue; */
 			}
 		
-			form input[type="number"],
+			/* form input[type="number"], */
 			form input[type="email"],
 			form input[type="text"],
 			form input[type="password"],
-			form select,
+			/* form select, */
 			form textarea {
 				/* display: block; */
 				width: 100%;
@@ -313,6 +313,59 @@
 				-ms-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
 				transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
 			}
+			
+			form input[type="number"] {
+				/* display: block; */
+				width: 100%;
+				max-width: 60px;
+				padding: 0.50em;
+				background: none;
+				border: solid 2px rgba(185,186,187,0.25);
+				color: inherit;
+				border-radius: 0.5em;
+				outline: none;
+				box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+				background-color: rgba(255,255,255,0.99);
+
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-o-appearance: none;
+				-ms-appearance: none;
+				appearance: none;
+
+				-moz-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				-webkit-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				-o-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				-ms-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+			}
+			
+			form select[type="text"] {
+				/* display: block; */
+				width: 100%;
+				max-width: 80px;
+				padding: 0.50em;
+				background: none;
+				border: solid 2px rgba(185,186,187,0.25);
+				color: inherit;
+				border-radius: 0.5em;
+				outline: none;
+				box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+				background-color: rgba(255,255,255,0.99);
+
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				-o-appearance: none;
+				-ms-appearance: none;
+				appearance: none;
+
+				-moz-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				-webkit-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				-o-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				-ms-transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+				transition: all 0.2s ease-in-out, color 0.2s ease-in-out;
+			}
+			
 
 				form input[type="number"]:hover,
 				form input[type="email"]:hover,
@@ -389,6 +442,15 @@
 					background: #f4f4f4;
 				}
 				
+				/* Zebra striping */
+				tbody tr:nth-of-type(odd) { 
+					background: rgba(210, 210, 210, 0.50); 
+				}
+				
+				thead tr{
+					font-weight: bold;
+				}
+				
 				table.default td {
 					padding: 0.5em 1em 0.5em 1em;
 				}
@@ -397,19 +459,21 @@
 					text-align: left;
 					font-weight: 900;
 					padding: 0.5em 1em 0.5em 1em;
+					background: rgba(225, 225, 225, 0.50);
 				}
 			
 				table.default thead {
 					background: #444;
 					color: #fff;
 				}
-				
+								
 				table.default tfoot {
 					background: #eee;
 				}
 				
 				table.default tbody {
 				}
+		
 
 	/* Buttons */
 		
@@ -440,7 +504,7 @@
 			-ms-transition: all 0.2s ease-in-out;
 			transition: all 0.2s ease-in-out;
 		}
-
+ 
 			.button.down {
 				width: 5em;
 				height: 5em;

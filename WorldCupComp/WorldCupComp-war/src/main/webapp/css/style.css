@@ -1211,8 +1211,8 @@
 		background: url('../images/Fans.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: bottom center;
-		background-repeat: repeat, no-repeat;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 /*********************************************************************************/
@@ -1223,7 +1223,8 @@
 		background: url('../images/football_cup.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: center center;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 /*********************************************************************************/
@@ -1234,7 +1235,8 @@
 		background: url('../images/aviva.JPG');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: bottom center;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 /*********************************************************************************/
@@ -1245,7 +1247,8 @@
 		background: url('../images/football_field.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: bottom center;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 
 /*********************************************************************************/
@@ -1256,7 +1259,8 @@
 		background: url('../images/stadium.JPG');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: bottom center;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 	
 /*********************************************************************************/
@@ -1267,7 +1271,8 @@
 		background: url('../images/FeetAndBall_vintage.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: bottom center;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 	
 /*********************************************************************************/
@@ -1278,7 +1283,8 @@
 		background: url('../images/ball.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: bottom center;
+		background-position: center;
+		background-repeat: no-repeat;
 	}	
 	
 /*********************************************************************************/

@@ -45,6 +45,12 @@
 		letter-spacing: -2px;
 		line-height: 1.25em;
 	}
+	
+	.divider{
+    	width:20px;
+	    height:auto;
+	    display:inline-block;
+	}
 	 
 	.videoWrapper {
 	position: relative;

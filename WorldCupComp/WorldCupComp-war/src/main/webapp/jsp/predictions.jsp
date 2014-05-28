@@ -243,21 +243,19 @@ Product : Crowds - World Cup 2014 Application
 						</tbody>						
 					</table>
 					
-					<center>
+					<div style="text-align: center">
 						<input type="submit" class="button style2 login" value="Submit" />
-					</center>
-					
-					<left>
+						<br>
 						<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
-							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} Log Out</u></a>
+							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
 						</c:if>	
 						<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
-							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} Log Out</u></a>
-						</c:if>	
-					</left>
-					
-					<center>
-						<br><a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
+							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
+						</c:if>
+						
+						<div class="divider"/>
+						
+						<a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
 						<div id="hiddenText" style="display:none; font-style:italic; font-size:0.8em;">
 							<br>You can re-enter predictions as often as you before the game starts
 							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available in each game)
@@ -265,7 +263,7 @@ Product : Crowds - World Cup 2014 Application
 							<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
 							<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
 						</div>
-					</center>	
+					</div>	
 					
 				</form:form>  		
 			</div>

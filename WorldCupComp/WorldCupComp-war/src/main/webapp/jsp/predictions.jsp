@@ -67,7 +67,7 @@ Product : Crowds - World Cup 2014 Application
 								/* Force table to not be like tables anymore */
 								table, thead, tbody, th, td, tr { 
 									display: block; 
-									
+									height: 15px;
 								}
 								
 								

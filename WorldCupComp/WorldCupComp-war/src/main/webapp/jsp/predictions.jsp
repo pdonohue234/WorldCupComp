@@ -52,7 +52,12 @@ Product : Crowds - World Cup 2014 Application
 		<section id="predictions" class="main style2 left dark fullscreen">
 			<div class="content container big">
 				<header>
-					<div style="float:left;"><h2>Predictions</h2></div>
+					<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
+						<div style="float:left;"><h2>${model.userLoggedIn.name}'s Predictions</h2></div>
+					</c:if>	
+					<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
+						<div style="float:left;"><h2>Predictions</h2></div>
+					</c:if>						
 					<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: ${model.score}</h3></div>
 					<br>
 				</header>	

@@ -238,3 +238,13 @@ function toggle_visibility(id) {
     else
        e.style.display = 'block';
  }
+
+
+function logout() {
+	if(supports_html5_storage() === true ) {
+    	localStorage.userId = '';
+        localStorage.password = '';
+        localStorage.chkbx = '';
+    }
+    window.location.href = "https://worldcuppredictioncomp.appspot.com/#home";
+}

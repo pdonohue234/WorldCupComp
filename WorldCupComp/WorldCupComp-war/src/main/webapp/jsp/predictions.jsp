@@ -28,7 +28,7 @@ Product : Crowds - World Cup 2014 Application
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
-		</noscript>	
+		</noscript>			
 	</head>  
 	 
 	<body> 
@@ -52,12 +52,7 @@ Product : Crowds - World Cup 2014 Application
 		<section id="predictions" class="main style2 left dark fullscreen">
 			<div class="content container big">
 				<header>
-					<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
-						<div style="float:left;"><h2>${model.userLoggedIn.name}'s Predictions</h2></div>
-					</c:if>	
-					<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
-						<div style="float:left;"><h2>Predictions</h2></div>
-					</c:if>						
+					<div style="float:left;"><h2>Predictions</h2></div>				
 					<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: ${model.score}</h3></div>
 					<br>
 				</header>	
@@ -250,8 +245,19 @@ Product : Crowds - World Cup 2014 Application
 					
 					<center>
 						<input type="submit" class="button style2 login" value="Submit" />
-						
-						<br><br><a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
+					</center>
+					
+					<left>
+						<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
+							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} Log Out</u></a>
+						</c:if>	
+						<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
+							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} Log Out</u></a>
+						</c:if>	
+					</left>
+					
+					<center>
+						<br><a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
 						<div id="hiddenText" style="display:none; font-style:italic; font-size:0.8em;">
 							<br>You can re-enter predictions as often as you before the game starts
 							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available in each game)

@@ -44,305 +44,6 @@
 
 			</header>	
 
-<!-- Predictions 
-		<section id="predictions" class="main style2 left dark fullscreen">
-			<div class="content container big">
-				<header>
-					<div style="float:left;"><h2>Predictions</h2></div>
-					<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: 100</h3></div>
-					<br>
-				</header>
-				
-				<style>
-											
-						/*   Styling for small screens. Split table rows into boxes   */
-							/*	 http://css-tricks.com/responsive-data-tables/   */		
-							@media 
-							only screen and (max-width: 480px){
-								
-								/* Force table to not be like tables anymore */
-								table, thead, tbody, th, td, tr { 
-									display: block; 
-									
-								}
-								
-								
-								/* Hide table headers (but not display: none;, for accessibility) */
-								thead tr { 
-									position: absolute;
-									top: -9999px;
-									left: -9999px;
-								}
-								
-								/* Zebra striping */
-								tbody tr:nth-of-type(odd) { 
-									background: rgba(240, 240, 240, 0.50); 
-								}
-													
-								tr { border: 1px solid #ccc; }
-								
-								td { 
-									/* Behave  like a "row" */
-									border: none;
-									border-bottom: 1px solid #eee; 
-									position: relative;
-									padding-left: 50%; 
-								}
-								
-								td:before { 
-									/* Now like a table header */
-									position: absolute;
-									/* Top/left values mimic padding */
-									top: 6px;
-									left: 6px;
-									width: 45%; 
-									padding-right: 10px; 
-									white-space: nowrap;
-								}
-								
-								/*
-								Label the data
-								*/
-								td:nth-of-type(1):before { content: "Game"; }
-								td:nth-of-type(2):before { content: "Round"; }
-								td:nth-of-type(3):before { content: "Date/Time"; }
-								td:nth-of-type(4):before { content: "Team 1"; }
-								td:nth-of-type(5):before { content: "Score"; }
-								td:nth-of-type(6):before { content: "Team 2"; }
-								td:nth-of-type(7):before { content: "Score"; }
-								td:nth-of-type(8):before { content: "Predicted Result"; }
-								td:nth-of-type(9):before { content: "Actual Result"; }
-							}
-						
-						table,th,td{
-							border-style:solid;
-							border-color: black;
-							border-width: 0px 0px 1px 0px;
-							text-align:center;
-						} 
-						
-										
-				</style>
-				
-				<script>
-					$(document).ready(function(){
-				       $('.predictionsTable').oneSimpleTablePagination({rowsPerPage: 8});
-				   });  
-				
-				</script>
-				
-				
-				<form>
-					<table class="predictionsTable">
-						<col width="60px">
-						<col width="70px">
-						<col width="125px">
-						<col width="250px">
-						<col width="70px">
-						<col width="250px">
-						<col width="70px">
-						<col width="130px">
-						<col width="80px">
-						<thead>
-						<tr>
-							<th><label>Game</label></th>
-							<th><label>Round</label></th>
-							<th><label>Date</label></th>
-							<th><label>Team 1</label></th>
-							<th><label>Score</label></th>
-							<th><label>Team 2</label></th>
-							<th><label>Score</label></th>
-							<th><label>Prediction</label></th>
-							<th><label>Result</label></th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td><label>1</label></td>
-							<td><label>Grp A</label></td>
-							<td><label>22 Jul 10pm</label></td>
-							<td><label>Brazil</label></td>
-							<td><label>4</label></td>
-							<td><label>Ivory Coast</label></td>
-							<td><label>3</label></td>
-							<td><label>Bra</label></td>
-							<td><label>4-3</label></td>
-						</tr>
-						<tr>
-							<td><label>2</label></td>
-							<td><label>Qtr</label></td>
-							<td><label>22 Jun 7pm</label></td>
-							<td><label>Argentina</label></td>
-							<td><label>10</label></td>
-							<td><label>England</label></td>
-							<td><label>11</label></td>
-							<td><label>Eng</label></td>
-							<td><label>10-11</label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>24</label></td>
-							<td><label>Final</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Belgium</label></td>
-							<td><input type="number" /></td>
-							<td><label>France</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bel</option><option>Fra</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-						<tr>
-							<td><label>3</label></td>
-							<td><label>Semi</label></td>
-							<td><label>12 Jul 7pm</label></td>
-							<td><label>Bosnia-Herzegovina</label></td>
-							<td><input type="number" /></td>
-							<td><label>Cameroon</label></td>
-							<td><input type="number" /></td>
-							<td><select type="text"><option></option><option>Bos</option><option>Cam</option><option>Draw</option></select></td>
-							<td><label></label></td>
-						</tr>
-				       	</tbody>
-					</table>
-					
-					<center>
-						<input type="submit" class="button style2 login" value="Submit" />
-						
-						<br><br><a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
-						<div id="hiddenText" style="display:none; font-style:italic; font-size:0.8em;">
-							<br>You can re-enter predictions as often as you before the game starts
-							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available in each game)
-							<br>1 point is awarded for a predicting the correct winning team (or draw)
-							<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
-							<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
-						</div>
-					</center>	
-				</form>
-			</div>
-			<!-- <center><a href="https://worldcuppredictioncomp.appspot.com/#sponsors" class="button style2 down">Next</a></center> 
-		</section>-->
-
-
 		<!-- Home -->
 			<section id="home" class="main style2 dark fullscreen">
 				<div class="content container big">
@@ -371,26 +72,27 @@
 									</ul>
 									
 									<!-- <br>Contact: <a href="mailto:worldcuppredictioncompetition@gmail.com?Subject=World Cup Prediction Competition" target="_top">WorldCupPredictionCompetition@gmail.com</a> -->
-								
-									<!-- Code for payments. Can move to wherever needed -->
+									<input type="submit" class="button style2 login" value="Login/Register" />
+								</td>
+								<td width="33%" style="text-align:center; vertical-align:middle;">
+									<img src="images/719px-WC-2014-Brasil.svg.png" width="40%"/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3" style="text-align:center; vertical-align:middle; padding-top:10px;">
+									<!-- Code for payments -->
 									<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										<input type="hidden" name="cmd" value="_s-xclick">
 										<input type="hidden" name="hosted_button_id" value="88FCJXL7J55WC">
 										<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 										<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 									</form>
-
- 
-									
-								</td>
-								<td width="33%" style="text-align:center; vertical-align:middle;">
-									<img src="images/719px-WC-2014-Brasil.svg.png" width="40%"/>
 								</td>
 							</tr>
 						</table>
 					</div>
 				</div>
-				<center><a href="javascript:verifySession();" class="button style2 down">More</a></center>
+				
 			</section>		
 
 		<!-- Sponsors -->
@@ -425,44 +127,6 @@
 				</div>
 				<center><a href="#rules" class="button style2 down">Next</a></center>
 			</section>
-			
-		<!-- Contact -->
-			<!-- <section id="contact" class="main style3 secondary">
-				<div class="content container">
-					<header>
-						<h2>Say Hello.</h2>
-						<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.</p>
-					</header>
-					<div class="box container small">
-					
-						
-							 Contact Form
-							 
-							 To get this working, place a script on your server to receive the form data, then
-							 point the "action" attribute to it (eg. action="http://mydomain.tld/mail.php").
-							 More on how it all works here: http://www.1stwebdesigner.com/tutorials/custom-php-contact-forms/
-						
-							<form method="post" action="#">
-								<div class="row half">
-									<div class="6u"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="6u"><input type="text" name="email" placeholder="Email" /></div>
-								</div>
-								<div class="row half">
-									<div class="12u"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
-								</div>
-								<div class="row">
-									<div class="12u">
-										<ul class="actions">
-											<li><input type="submit" class="button" value="Send Message" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
-
-					</div>
-				</div>
-				<a href="#t&c" class="button style2 down anchored">Next</a>
-			</section> -->
 			
 		<!-- Rules -->
 			<!-- <section id="rules" class="main style2 primary"> -->

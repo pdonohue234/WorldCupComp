@@ -47,10 +47,10 @@ public class FixtureResult {
 			gameDateAsString = convertDateToString();
 		this.teamOne = fixture.getTeamOne();
 		this.teamOneFullName = fixture.getTeamOneFullName();
-		this.teamOneScore = "";
+		this.teamOneScore = "-";
 		this.teamTwo = fixture.getTeamTwo();	
 		this.teamTwoFullName = fixture.getTeamTwoFullName();
-		this.teamTwoScore = "";
+		this.teamTwoScore = "-";
 		this.gamePlayed = fixture.getGamePlayed();
 		this.winningTeam = fixture.getWinningTeam();
 		this.round = fixture.getRound();
@@ -61,7 +61,7 @@ public class FixtureResult {
 		if(fixture.isGamePlayed()) {
 			this.result = fixture.getTeamOneScore() +"-" + fixture.getTeamTwoScore();
 		} else 
-			this.result = "";		
+			this.result = "-";		
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class FixtureResult {
 		if(fixture.isGamePlayed()) {
 			this.result = fixture.getTeamOneScore() +"-" + fixture.getTeamTwoScore();
 		} else 
-			this.result = "";			
+			this.result = "-";			
 	}
 	
 	public String getUserId() {

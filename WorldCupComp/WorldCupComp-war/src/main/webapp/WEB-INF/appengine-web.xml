@@ -2,7 +2,7 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
     <application>worldcuppredictioncomp</application>
     <!-- <version>${appengine.app.version}</version> -->
-	<version>3-war</version>
+	<version>4-war</version>
     <threadsafe>true</threadsafe>
     
     <system-properties> 

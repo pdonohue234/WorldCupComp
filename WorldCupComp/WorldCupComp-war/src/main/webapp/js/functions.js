@@ -19,7 +19,7 @@ function verifySession() {
 						//window.location.reload();
 					}, "html" );		
 			*/
-			validation = true;
+			validSession = true;
 			
 			var form = document.createElement("form");
 			form.action = "https://worldcuppredictioncomp.appspot.com/predictions";

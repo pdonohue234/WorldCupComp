@@ -66,8 +66,7 @@ Product : Crowds - World Cup 2014 Application
 								
 								/* Force table to not be like tables anymore */
 								table, thead, tbody, th, td, tr { 
-									display: block; 
-									height: 15px;
+									display: block;
 								}
 								
 								
@@ -167,7 +166,7 @@ Product : Crowds - World Cup 2014 Application
 				            	<form:hidden path="fixtureResults[${loop.index}].gameId" value="${fixture.gameId}"/>
 				            	<form:hidden path="fixtureResults[${loop.index}].eventId" value="${fixture.eventId}"/>
 				            	
-				            	<td><label>${loop.index}</label></td>
+				            	<td><label>${loop.index + 1}</label></td>
 
 				            	<td><label>${fixture.round}</label></td>	
 

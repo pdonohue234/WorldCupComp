@@ -1595,3 +1595,27 @@
 			body.touch .poptrox-popup .closer {
 				opacity: 1.0 !important;
 			}
+
+/* Grid for table layout **************/
+/* http://philipwalton.github.io/solved-by-flexbox/demos/grids/*/
+                .Grid {
+                  display: flex;
+                  text-align:center;
+                  align-items: center;
+                }
+               
+                .Grid-cell-image {
+                  flex: 0 0 30%;
+                }
+                .Grid-cell-center {
+                  flex: 1;
+                }
+               
+                @media
+                                only screen and (max-width: 480px){
+                                               
+                                .Grid-cell-image {
+                                                display:none;
+                                }
+                }
+/**************************************/

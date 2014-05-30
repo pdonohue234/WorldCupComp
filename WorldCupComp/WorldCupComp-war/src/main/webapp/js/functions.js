@@ -217,7 +217,32 @@ function checkRegisterForm() {
 		password.setCustomValidity("");
 		passwordClientError.innerHTML = "";
 	} 
+	
+	if(gup('auth') != undefined  && gup('auth') != null) {
+		//if(gup('transaction=') != "paid") {
+		    paymentClientError.innerHTML = "Please make a donation before registering!";
+			return false;
+		}
+		else {
+			paymentClientError.innerHTML = "";
+		}
+	/*}
+	else {
+	    paymentClientError.innerHTML = "Please make a donation before registering!";
+		return false;
+	}*/
 	return true;
+}
+
+function gup( name ) {
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return null;
+  else
+    return results[1];
 }
 
 

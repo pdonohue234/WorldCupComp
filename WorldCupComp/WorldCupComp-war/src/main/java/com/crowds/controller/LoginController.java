@@ -1,11 +1,21 @@
 package com.crowds.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -72,6 +82,8 @@ public class LoginController {
 		if(success) {
 			this.m_logger.warning("User has been added: " + user.getUserId());
 			model = getFixtureResultList(model, user.getUserId());
+			
+			sendMail(user);
 			
 			return new ModelAndView("predictions", "model", model); 
 		}
@@ -246,6 +258,53 @@ public class LoginController {
 		model = getFixtureResultList(model, userId);
 		
 		return new ModelAndView("predictions", "model", model);  
+	}
+	
+	public void sendMail(User p_user) {
+        Properties props = new Properties();
+        Session session = Session.getDefaultInstance(props, null);
+        
+        try {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress("WorldCupPredictionCompetition@gmail.com ", "World Cup Prediction Competition Admin"));
+            
+            if(StringUtils.isNotBlank(p_user.getName())) {
+	            msg.addRecipient(Message.RecipientType.TO,
+	                             new InternetAddress(p_user.getUserId(), p_user.getName()));
+            }
+            else {
+	            msg.addRecipient(Message.RecipientType.TO,
+                        new InternetAddress(p_user.getUserId(), ""));           	
+            }
+            
+            msg.setSubject("Welcome to the World Cup Prediction Competion");
+            
+            String msgBody = "Hi,"
+            				+ "\n"
+            				+ "\nWelcome to the World Cup Prediction Competion in aid of Laura Lynn Children's Hospice"
+            				+ "\n"
+            				+ "\nUsername: " + p_user.getUserId()
+            				+ "\nPassword: " + p_user.getPassword()
+            				+ "\n"
+            				+ "\nMake sure to check back to https://worldcuppredictioncomp.appspot.com to enter your predictions"
+            				+ "\n"
+            				+ "\nThank you for your support.";
+            				
+            msg.setText(msgBody);
+            
+            Transport.send(msg);
+
+        } catch (AddressException e) {
+			this.m_logger.severe("AddressException Error attemping to email User:" + p_user.getUserId() );
+			this.m_logger.severe(e.getLocalizedMessage());
+        } catch (MessagingException e) {
+			this.m_logger.severe("MessagingException Error attemping to email User:" + p_user.getUserId() );
+			this.m_logger.severe(e.getLocalizedMessage());
+        } catch (UnsupportedEncodingException e) {
+			this.m_logger.severe("UnsupportedEncodingException Error attemping to email User:" + p_user.getUserId() );
+			this.m_logger.severe(e.getLocalizedMessage());
+        }
+        
 	}
 	
 	/**

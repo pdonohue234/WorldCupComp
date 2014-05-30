@@ -150,7 +150,7 @@ Product : Crowds - World Cup 2014 Application
 						<tr>
 							<th><label>Game</label></th>
 							<th><label>Round</label></th>
-							<th><label>Date</label></th>
+							<th><label>Date <div style="font-size:0.8em">Ireland</div></label></th>
 							<th><label>Team 1</label></th>
 							<th><label>Score</label></th>
 							<th><label>Team 2</label></th>

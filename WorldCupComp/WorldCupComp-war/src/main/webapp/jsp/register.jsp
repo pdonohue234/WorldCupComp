@@ -71,18 +71,21 @@
 					</header>
 					
 					<!-- Code for payments. Can move to wherever needed -->
+					<!-- https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/formbasics/ -->
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick">
 						<input type="hidden" name="hosted_button_id" value="88FCJXL7J55WC">
 						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-					</form>
-					
+					</form>			
+
+
 						<!--
 							 Register Form
 						-->
 							<form:form method="post" action="/registerUser" modelAttribute="user">  
 								<table style="max-width:500px;">
+									<INPUT TYPE="hidden" path="transaction" id="transaction" value="">
 									<tr>
 										<td style="padding:1px 2px;">
 											<label for="userIdInput" style="text-align:right">Email: </label>
@@ -100,7 +103,7 @@
 										<td style="padding:1px 2px">
 						      				<form:password path="password" id="passwordInput" placeholder="Enter Password" />	
 						      				<br><form:errors path="password" style="color:red" />
-						      				<span id='errorClientError' style="color:red"></span>				     
+						      				<span id='passwordClientError' style="color:red"></span>				     
 										</td>
 									</tr>
 									<tr>
@@ -108,7 +111,7 @@
 											<!--<label for="password2Input" style="text-align:right">Confirm Password: </label> -->
 						      			</td>
 						      			<td>	
-						      				<form:password path="password" id="password2Input" placeholder="Confirm Password" /> 	
+						      				<input type="password" id="password2Input" placeholder="Confirm Password" /> 	
 										</td>
 									</tr>
 									<tr>

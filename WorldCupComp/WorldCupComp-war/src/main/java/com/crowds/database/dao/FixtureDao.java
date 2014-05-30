@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.TimeZone;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
@@ -226,13 +227,14 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 		}
 		
 		public java.util.Date getDate(Date date, Time time) {
-            Calendar calendar=Calendar.getInstance();
+			Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
             calendar.setTime(date);
-            Calendar calendar1=Calendar.getInstance();
+            Calendar calendar1=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
             calendar1.setTime(time);
             calendar.set(Calendar.MINUTE, calendar1.get(Calendar.MINUTE));
             calendar.set(Calendar.SECOND, calendar1.get(Calendar.SECOND));
             calendar.set(Calendar.HOUR_OF_DAY, calendar1.get(Calendar.HOUR_OF_DAY));
+            
             return calendar.getTime();
         }
 	}
@@ -276,13 +278,14 @@ public class FixtureDao extends AbstractDaoJdbc<Fixture>{
 		}
 		
 		public java.util.Date getDate(Date date, Time time) {
-            Calendar calendar=Calendar.getInstance();
+			Calendar calendar=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
             calendar.setTime(date);
-            Calendar calendar1=Calendar.getInstance();
+            Calendar calendar1=Calendar.getInstance(TimeZone.getTimeZone("UTC"));
             calendar1.setTime(time);
             calendar.set(Calendar.MINUTE, calendar1.get(Calendar.MINUTE));
             calendar.set(Calendar.SECOND, calendar1.get(Calendar.SECOND));
             calendar.set(Calendar.HOUR_OF_DAY, calendar1.get(Calendar.HOUR_OF_DAY));
+            
             return calendar.getTime();
         }
 	}

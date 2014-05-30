@@ -1,6 +1,9 @@
 package com.crowds.controller;
 
 import java.util.Date;
+import java.util.Calendar;
+import java.util.logging.Logger;
+import java.util.TimeZone;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 
@@ -10,6 +13,8 @@ import com.crowds.database.dto.Fixture;
 import com.crowds.database.dto.Prediction;
 
 public class FixtureResult {
+
+	public Logger			m_logger	= 	Logger.getLogger(FixtureResult.class.getName());
 	
 	private String	userId;
 	private String	gameId;
@@ -313,11 +318,12 @@ public class FixtureResult {
 		return gameDateAsString;
 	}	
 	
-	public String convertDateToString() {
+	public String convertDateToString() {		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM ha");
+		sdf.setTimeZone(TimeZone.getTimeZone("Europe/Dublin"));
 		DateFormatSymbols symbols = new DateFormatSymbols();
 	    symbols.setAmPmStrings(new String[] { "am", "pm" });
 	    sdf.setDateFormatSymbols(symbols);
-	    return sdf.format(this.gameDate);
+	    return sdf.format(this.gameDate.getTime());
 	}
 }

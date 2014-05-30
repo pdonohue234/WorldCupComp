@@ -217,7 +217,6 @@ function checkRegisterForm() {
 		password.setCustomValidity("");
 		passwordClientError.innerHTML = "";
 	} 
-	password2.value = "";
 	return true;
 }
 

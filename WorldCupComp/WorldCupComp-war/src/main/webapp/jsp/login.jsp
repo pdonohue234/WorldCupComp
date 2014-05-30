@@ -144,7 +144,7 @@
 											<td style="padding:1px 2px">
 									      		<form:password path="password" id="passwordInput" placeholder="Enter a Password" />
 									      		<br><form:errors path="password" style="color:red"/>
-									      		<span id='errorClientError' style="color:red"></span>
+									      		<span id='passwordClientError' style="color:red"></span>
 											</td>
 										</tr>
 										<tr>

@@ -138,7 +138,7 @@ Product : Crowds - World Cup 2014 Application
 					<table class="predictionsTable" id="predictionsTable">
 						<col width="60px">
 						<col width="70px">
-						<col width="125px">
+						<col width="135px">
 						<col width="250px">
 						<col width="70px">
 						<col width="250px">

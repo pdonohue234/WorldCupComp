@@ -244,18 +244,21 @@ Product : Crowds - World Cup 2014 Application
 					
 					<div style="text-align: center">
 						<input type="submit" class="button style2 login" value="Submit" />
-						<br>
-						<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
-							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
-						</c:if>	
-						<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
-							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
-						</c:if>
-						
-						<div class="divider"/>
-						
-						<a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Hide/Show</u></a>
-						<div id="hiddenText" style="display:none; font-style:italic; font-size:0.8em;">
+					</div>
+					
+					<div class="Grid">
+                    	<div class="Grid-cell-left" style="text-align:right;padding-right:20px;">
+							<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
+								<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
+							</c:if>	
+							<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
+								<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
+							</c:if>
+						</div>
+						<div class="Grid-cell-right" style="text-align:left;">
+							<a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Show/Hide</u></a>
+                        </div>
+                        <div id="hiddenText" class="Grid-cell-center" style="display:none; text-align:center; font-style:italic; font-size:0.8em;">
 							<br>You can re-enter predictions as often as you before the game starts
 							<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available in each game)
 							<br>1 point is awarded for a predicting the correct winning team (or draw)

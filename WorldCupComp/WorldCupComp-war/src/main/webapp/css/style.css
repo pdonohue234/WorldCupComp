@@ -1606,9 +1606,17 @@
                
                 .Grid-cell-image {
                   flex: 0 0 30%;
+                  text-align:center;
                 }
                 .Grid-cell-center {
                   flex: 1;
+                  text-align:center;
+                }
+                .Grid-cell-left{
+                	flex: 1;
+                }
+                .Grid-cell-right{
+                	flex: 1;
                 }
                
                 @media

@@ -170,7 +170,7 @@ Product : Crowds - World Cup 2014 Application
 
 				            	<td><label>${fixture.round}</label></td>	
 
-				                <td><label>${fixture.gameDateAsString}</label></td>			              			        
+				                <td><label style="width:125px">${fixture.gameDateAsString}</label></td>			              			        
 
 				                <td><label>${fixture.teamOneFullName}</label></td>	
 				                

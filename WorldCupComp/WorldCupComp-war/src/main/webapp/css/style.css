@@ -1209,15 +1209,16 @@
 					outline: 0;
 				}
 
+
 /*********************************************************************************/
 /* Home                                                                         */
 /*********************************************************************************/
 
 	#home {
-		background: url('../images/Fans.jpg');
+		background: url('../images/inpho_00011472.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: center;
+		background-position: top;
 		background-repeat: no-repeat;
 	}
 
@@ -1226,10 +1227,10 @@
 /*********************************************************************************/
 
 	#predictions {
-		background: url('../images/football_cup.jpg');
+		background: url('../images/inpho_00031099.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: center;
+		background-position: bottom left;
 		background-repeat: no-repeat;
 	}
 
@@ -1238,10 +1239,10 @@
 /*********************************************************************************/
 
 	#sponsors {
-		background: url('../images/aviva.JPG');
+		background: url('../images/inpho_00030647.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: center;
+		background-position: left;
 		background-repeat: no-repeat;
 	}
 
@@ -1250,7 +1251,7 @@
 /*********************************************************************************/
 
 	#charity {
-		background: url('../images/football_field.jpg');
+		background: url('../images/inpho_00084030.jpg');
 		background-size: cover;
 		background-attachment: fixed;
 		background-position: center;
@@ -1262,7 +1263,7 @@
 /*********************************************************************************/
 
 	#rules {
-		background: url('../images/stadium.JPG');
+		background: url('../images/inpho_00188526.jpg');
 		background-size: cover;
 		background-attachment: fixed;
 		background-position: center;
@@ -1274,10 +1275,10 @@
 /*********************************************************************************/
 
 	#login {
-		background: url('../images/FeetAndBall_vintage.jpg');
+		background: url('../images/inpho_00071262.jpg');
 		background-size: cover;
 		background-attachment: fixed;
-		background-position: center;
+		background-position: top;
 		background-repeat: no-repeat;
 	}
 	
@@ -1286,7 +1287,7 @@
 /*********************************************************************************/
 
 	#register {
-		background: url('../images/ball.jpg');
+		background: url('../images/inpho_00178228.jpg');
 		background-size: cover;
 		background-attachment: fixed;
 		background-position: center;

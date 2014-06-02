@@ -150,7 +150,7 @@ Product : Crowds - World Cup 2014 Application
 						<tr>
 							<th><label>Game</label></th>
 							<th><label>Round</label></th>
-							<th><label>Date <span style="font-size:0.6em; font-style:italics;"> UTC+1</span></label></th>
+							<th><label>Date <span style="font-size:0.5em; font-style:italics;"> UTC+1</span></label></th>
 							<th><label>Team 1</label></th>
 							<th><label>Score</label></th>
 							<th><label>Team 2</label></th>

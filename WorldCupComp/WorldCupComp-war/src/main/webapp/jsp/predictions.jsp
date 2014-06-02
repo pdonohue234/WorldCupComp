@@ -179,7 +179,7 @@ Product : Crowds - World Cup 2014 Application
 				                	<form:input type="number" path="fixtureResults[${loop.index}].teamOneScore" 
 				                		min="0" max="20" size="2" pattern="[0-9]*"
 				                		value="${fixture.teamOneScore}" id="teamOneScore${loop.index}" 
-				                		onBlur="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
+				                		onChange="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
 				                </c:if>		
 				                <c:if test="${fixture.active eq false}">
@@ -193,7 +193,7 @@ Product : Crowds - World Cup 2014 Application
 				                	<form:input type="number" path="fixtureResults[${loop.index}].teamTwoScore"  
 				                		min="0" max="20" size="2" pattern="[0-9]*"
 				                		value="${fixture.teamTwoScore}" id="teamTwoScore${loop.index}" 
-				                		onBlur="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
+				                		onChange="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')"/>
 				                	</td>
 				                </c:if>		
 				                <c:if test="${fixture.active eq false}">
@@ -203,7 +203,8 @@ Product : Crowds - World Cup 2014 Application
 				                				                			               
 				                <c:if test="${fixture.active eq true}">
 				                	<td>
-					                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" type="text">
+					                <form:select id="winningTeam${loop.index}" path="fixtureResults[${loop.index}].winningTeam" type="text"
+					                	onBlur="javascript:return calculateWinningTeam('${loop.index}', '${fixture.teamOne}', '${fixture.teamTwo}')">
 					                   <form:option value="" label=""/>
 								      
 								       <c:if test="${fixture.winningTeam eq fixture.teamOne}">

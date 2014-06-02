@@ -138,7 +138,7 @@ Product : Crowds - World Cup 2014 Application
 					<table class="predictionsTable" id="predictionsTable">
 						<col width="60px">
 						<col width="70px">
-						<col width="135px">
+						<col width="140px">
 						<col width="250px">
 						<col width="70px">
 						<col width="250px">
@@ -150,7 +150,7 @@ Product : Crowds - World Cup 2014 Application
 						<tr>
 							<th><label>Game</label></th>
 							<th><label>Round</label></th>
-							<th><label>Date <div style="font-size:0.8em">Ire</div></label></th>
+							<th><label>Date <span style="font-size:0.6em; font-style:italics;"> UTC+1</span></label></th>
 							<th><label>Team 1</label></th>
 							<th><label>Score</label></th>
 							<th><label>Team 2</label></th>
@@ -261,10 +261,10 @@ Product : Crowds - World Cup 2014 Application
 					</div>
 					<div id="hiddenText" class="Grid-cell-center" style="display:none; text-align:center; font-style:italic; font-size:0.8em;">
 						<br>You can re-enter predictions as often as you before the game starts
-						<br>2 points are awarded for each correct prediction of a team's score (max of 4pts available in each game)
+						<br>2 points are awarded for each correct team score prediction (max of 4pts available in each game)
 						<br>1 point is awarded for a predicting the correct winning team (or draw)
 						<br>You do not have to enter score predictions and can just predict the correct winning team (max 1pt available)
-						<br>Predictions are for the 90 minutes of normal play. Extra time or penalties not included
+						<br>Predictions are for the 90 minutes of normal play. Extra time or penalties are not included
 					</div>
 					
 				</form:form>  		

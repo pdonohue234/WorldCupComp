@@ -57,7 +57,7 @@ public class FixtureResult {
 		this.teamTwoFullName = fixture.getTeamTwoFullName();
 		this.teamTwoScore = "-";
 		this.gamePlayed = fixture.getGamePlayed();
-		this.winningTeam = fixture.getWinningTeam();
+		this.winningTeam = "-";
 		this.round = fixture.getRound();
 		this.gameLocation = fixture.getGameLocation();
 		

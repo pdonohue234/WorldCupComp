@@ -26,7 +26,8 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Password=?, Trans_ID=?, Name=?, Date_Registered=?, Private_Comp_Name=? WHERE User_Id=?";
 	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
 	
-	
+	protected static final String	SQL_PRIVATE_COMP_EXISTS	= "SELECT count(1) FROM " + SQL_TABLE_NAME + " WHERE Private_Comp_Name=?";
+			
 	public UserDao() {
 		super();
 	}
@@ -48,6 +49,25 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			return null;
 		}
 	}
+	
+	/**
+	 * Find number of rows that exist with a specific Private_Comp_Name specified.
+	 * @param p_privateCompName
+	 * @return User record
+	 */
+	protected int findByPrivateCompName(String p_privateCompName) {
+		try {
+			if( StringUtils.isNotBlank(p_privateCompName)) {
+				Sql l_sql = new Sql(SQL_PRIVATE_COMP_EXISTS, new Object[] {p_privateCompName});
+				int numRows = this.getNumRows(l_sql);
+				return numRows;
+			}
+		}
+		catch(Exception e) {
+			this.m_logger.severe(e.getLocalizedMessage());
+		}
+		return -1;
+	}	
 	
 	/**
 	 * Find a single User record for given unique user ID

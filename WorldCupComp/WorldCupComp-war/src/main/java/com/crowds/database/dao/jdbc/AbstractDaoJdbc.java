@@ -106,6 +106,19 @@ public abstract class AbstractDaoJdbc<T> {
 		}
 	}
 	
+	protected int getNumRows(Sql p_sql) {
+		try {
+			JdbcTemplate jdbcTemplate = new JdbcTemplate(m_dataSource);
+			int numRows = jdbcTemplate.queryForInt(p_sql.getSql(), p_sql.getParameters());
+			
+			return numRows;
+		}
+		catch( Exception e ) {
+			this.m_logger.severe(e.getLocalizedMessage());
+			return -1;
+		}		
+	}
+	
 	/**
 	 * Execute an SQL insert/update or delete statement
 	 * 

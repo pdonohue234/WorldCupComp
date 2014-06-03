@@ -50,6 +50,27 @@ public class UserService extends UserDao {
 	} 
 	
 	/**
+	 * Find num of rows that exist with the parameter p_privateCompName
+	 * @param p_privateCompName
+	 * @return numrows
+	 */
+	public int doesPrivateCompNameExist(String p_privateCompName) { 
+		try {
+			if(StringUtils.isNotEmpty(p_privateCompName)) {
+				return this.findByPrivateCompName(p_privateCompName); 
+			}
+			else {
+				this.m_logger.warning("Cannot find num rows that exist in User table record for empty parameter: PrivateCompName!");
+			}
+		}
+		catch(Exception e) {
+			this.m_logger.severe("Error attemping to find num rows that exist for PrivateCompName: " + p_privateCompName);
+			this.m_logger.severe(e.getLocalizedMessage());
+		} 
+		return -1;
+	} 
+	
+	/**
 	 * Find and validate a single user based on their userId and password
 	 * @param id
 	 * @return

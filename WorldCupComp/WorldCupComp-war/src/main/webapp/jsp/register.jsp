@@ -148,6 +148,7 @@
 										</td>
 										<td>
 								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Mini Competition Name" title="This is where the tooltip text goes." />
+								      		<br><form:errors path="privateCompName" style="color:red" />
 							      		</td>
 										<td colspan="2" style="text-align:center; padding:0px 2px">
 											<label class="checkbox">

@@ -85,19 +85,35 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
 	public ModelAndView registerUser(@ModelAttribute User user, BindingResult result) { 
-		if(StringUtils.endsWith(user.getPassword(), ","))
-			user.setPassword( StringUtils.remove(user.getPassword(), ",") );
+		Map<String, Object> model = new HashMap<String, Object>();  
 		
-		//if(user.getNewPrivateCompName()) {
-			this.m_logger.warning("New Group: " + user.getNewPrivateCompName());
-//		}
-//		else {
-//			this.m_logger.warning("Old Group: " + user.getNewPrivateCompName());
-//		}
+		//If user wants to add a new private group, ensure the name does not already exist
+		if(user.getNewPrivateCompName()) {
+			if(StringUtils.isNotBlank(user.getPrivateCompName())) {
+				int numRows = this.getUserService().doesPrivateCompNameExist(user.getPrivateCompName());
+				//Then it already exists!
+				if(numRows > 0) {
+					model.put("added", false);  
+					result.rejectValue("privateCompName","privateCompName.notvalid","Group already exist!");
+					return new ModelAndView("register", "model", model);					
+				}
+			}
+		}
+		//If user wants to join an existing private group, ensure the group already exists
+		else {
+			if(StringUtils.isNotBlank(user.getPrivateCompName())) {
+				int numRows = this.getUserService().doesPrivateCompNameExist(user.getPrivateCompName());
+				//Then it already exists!
+				if(numRows == 0) {
+					model.put("added", false);  
+					result.rejectValue("privateCompName","privateCompName.notvalid","Group does not exist!");
+					return new ModelAndView("register", "model", model);					
+				}
+			}
+		}
 		
 		boolean success = this.getUserService().insertData(user); 
 
-		Map<String, Object> model = new HashMap<String, Object>();  
 		model.put("added", success);  
 
 		if(success) {

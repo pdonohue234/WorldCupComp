@@ -11,7 +11,7 @@ public class User extends Dto<User> implements Serializable {
 	
 	protected static final String[] KEY_FIELD_NAMES = new String[] {"User_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"Password", "Trans_ID", "Name", "Date_Registered"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Password", "Trans_ID", "Name", "Date_Registered", "Private_Comp_Name"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int USERID = 0;
@@ -20,6 +20,8 @@ public class User extends Dto<User> implements Serializable {
 	private String 	transId;
 	private String	name;
 	private Date	dateRegistered;
+	private String	privateCompName;
+	private String newPrivateCompName;
 	
 	
 	/**
@@ -70,7 +72,18 @@ public class User extends Dto<User> implements Serializable {
 	public void setDateRegistered(Date p_dateRegistered) {
 		dateRegistered = p_dateRegistered;
 	}
-	
+	public String getPrivateCompName() {
+		return privateCompName;
+	}
+	public void setPrivateCompName(String p_privateCompName) {
+		privateCompName = p_privateCompName;
+	}	
+	public String getNewPrivateCompName() {
+		return newPrivateCompName;
+	}
+	public void setNewPrivateCompName(String p_newPrivateCompName) {
+		newPrivateCompName = p_newPrivateCompName;
+	}	
 	public String getMappedTableName() {
 		return MAPPED_TABLE_NAME;
 	}

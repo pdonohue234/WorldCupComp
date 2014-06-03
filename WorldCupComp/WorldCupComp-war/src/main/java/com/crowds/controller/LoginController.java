@@ -87,7 +87,14 @@ public class LoginController {
 	public ModelAndView registerUser(@ModelAttribute User user, BindingResult result) { 
 		if(StringUtils.endsWith(user.getPassword(), ","))
 			user.setPassword( StringUtils.remove(user.getPassword(), ",") );
-			
+		
+		//if(user.getNewPrivateCompName()) {
+			this.m_logger.warning("New Group: " + user.getNewPrivateCompName());
+//		}
+//		else {
+//			this.m_logger.warning("Old Group: " + user.getNewPrivateCompName());
+//		}
+		
 		boolean success = this.getUserService().insertData(user); 
 
 		Map<String, Object> model = new HashMap<String, Object>();  

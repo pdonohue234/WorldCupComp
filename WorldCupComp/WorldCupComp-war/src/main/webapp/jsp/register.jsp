@@ -22,6 +22,7 @@
 		</noscript>	
 		
         <script src="https://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+        <script src="../js/jquery.tools.min.js"></script>
         
         <script>
             $(function() {
@@ -42,7 +43,25 @@
 	                    }
 	                });
 	           	}
-            });
+            
+            
+				$("#privateCompNameInput").tooltip({
+				 
+				      // place tooltip on the right edge
+				      position: "center right",
+				 
+				      // a little tweaking of the position
+				      offset: [-2, 10],
+				 
+				      // use the built-in fadeIn/fadeOut effect
+				      effect: "fade",
+				 
+				      // custom opacity setting
+				      opacity: 0.7
+				 
+				      });  
+				      
+				});          
  
         </script>			
 	</head>  
@@ -109,7 +128,7 @@
 									</tr>
 									<tr>
 										<td style="padding:1px 2px">
-											<!--<label for="password2Input" style="text-align:right">Confirm Password: </label> -->
+											<label for="password2Input" style="text-align:right">Confirm Password: </label> 
 						      			</td>
 						      			<td>	
 						      				<input type="password" id="password2Input" placeholder="Confirm Password" /> 	
@@ -123,6 +142,19 @@
 								      		<form:input path="name" id="nameInput" placeholder="Your Name" />
 							      		</td>
 						      		</tr>
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="privateCompNameInput" style="text-align:right">Mini Competition: </label>
+										</td>
+										<td>
+								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Mini Competition Name" title="This is where the tooltip text goes." />
+							      		</td>
+										<td colspan="2" style="text-align:center; padding:0px 2px">
+											<label class="checkbox">
+								            	<input type="checkbox" id="newPrivateCompNameInput" path="newPrivateCompName" value="TestValue"/> New
+								            </label>
+							            </td>							      			
+						      		</tr>					      		
 									<tr>
 										<td colspan="2" style="text-align:center; padding:0px 2px">
 											<label class="checkbox">

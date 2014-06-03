@@ -17,13 +17,13 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	public Logger			m_logger	= 	Logger.getLogger(UserDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "Users";
-	protected static final String	SQL_TABLE_COLUMNS 	= "User_Id, Password, Trans_ID, Name, Date_Registered";
+	protected static final String	SQL_TABLE_COLUMNS 	= "User_Id, Password, Trans_ID, Name, Date_Registered, Private_Comp_Name";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
 	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
 	
-	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Password=?, Trans_ID=?, Name=?, Date_Registered=? WHERE User_Id=?";
+	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?,?)";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Password=?, Trans_ID=?, Name=?, Date_Registered=?, Private_Comp_Name=? WHERE User_Id=?";
 	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
 	
 	
@@ -81,10 +81,10 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			if( StringUtils.isNotBlank(p_user.getUserId())) {
 				validateFields(p_user );
 				Sql l_sql = new Sql(SQL_ADD, 
-						new Object[] {p_user.getUserId(), p_user.getPassword(), p_user.getTransId(), p_user.getName(), this.getSdf().format(new Date())});
+						new Object[] {p_user.getUserId(), p_user.getPassword(), p_user.getTransId(), p_user.getName(), this.getSdf().format(new Date()), p_user.getPrivateCompName()});
 
 				this.m_logger.warning(SQL_ADD);
-				this.m_logger.warning(p_user.getUserId()+", "+p_user.getPassword()+", "+p_user.getTransId()+", "+p_user.getName()+", "+this.getSdf().format(new Date()));
+				this.m_logger.warning(p_user.getUserId()+", "+p_user.getPassword()+", "+p_user.getTransId()+", "+p_user.getName()+", "+this.getSdf().format(new Date())+", "+p_user.getPrivateCompName());
 				
 				int rows = this.update(l_sql);
 				return rows;
@@ -106,7 +106,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			if( StringUtils.isNotBlank(p_user.getUserId())) {
 				validateFields(p_user );
 				Sql l_sql = new Sql(SQL_UPDATE, 
-						new Object[] {p_user.getPassword(), p_user.getTransId(), p_user.getName(), this.getSdf().format(new Date()), p_user.getUserId()});
+						new Object[] {p_user.getPassword(), p_user.getTransId(), p_user.getName(), this.getSdf().format(new Date()), p_user.getPrivateCompName(), p_user.getUserId()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
@@ -145,6 +145,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 		p_user.setPassword(( p_user.getPassword() == null ? "" : p_user.getPassword() ));
 		p_user.setTransId(( p_user.getTransId() == null ? "" : p_user.getTransId() ));
 		p_user.setName(( p_user.getName() == null ? "" : p_user.getName() ));
+		p_user.setPrivateCompName(( p_user.getPrivateCompName() == null ? "" : p_user.getPrivateCompName() ));
 	}
 	
 	@Override
@@ -172,6 +173,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 				dto.setTransId(rs.getString(seqn++));
 				dto.setName(rs.getString(seqn++));
 				dto.setDateRegistered(getDate(rs.getDate(seqn++)));
+				dto.setPrivateCompName(rs.getString(seqn++));
 			}
 			catch(Exception e) {
 				m_logger.severe(e.getLocalizedMessage());

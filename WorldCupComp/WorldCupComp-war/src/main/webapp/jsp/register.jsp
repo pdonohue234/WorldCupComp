@@ -77,7 +77,7 @@
 						<li><a href="javascript:verifySession();">Your Predictions</a></li>
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#sponsors">Sponsors</a></li>
 						<li><a href="https://worldcuppredictioncomp.appspot.com/#charity">Laura Lynn</a></li>
-						<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Competition Rules T&Cs</a></li>
+						<li><a href="https://worldcuppredictioncomp.appspot.com/#rules">Rules</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -151,7 +151,7 @@
 							      		</td>
 										<td colspan="2" style="text-align:center; padding:0px 2px">
 											<label class="checkbox">
-								            	<input type="checkbox" id="newPrivateCompNameInput" path="newPrivateCompName" value="TestValue"/> New
+								            	<form:checkbox id="newPrivateCompNameInput" path="newPrivateCompName" /> New
 								            </label>
 							            </td>							      			
 						      		</tr>					      		

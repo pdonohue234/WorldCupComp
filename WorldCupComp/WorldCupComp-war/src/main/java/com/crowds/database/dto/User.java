@@ -21,7 +21,7 @@ public class User extends Dto<User> implements Serializable {
 	private String	name;
 	private Date	dateRegistered;
 	private String	privateCompName;
-	private String newPrivateCompName;
+	private boolean newPrivateCompName;
 	
 	
 	/**
@@ -78,10 +78,10 @@ public class User extends Dto<User> implements Serializable {
 	public void setPrivateCompName(String p_privateCompName) {
 		privateCompName = p_privateCompName;
 	}	
-	public String getNewPrivateCompName() {
+	public boolean getNewPrivateCompName() {
 		return newPrivateCompName;
 	}
-	public void setNewPrivateCompName(String p_newPrivateCompName) {
+	public void setNewPrivateCompName(boolean p_newPrivateCompName) {
 		newPrivateCompName = p_newPrivateCompName;
 	}	
 	public String getMappedTableName() {

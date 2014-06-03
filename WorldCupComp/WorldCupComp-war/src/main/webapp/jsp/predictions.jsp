@@ -247,18 +247,15 @@ Product : Crowds - World Cup 2014 Application
 						<input type="submit" class="button style2 login" value="Submit" />
 					</div>
 					
-					<div class="Grid">
-                    	<div class="Grid-cell-left" style="text-align:right;padding-right:20px;">
-							<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
-								<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
-							</c:if>	
-							<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
-								<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
-							</c:if>
-						</div>
-						<div class="Grid-cell-right" style="text-align:left;">
-							<a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Show/Hide</u></a>
-                        </div>
+					<div class="Grid-cell-center">
+						<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">
+							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
+						</c:if>	
+						<c:if test="${model.userLoggedIn eq undefined || model.userLoggedIn.name eq undefined || model.userLoggedIn.name eq ''}">
+							<a href="#" onclick="javascript:logout();"><u>${model.userLoggedIn.name} log out</u></a>
+						</c:if>
+						<br>
+						<a href="#" onclick="toggle_visibility('hiddenText');"><u>Instructions Show/Hide</u></a>
 					</div>
 					<div id="hiddenText" class="Grid-cell-center" style="display:none; text-align:center; font-style:italic; font-size:0.8em;">
 						<br>You can re-enter predictions as often as you before the game starts

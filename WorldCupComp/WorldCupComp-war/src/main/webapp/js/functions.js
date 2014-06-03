@@ -135,6 +135,7 @@ function checkRegisterForm() {
 	var username = document.getElementById('userIdInput');
 	var password = document.getElementById('passwordInput');
 	var password2 = document.getElementById('password2Input');
+	var tx = document.getElementById('txInput');	
 	
 	var userIdClientError = document.getElementById('userIdClientError');
 	var passwordClientError = document.getElementById('passwordClientError');  
@@ -217,16 +218,24 @@ function checkRegisterForm() {
 		password.setCustomValidity("");
 		passwordClientError.innerHTML = "";
 	} 
+
+	if(tx.value == false) {
+		paymentClientError.innerHTML = "Please donate before registering!";
+		return false;
+	}	
+	else {
+		paymentClientError.innerHTML = "";
+	}
 	
-	if(gup('auth') != undefined  && gup('auth') != null) {
-		//if(gup('transaction=') != "paid") {
+/*	if(gup('auth') != undefined  && gup('auth') != null) {
+		if(gup('transaction=') != "paid") {
 		    paymentClientError.innerHTML = "Please make a donation before registering!";
 			return false;
 		}
 		else {
 			paymentClientError.innerHTML = "";
 		}
-	/*}
+	}
 	else {
 	    paymentClientError.innerHTML = "Please make a donation before registering!";
 		return false;

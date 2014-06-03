@@ -11,13 +11,13 @@ public class User extends Dto<User> implements Serializable {
 	
 	protected static final String[] KEY_FIELD_NAMES = new String[] {"User_ID"}; 
 	
-	protected static final String[] FIELD_NAMES = new String[] {"Password", "Email", "Name", "Date_Registered"}; 
+	protected static final String[] FIELD_NAMES = new String[] {"Password", "Trans_ID", "Name", "Date_Registered"}; 
 	
 	public static final int NUMBER_OF_KEYS = 1;
 	public static final int USERID = 0;
 	
 	private String	password;
-	private String 	email;
+	private String 	transId;
 	private String	name;
 	private Date	dateRegistered;
 	
@@ -52,11 +52,11 @@ public class User extends Dto<User> implements Serializable {
 	public void setPassword(String p_password) {
 		password = p_password;
 	}
-	public String getEmail() {
-		return email;
+	public String getTransId() {
+		return transId;
 	}
-	public void setEmail(String p_email) {
-		email = p_email;
+	public void setTransId(String p_transId) {
+		transId = p_transId;
 	}
 	public String getName() {
 		return name;

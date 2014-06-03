@@ -17,14 +17,13 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	public Logger			m_logger	= 	Logger.getLogger(UserDao.class.getName());
 	
 	protected static final String	SQL_TABLE_NAME 		= "Users";
-	protected static final String	SQL_TABLE_COLUMNS 	= "User_Id, Password, Email, Name, Date_Registered";
+	protected static final String	SQL_TABLE_COLUMNS 	= "User_Id, Password, Trans_ID, Name, Date_Registered";
 	
 	protected static final String	SQL_SELECT_ALL 		= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME;
 	protected static final String	SQL_SELECT_USINGKEY	= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
-	protected static final String	SQL_SELECT_USINGEMAIL= "SELECT " + SQL_TABLE_COLUMNS + " FROM " + SQL_TABLE_NAME + " WHERE Email=?";
 	
 	protected static final String	SQL_ADD				= "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_TABLE_COLUMNS + ") VALUES (?,?,?,?,?)";
-	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Password=?, Email=?, Name=?, Date_Registered=? WHERE User_Id=?";
+	protected static final String	SQL_UPDATE			= "UPDATE " + SQL_TABLE_NAME + " SET Password=?, Trans_ID=?, Name=?, Date_Registered=? WHERE User_Id=?";
 	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
 	
 	
@@ -72,26 +71,6 @@ public class UserDao extends AbstractDaoJdbc<User>{
 		return null;
 	}
 	
-	
-	/**
-	 * Find all of the Users in the User database table
-	 * 
-	 * @return list of Users
-	 */
-	protected List<User> findByEmail(String p_email) {
-		try {
-			if( StringUtils.isNotBlank(p_email)) {
-				Sql l_sql = new Sql(SQL_SELECT_USINGEMAIL, new Object[] {p_email});
-				List<User> users = this.find(l_sql, new UserRowMapper());
-				return users;
-			}
-		}
-		catch(Exception e) {
-			this.m_logger.severe(e.getLocalizedMessage());
-		}
-		return null;
-	}
-	
 	/**
 	 * Insert a new User record into the database
 	 * @param p_user
@@ -102,10 +81,10 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			if( StringUtils.isNotBlank(p_user.getUserId())) {
 				validateFields(p_user );
 				Sql l_sql = new Sql(SQL_ADD, 
-						new Object[] {p_user.getUserId(), p_user.getPassword(), p_user.getEmail(), p_user.getName(), this.getSdf().format(new Date())});
+						new Object[] {p_user.getUserId(), p_user.getPassword(), p_user.getTransId(), p_user.getName(), this.getSdf().format(new Date())});
 
 				this.m_logger.warning(SQL_ADD);
-				this.m_logger.warning(p_user.getUserId()+", "+p_user.getPassword()+", "+p_user.getEmail()+", "+p_user.getName()+", "+this.getSdf().format(new Date()));
+				this.m_logger.warning(p_user.getUserId()+", "+p_user.getPassword()+", "+p_user.getTransId()+", "+p_user.getName()+", "+this.getSdf().format(new Date()));
 				
 				int rows = this.update(l_sql);
 				return rows;
@@ -127,7 +106,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			if( StringUtils.isNotBlank(p_user.getUserId())) {
 				validateFields(p_user );
 				Sql l_sql = new Sql(SQL_UPDATE, 
-						new Object[] {p_user.getPassword(), p_user.getEmail(), p_user.getName(), this.getSdf().format(new Date()), p_user.getUserId()});
+						new Object[] {p_user.getPassword(), p_user.getTransId(), p_user.getName(), this.getSdf().format(new Date()), p_user.getUserId()});
 				int rows = this.update(l_sql);
 				return rows;
 			}
@@ -164,7 +143,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	 */
 	private void validateFields( User p_user ) {
 		p_user.setPassword(( p_user.getPassword() == null ? "" : p_user.getPassword() ));
-		p_user.setEmail(( p_user.getEmail() == null ? "" : p_user.getEmail() ));
+		p_user.setTransId(( p_user.getTransId() == null ? "" : p_user.getTransId() ));
 		p_user.setName(( p_user.getName() == null ? "" : p_user.getName() ));
 	}
 	
@@ -190,7 +169,7 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			try {
 				dto.setUserId(rs.getString(seqn++));
 				dto.setPassword(rs.getString(seqn++));
-				dto.setEmail(rs.getString(seqn++));
+				dto.setTransId(rs.getString(seqn++));
 				dto.setName(rs.getString(seqn++));
 				dto.setDateRegistered(getDate(rs.getDate(seqn++)));
 			}

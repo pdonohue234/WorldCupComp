@@ -16,8 +16,10 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.ArrayUtils;
 
 import com.crowds.database.dto.Fixture;
 import com.crowds.database.dto.Prediction;
@@ -59,7 +61,21 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String loadRegisterFormPage(Model m) {
+	public String loadRegisterFormPage(Model m, HttpServletRequest request) {
+		Map<String,Object> attributes = request.getParameterMap();
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			if( StringUtils.equalsIgnoreCase(entry.getKey(), "tx") ) {
+				if(entry.getValue().getClass().isArray()) {
+					if(ArrayUtils.isNotEmpty( (String[]) entry.getValue())) {
+						m.addAttribute("tx", (String)((String[])entry.getValue())[0]);
+					}
+			    		
+				}
+				else {
+					m.addAttribute("tx", entry.getValue());
+				}
+			}
+		}
 		m.addAttribute("user", new User());
 		return "register";
 	}
@@ -69,8 +85,6 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/registerUser", method=RequestMethod.POST)  
 	public ModelAndView registerUser(@ModelAttribute User user, BindingResult result) { 
-		user.setEmail(user.getUserId());
-		
 		if(StringUtils.endsWith(user.getPassword(), ","))
 			user.setPassword( StringUtils.remove(user.getPassword(), ",") );
 			

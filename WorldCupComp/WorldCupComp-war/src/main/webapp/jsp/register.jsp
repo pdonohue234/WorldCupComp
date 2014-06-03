@@ -75,6 +75,7 @@
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick">
 						<input type="hidden" name="hosted_button_id" value="88FCJXL7J55WC">
+						<input type="hidden" name="cbt" value="Return to World Cup Predictions to Complete Registration">
 						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 					</form>							
@@ -84,6 +85,7 @@
 							 Register Form
 						-->
 							<form:form method="post" action="/registerUser" modelAttribute="user">  
+								<form:hidden path="transId" value="${tx}"  id="txInput"/>
 								<table style="max-width:500px;">
 									<tr>
 										<td style="padding:1px 2px;">

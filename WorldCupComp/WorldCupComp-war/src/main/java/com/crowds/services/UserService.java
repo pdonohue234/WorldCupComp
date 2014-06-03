@@ -86,26 +86,7 @@ public class UserService extends UserDao {
 		return null;
 	} 
 	
-	/**
-	 * Find a list of users based on email address
-	 * @param id
-	 * @return
-	 */
-	public List<User> getUsersByEmail(String p_email) { 
-		try {
-			if(StringUtils.isNotEmpty(p_email)) {
-				return this.findByEmail(p_email); 
-			}
-			else {
-				this.m_logger.warning("Cannot find User records based on empty Email!");
-			}
-		}
-		catch(Exception e) {
-			this.m_logger.severe("Error attemping to find User record with Email: " + p_email);
-			this.m_logger.severe(e.getLocalizedMessage());
-		} 
-		return null;
-	}	
+	
 	
 	/** 
 	 * Insert a single user record into the database

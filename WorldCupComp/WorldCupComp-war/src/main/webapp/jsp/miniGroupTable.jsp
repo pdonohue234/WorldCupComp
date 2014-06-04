@@ -50,7 +50,7 @@ Product : Crowds - World Cup 2014 Application
 			
 	    <!-- Predictions -->
 		<section id="miniGroupTable" class="main style2 left dark fullscreen">
-			<div class="content container small">	
+			<div class="content container small" style="text-align:center">	
 				<header>
 					<h2>${model.groupName} Mini Competition</h2>				
 					<br>
@@ -82,7 +82,7 @@ Product : Crowds - World Cup 2014 Application
 						<thead>
 							<tr>
 								<th><label>#</label></th>
-								<th><label>User Name</label></th>
+								<th><label>Name</label></th>
 								<th><label>Score</label></th>
 							</tr>
 						</thead>

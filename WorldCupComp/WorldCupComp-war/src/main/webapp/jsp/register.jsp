@@ -166,7 +166,7 @@
 										<td>
 								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Optional" title="Create a new Mini Competition and pass on name for others to join. Or enter the name you have been given to join an existing competition" />
 								      		<label class="checkbox">
-								            	<form:checkbox id="newPrivateCompNameInput" path="newPrivateCompName" /> New
+								            	<form:checkbox id="newPrivateCompNameInput" path="newPrivateCompName" /><span style="font-size:1em">Check this if new competition</span>
 								            </label>
 							      		</td>		
 							      		<br><form:errors path="privateCompName" style="color:red" />				      			

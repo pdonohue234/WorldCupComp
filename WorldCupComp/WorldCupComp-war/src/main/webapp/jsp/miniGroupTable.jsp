@@ -50,7 +50,7 @@ Product : Crowds - World Cup 2014 Application
 			
 	    <!-- Predictions -->
 		<section id="miniGroupTable" class="main style2 left dark fullscreen">
-			<div class="content container small" style="text-align:center">	
+			<div class="content container small" align="center">	
 				<header>
 					<h2>${model.groupName} Mini Competition</h2>				
 					<br>

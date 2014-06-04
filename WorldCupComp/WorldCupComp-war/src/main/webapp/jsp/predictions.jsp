@@ -264,7 +264,7 @@ Product : Crowds - World Cup 2014 Application
 					
 					<div class="Grid-cell-center">
 						<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.userId ne undefined && model.userLoggedIn.privateCompName ne ''}">
-							<a href="javascript:miniGroupTable('${model.userLoggedIn.userId}','${model.userLoggedIn.privateCompName}');"> <u>${model.userLoggedIn.privateCompName} Leaderboard</u>)</a>
+							<a href="javascript:miniGroupTable('${model.userLoggedIn.userId}','${model.userLoggedIn.privateCompName}');"> <u>${model.userLoggedIn.privateCompName} Leaderboard</u></a>
 						</c:if>	
 						<br>
 						<c:if test="${model.userLoggedIn ne undefined && model.userLoggedIn.name ne undefined && model.userLoggedIn.name ne ''}">

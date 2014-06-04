@@ -52,6 +52,32 @@ function verifySession() {
 	}
 }
 
+//check session is alive before predictions screen
+function miniGroupTable(user, groupName) {		
+	var form = document.createElement("form");
+	form.action = "https://worldcuppredictioncomp.appspot.com/miniGroupTable";
+	form.method = "POST";
+			  
+	var usernode = document.createElement("input");
+	usernode.name  = "userId";
+	usernode.value = user;
+	form.appendChild(usernode.cloneNode());
+			    
+	var privateCompNamenode = document.createElement("input");
+	privateCompNamenode.name  = "privateCompName";
+	privateCompNamenode.value = groupName;
+	form.appendChild(privateCompNamenode.cloneNode());
+			
+	// To be sent, the form needs to be attached to the main document.
+	form.style.display = "none";
+	document.body.appendChild(form);
+	
+	form.submit();
+			  
+	// But once the form is sent, it's useless to keep it.
+	document.body.removeChild(form);
+}
+
 //Determine who the winning team is based on users inputted scores
 function calculateWinningTeam(row, team1, team2) {
 	

@@ -300,6 +300,76 @@ public class LoginController {
 		return new ModelAndView("predictions", "model", model);  
 	}
 	
+	@RequestMapping(value="/miniGroupTable", method=RequestMethod.POST)    
+	public ModelAndView miniGroupTable(HttpServletRequest request) { 
+		try {
+			Map<String, Object> model = new HashMap<String, Object>(); 
+			List<UserResult> results = new ArrayList<UserResult>();
+			String userId = null;
+			String privateCompName = null;
+			
+			Map<String,Object> attributes = request.getParameterMap();
+			for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+				if( StringUtils.equalsIgnoreCase(entry.getKey(), "userId") ) {
+					if(entry.getValue().getClass().isArray()) {
+						if(ArrayUtils.isNotEmpty( (String[]) entry.getValue())) {
+							userId =  (String)((String[])entry.getValue())[0];
+						}
+				    		
+					}
+					else {
+						userId = (String) entry.getValue();
+					}
+				}
+				
+				if( StringUtils.equalsIgnoreCase(entry.getKey(), "privateCompName") ) {
+					if(entry.getValue().getClass().isArray()) {
+						if(ArrayUtils.isNotEmpty( (String[]) entry.getValue())) {
+							privateCompName =  (String)((String[])entry.getValue())[0];
+						}
+				    		
+					}
+					else {
+						privateCompName = (String) entry.getValue();
+					}
+				}				
+			}
+			
+			
+			if(StringUtils.isNotBlank( userId ) && StringUtils.isNotBlank( userId )) {
+				User userLoggedIn = this.getUserService().getUser(userId);
+				
+				List<User> allUsers = this.getUserService().getUserListForPrivateCompName(privateCompName);
+				
+				List<Fixture> fixtures = this.getFixtureService().getEventsFixtures(EventService.WORLD_CUP_2014_ID);
+				
+				//For each User get their score
+				for(User user : allUsers ) {
+					this.m_logger.warning("GroupUser: " + user.getUserId() );
+					List<Prediction> predictions = this.getPredictionService().getUsersPredictions(userId);				
+					double score = this.getPredictionService().calcuateUserPredictionScore(fixtures, predictions);
+					
+					
+					results.add( new UserResult(user.getName(), score) );
+				}
+				
+				model.put("groupName", privateCompName );
+				model.put("user", userLoggedIn);
+			}
+			
+			if(results.size() > 0) {
+				UserResultList userResultList = new UserResultList();
+				userResultList.setUserResults(results);
+				model.put("userResultList", userResultList);
+			}
+			
+			return new ModelAndView("miniGroupTable", "model", model);  
+		}
+		catch(Exception e) {
+			return null;
+		}
+	}
+	
 	public void sendMail(User p_user) {
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);

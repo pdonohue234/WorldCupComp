@@ -319,7 +319,7 @@
 						                }
 
 										// Contact
-						                f($('#contact').scrollwatch != undefined) {
+						                if($('#contact').scrollwatch != undefined) {
 											$('#contact')
 												.scrollwatch({
 													delay:		25,
@@ -379,7 +379,9 @@
 						window.setTimeout(function() {
 
 							// Update scrolly links
+							if($('a[href^=#]').scrolly != undefined) {
 								$('a[href^=#]').scrolly(1500, $header.outerHeight() - 1);
+							}
 
 							// Resize fullscreen elements
 								if (_settings.useFullScreen

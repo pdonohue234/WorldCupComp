@@ -68,7 +68,23 @@ public class UserService extends UserDao {
 			this.m_logger.severe(e.getLocalizedMessage());
 		} 
 		return -1;
-	} 
+	}
+	
+	/** 
+	 * Find list of all users in system
+	 * 
+	 * @return list of users
+	 */
+	public List<User> getUserListForPrivateCompName(String p_privateCompName) {  
+		try {
+			return this.findListByPrivateCompName(p_privateCompName);
+		}
+		catch(Exception e) {
+			this.m_logger.severe("Error attemping to find ALL User records for:" + p_privateCompName);
+			this.m_logger.severe(e.getLocalizedMessage());
+		} 
+		return null;		  
+	}	
 	
 	/**
 	 * Find and validate a single user based on their userId and password

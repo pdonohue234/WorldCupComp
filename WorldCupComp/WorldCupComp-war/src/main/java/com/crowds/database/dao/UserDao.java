@@ -27,6 +27,8 @@ public class UserDao extends AbstractDaoJdbc<User>{
 	protected static final String	SQL_DELETE			= "DELETE FROM " + SQL_TABLE_NAME + " WHERE User_Id=?";
 	
 	protected static final String	SQL_PRIVATE_COMP_EXISTS	= "SELECT count(1) FROM " + SQL_TABLE_NAME + " WHERE Private_Comp_Name=?";
+	
+	protected static final String	SQL_PRIVATE_COMP_LIST	= "SELECT * FROM " + SQL_TABLE_NAME + " WHERE Private_Comp_Name=? ORDER BY Name";
 			
 	public UserDao() {
 		super();
@@ -67,6 +69,23 @@ public class UserDao extends AbstractDaoJdbc<User>{
 			this.m_logger.severe(e.getLocalizedMessage());
 		}
 		return -1;
+	}	
+	
+	/**
+	 * Find all of the Users in the User database table by p_privateCompName
+	 * 
+	 * @return list of Users
+	 */
+	protected List<User> findListByPrivateCompName(String p_privateCompName) {
+		try {
+			Sql l_sql = new Sql(SQL_PRIVATE_COMP_LIST, new Object[] {p_privateCompName});
+			List<User> users = this.find(l_sql, new UserRowMapper());
+			return users;
+		}
+		catch(Exception e) {
+			this.m_logger.severe(e.getLocalizedMessage());
+			return null;
+		}
 	}	
 	
 	/**

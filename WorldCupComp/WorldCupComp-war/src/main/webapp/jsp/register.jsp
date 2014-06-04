@@ -164,12 +164,12 @@
 											<label for="privateCompNameInput" style="text-align:right">Mini Competition: </label>
 										</td>
 										<td>
-								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Mini Competition Name" title="Create a new Mini Competition and pass on name for others to join. Or enter the name you have been given to join an existing competition" />
-								      		<br><form:errors path="privateCompName" style="color:red" />
+								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Optional" title="Create a new Mini Competition and pass on name for others to join. Or enter the name you have been given to join an existing competition" />
 								      		<label class="checkbox">
 								            	<form:checkbox id="newPrivateCompNameInput" path="newPrivateCompName" /> New
 								            </label>
-							      		</td>						      			
+							      		</td>		
+							      		<br><form:errors path="privateCompName" style="color:red" />				      			
 						      		</tr>					      		
 									<tr>
 										<td colspan="2" style="text-align:center; padding:0px 2px">

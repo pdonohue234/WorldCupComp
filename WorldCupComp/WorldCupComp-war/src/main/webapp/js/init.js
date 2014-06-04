@@ -259,6 +259,7 @@
 										sectionTransitionState = true;
 										
 										// Generic sections
+						                if($('.main.style1').scrollwatch != undefined) {
 											$('.main.style1')
 												.scrollwatch({
 													delay:		50,
@@ -268,7 +269,9 @@
 													on:			function(t) { t.removeClass('inactive'); },
 													off:		function(t) { t.addClass('inactive'); }
 												});
+						                }
 
+						                if($('.main.style2').scrollwatch != undefined) {
 											$('.main.style2')
 												.scrollwatch({
 													delay:		50,
@@ -278,8 +281,10 @@
 													on:			function(t) { t.removeClass('inactive'); },
 													off:		function(t) { t.addClass('inactive'); }
 												});
+						                }
 									
 										// Work
+						                if($('#work').scrollwatch != undefined) {
 											$('#work')
 												.scrollwatch({
 													delay:		25,
@@ -311,8 +316,10 @@
 																	});
 																}
 												});
+						                }
 
 										// Contact
+						                f($('#contact').scrollwatch != undefined) {
 											$('#contact')
 												.scrollwatch({
 													delay:		25,
@@ -322,6 +329,7 @@
 													on:			function(t) { t.removeClass('inactive'); },
 													off:		function(t) { t.addClass('inactive'); }
 												});
+						                }
 
 										// Force scroll event
 											window.setTimeout(function() {

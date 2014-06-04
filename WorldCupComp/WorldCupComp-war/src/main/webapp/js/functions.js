@@ -281,3 +281,22 @@ function logout() {
     }
     window.location.href = "https://worldcuppredictioncomp.appspot.com/#home";
 }
+
+function updateFailMessage(_msg) {
+    displayMessage('failMessage', _msg)
+}
+  
+function updateSuccessMessage(_msg) {
+	displayMessage('successMessage', _msg);
+}
+  
+function displayMessage(_id, _msg) {
+	window.scrollTo(0,0);
+	document.getElementById(_id).innerHTML = _msg;
+	document.getElementById(_id).style.display = "block";
+}
+
+function removeMessages() {
+    document.getElementById('failMessage').style.display = "none";
+    document.getElementById('successMessage').style.display = "none";
+}

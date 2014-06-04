@@ -260,7 +260,8 @@ public class LoginController {
 	@RequestMapping(value="/updatePredictions", method=RequestMethod.POST)    
 	public ModelAndView updatePredictions(@ModelAttribute FixtureResultList fixtureResultList) {  		
 		String userId = "";
-		
+		boolean updatesHappened = false;
+		boolean success = false;
 		//Update each entry amended
 		if(fixtureResultList!= null && fixtureResultList.getFixtureResults().size() > 0) {
 			userId = fixtureResultList.getFixtureResults().get(0).getUserId();
@@ -281,7 +282,8 @@ public class LoginController {
 							prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
 							prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
 							prediction.setDate(new Date());
-							boolean success = this.getPredictionService().saveOrUpdate(prediction);
+							success = this.getPredictionService().saveOrUpdate(prediction);
+							updatesHappened = true;
 						}
 					}
 				}
@@ -293,7 +295,8 @@ public class LoginController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();  
 		model = getFixtureResultList(model, userId);
-		
+		if(updatesHappened)
+			model.put("updated", success);
 		return new ModelAndView("predictions", "model", model);  
 	}
 	

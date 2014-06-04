@@ -28,7 +28,7 @@ Product : Crowds - World Cup 2014 Application
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
-		</noscript>			
+		</noscript>		
 	</head>  
 	 
 	<body> 
@@ -51,6 +51,22 @@ Product : Crowds - World Cup 2014 Application
 	    <!-- Predictions -->
 		<section id="predictions" class="main style2 left dark fullscreen">
 			<div class="content container big">
+				<!--  UPDATE SUCCESS AREA -->  
+				<div id="failMessage" style="text-align:center; color:red; display:none"></div> 
+				<div id="successMessage" style="text-align:center; color:green; display:none"></div>	
+									
+				<script>
+				 	removeMessages();
+				 	<c:if test="${model.updated ne undefined}">
+						<c:if test="${model.updated eq true}">
+							updateSuccessMessage("Yours records have been successfully updated.");
+						</c:if>	
+						<c:if test="${model.updated eq false}">
+							updateFailMessage("The record update has failed.");
+						</c:if>	
+					</c:if>		
+				</script>			
+				
 				<header>
 					<div style="float:left;"><h2>Predictions</h2></div>				
 					<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: ${model.score}</h3></div>
@@ -133,7 +149,6 @@ Product : Crowds - World Cup 2014 Application
 				   });  
 				</script>
 						
-											
 				<form:form method="post" action="/updatePredictions" modelAttribute="fixtureResultList">   
 					<table class="predictionsTable" id="predictionsTable">
 						<col width="60px">

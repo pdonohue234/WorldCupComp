@@ -52,7 +52,7 @@ Product : Crowds - World Cup 2014 Application
 		<section id="predictions" class="main style2 left dark fullscreen">
 			<div class="content container big">		
 				<header>
-					<div style="float:left;"><h2>Predictions</h2></div>				
+					<div style="text-align:center"><h2>Predictions</h2></div>				
 					<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: ${model.score}</h3></div>
 					<br>
 				</header>	

@@ -82,22 +82,38 @@
 				</nav>
 			</header>
 				
-	 		<section id="register" class="main style2 left dark fullscreen">
+			<section id="register" class="main style2 left dark fullscreen">
 				<div class="content container" align="center">
 					<header>
 						<h2>Please Register</h2>
-						<p><a href="/login">Click here if you already have an account</a></p>
+						<a href="/login">Click here if you already have an account</a>
 					</header>
+					
+					<div style="height: 3px; background-color: black; text-align: center">
+					  <span style="font-family: Calibri; color:white; background-color: black; position: relative; top: -0.5em;">
+					    Step 1
+					  </span>
+					</div>
 					
 					<!-- Code for payments. Can move to wherever needed -->
 					<!-- https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/formbasics/ -->
+					<br>
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input type="hidden" name="cmd" value="_s-xclick">
 						<input type="hidden" name="hosted_button_id" value="88FCJXL7J55WC">
 						<input type="hidden" name="cbt" value="Return to World Cup Predictions to Complete Registration">
 						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-					</form>							
+					</form>
+					
+					<br>
+					<div style="height: 3px; background-color: black; text-align: center">
+					  <span style="font-family: Calibri; color:white; background-color: black; position: relative; top: -0.5em;">
+					    Step 2
+					  </span>
+					</div>
+					<br>
+					
 					<span id='paymentClientError' style="color:red"></span>
 
 						<!--
@@ -106,6 +122,14 @@
 							<form:form method="post" action="/registerUser" modelAttribute="user">  
 								<form:hidden path="transId" value="${tx}"  id="txInput"/>
 								<table style="max-width:500px;">
+									<tr>
+										<td style="padding:1px 2px">
+											<label for="nameInput" style="text-align:right">Name: </label>
+										</td>
+										<td>
+								      		<form:input path="name" id="nameInput" placeholder="Your Name" />
+							      		</td>
+						      		</tr>
 									<tr>
 										<td style="padding:1px 2px;">
 											<label for="userIdInput" style="text-align:right">Email: </label>
@@ -134,27 +158,18 @@
 						      				<input type="password" id="password2Input" placeholder="Confirm Password" /> 	
 										</td>
 									</tr>
-									<tr>
-										<td style="padding:1px 2px">
-											<label for="nameInput" style="text-align:right">Name: </label>
-										</td>
-										<td>
-								      		<form:input path="name" id="nameInput" placeholder="Your Name" />
-							      		</td>
-						      		</tr>
+
 									<tr>
 										<td style="padding:1px 2px">
 											<label for="privateCompNameInput" style="text-align:right">Mini Competition: </label>
 										</td>
 										<td>
-								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Mini Competition Name" title="This is where the tooltip text goes." />
+								      		<form:input path="privateCompName" id="privateCompNameInput" placeholder="Mini Competition Name" title="Create a new Mini Competition and pass on name for others to join. Or enter the name you have been given to join an existing competition" />
 								      		<br><form:errors path="privateCompName" style="color:red" />
-							      		</td>
-										<td colspan="2" style="text-align:center; padding:0px 2px">
-											<label class="checkbox">
+								      		<label class="checkbox">
 								            	<form:checkbox id="newPrivateCompNameInput" path="newPrivateCompName" /> New
 								            </label>
-							            </td>							      			
+							      		</td>						      			
 						      		</tr>					      		
 									<tr>
 										<td colspan="2" style="text-align:center; padding:0px 2px">
@@ -170,7 +185,7 @@
 										</td>
 									</tr>
 								</table>
-						   </form:form>  
+						   </form:form> 
 				</div>
 			</section>			
 	</body>  

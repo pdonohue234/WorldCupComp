@@ -50,30 +50,41 @@ Product : Crowds - World Cup 2014 Application
 			
 	    <!-- Predictions -->
 		<section id="miniGroupTable" class="main style2 left dark fullscreen">
-			<div class="content container big">	
+			<div class="content container small">	
 				<header>
-					<div style="float:left;"><h2>${model.groupName}</h2></div>				
-					<!--<div style="float:right;padding:12px 0px;word-wrap:break-word;"><h3>Score: ${model.score}</h3></div>-->
+					<h2>${model.groupName} Mini Competition</h2>				
 					<br>
 				</header>	
 				
 				<script>
 					$(document).ready(function(){
-				       $('.miniGroupTable').oneSimpleTablePagination({rowsPerPage: 8});
-				   });  
+				       $('.miniGroupTable').oneSimpleTablePagination({rowsPerPage: 12});
+				   });
 				</script>
+				
+				<style>
+					
+					table,th,td{
+						border-style:solid;
+						border-color: black;
+						border-width: 0px 0px 1px 0px;
+						text-align:center;
+						background-color: rgba(192, 192, 192, 0.85);
+					} 
+					
+				</style>
 						 
-					<table class="predictionsTable" id="miniGroupTable">
+					<table class="miniGroupTable" id="miniGroupTable" style="width:75%">
 						<col width="60px">
 						<col width="140px">
 						<col width="70px">
 
 						<thead>
-						<tr>
-							<th><label>#</label></th>
-							<th><label>User</label></th>
-							<th><label>Score</label></th>
-						</tr>
+							<tr>
+								<th><label>#</label></th>
+								<th><label>User Name</label></th>
+								<th><label>Score</label></th>
+							</tr>
 						</thead>
 						
 						<tbody>
@@ -88,12 +99,6 @@ Product : Crowds - World Cup 2014 Application
 							</c:forEach>	
 						</tbody>					
 					</table>
-					
-				<!--	<div style="text-align: center">
-						<FORM> 
-						<input type="submit" class="button style2 login" value="Click here to go back" onClick="history.back()"/>
-						</FORM>	
-					</div>	-->
 			</div>
 		</section>
 	</body>  

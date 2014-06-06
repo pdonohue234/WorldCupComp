@@ -105,8 +105,8 @@
 						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 					</form>
+					<p><span style="font-style:italics;font-size:0.8em">...if you have any trouble or want to donate another way, contact worldcuppredictioncompetition@gmail.com</span></p>
 					
-					<br>
 					<div style="height: 3px; background-color: black; text-align: center">
 					  <span style="font-family: Calibri; color:white; background-color: black; position: relative; top: -0.5em;">
 					    Step 2

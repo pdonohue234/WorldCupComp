@@ -2,6 +2,7 @@ package com.crowds.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -261,6 +262,8 @@ public class LoginController {
 	public ModelAndView updatePredictions(@ModelAttribute FixtureResultList fixtureResultList) {  		
 		String userId = "";
 		boolean updatesHappened = false;
+		boolean oneUpdateFailed = false;
+		
 		boolean success = false;
 		//Update each entry amended
 		if(fixtureResultList!= null && fixtureResultList.getFixtureResults().size() > 0) {
@@ -270,25 +273,29 @@ public class LoginController {
 				this.m_logger.warning("For fixture: " + fixtureResult.getGameId());
 				//Check if values have changed
 				if(fixtureResult.isChanged()) {
-					this.m_logger.warning("It's changed");
-					//Ensure that we have the keys to update with
-					if(fixtureResult.keysAreSet()) {
-						this.m_logger.warning("It's keys are set");
-						//If scores have been set
-						if(fixtureResult.scoresAreSet()) {
-							this.m_logger.warning("Updating Prediction record: " + fixtureResult.getUserId() +"-"+ fixtureResult.getGameId());
-							Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
-							prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
-							prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
-							prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
-							prediction.setDate(new Date());
-							success = this.getPredictionService().saveOrUpdate(prediction);
-							updatesHappened = true;
+					this.m_logger.warning("It's changed: Team1=" + fixtureResult.getTeamOneScore() + ", Team2=" + fixtureResult.getTeamTwoScore() + ", Winning Team=" + fixtureResult.getWinningTeam());
+					if(fixtureResult.doubleCheckGameHasNotStarted()) {
+						this.m_logger.warning("Game Has Not Started so proceed: " + fixtureResult.getGameId());
+						//Ensure that we have the keys to update with
+						if(fixtureResult.keysAreSet()) {
+							this.m_logger.warning("It's keys are set");
+							//If scores have been set
+							if(fixtureResult.scoresAreSet()) {
+								this.m_logger.warning("Updating Prediction record: " + fixtureResult.getUserId() +"-"+ fixtureResult.getGameId());
+								Prediction prediction = new Prediction(fixtureResult.getUserId(), fixtureResult.getGameId() );
+								prediction.setTeam1Prediction(Integer.parseInt(fixtureResult.getTeamOneScore()) );
+								prediction.setTeam2Prediction(Integer.parseInt(fixtureResult.getTeamTwoScore()) );
+								prediction.setWinningTeamPrediction(fixtureResult.getWinningTeam() );
+								prediction.setDate(new Date());
+								success = this.getPredictionService().saveOrUpdate(prediction);
+								updatesHappened = true;
+							}
 						}
 					}
-				}
-				else {
-					//TODO: Need error message to let them know they can't edit it, game has started!
+					else {
+						this.m_logger.warning("But Game Has STARTED so CANNOT proceed: " + fixtureResult.getGameId());
+						oneUpdateFailed = true;
+					}
 				}
 			}
 		}
@@ -297,6 +304,8 @@ public class LoginController {
 		model = getFixtureResultList(model, userId);
 		if(updatesHappened)
 			model.put("updated", success);
+
+		model.put("oneUpdateFailed", oneUpdateFailed);
 		return new ModelAndView("predictions", "model", model);  
 	}
 	
@@ -346,7 +355,7 @@ public class LoginController {
 				//For each User get their score
 				for(User user : allUsers ) {
 					this.m_logger.warning("GroupUser: " + user.getUserId() );
-					List<Prediction> predictions = this.getPredictionService().getUsersPredictions(userId);				
+					List<Prediction> predictions = this.getPredictionService().getUsersPredictions(user.getUserId());				
 					double score = this.getPredictionService().calcuateUserPredictionScore(fixtures, predictions);
 					
 					
@@ -358,6 +367,8 @@ public class LoginController {
 			}
 			
 			if(results.size() > 0) {
+				Collections.sort(results, new MyComparator());
+				
 				UserResultList userResultList = new UserResultList();
 				userResultList.setUserResults(results);
 				model.put("userResultList", userResultList);
@@ -369,6 +380,46 @@ public class LoginController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value="/createLeaderBoard", method=RequestMethod.GET)    
+	public ModelAndView createLeaderBoard(HttpServletRequest request) { 
+		try {
+			Map<String, Object> model = new HashMap<String, Object>(); 
+			List<UserResult> results = new ArrayList<UserResult>();
+			
+			//Get all the users in the table
+			List<User> allUsers = this.getUserService().getUserList();
+				
+			//Get all the fixtures
+			List<Fixture> fixtures = this.getFixtureService().getEventsFixtures(EventService.WORLD_CUP_2014_ID);
+				
+			//For each User get their score
+			for(User user : allUsers ) {
+				List<Prediction> predictions = this.getPredictionService().getUsersPredictions(user.getUserId());				
+				double score = this.getPredictionService().calcuateUserPredictionScore(fixtures, predictions);
+				results.add( new UserResult(user.getName(), score) );
+			}
+			
+			//Sort the array with highest score first
+			if(results.size() > 0) {
+				Collections.sort(results, new MyComparator());
+			}
+			
+			//Create table to hold all the results
+			if(results.size() > 0) {
+				Collections.sort(results, new MyComparator());
+				
+				UserResultList userResultList = new UserResultList();
+				userResultList.setUserResults(results);
+				model.put("userResultList", userResultList);
+			}
+			return new ModelAndView("createLeaderBoard", "model", model);  
+		}
+		catch(Exception e) {
+			return null;
+		}
+	}
+	
 	
 	public void sendMail(User p_user) {
         Properties props = new Properties();

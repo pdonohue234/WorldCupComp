@@ -260,8 +260,9 @@ public class PredictionService extends PredictionDao {
 									if(fixture.isGamePlayed() ) {
 										//1. One for correct result (team1win/team2win/draw)										
 										if(StringUtils.equalsIgnoreCase(fixture.getWinningTeam(), prediction.getWinningTeamPrediction()))  {
-											if(fixture.whichTeamWon() == prediction.whichTeamToWin())  
+											if(fixture.whichTeamWon() == prediction.whichTeamToWin())   {												
 												score++;
+											}
 										}
 										
 										//2. Two for each score you get correct
@@ -272,8 +273,8 @@ public class PredictionService extends PredictionDao {
 											score = score + 2;
 										}
 									}
-								}
-								break;
+									break;
+								}							
 							}		
 						}
 					}

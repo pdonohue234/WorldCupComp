@@ -249,8 +249,14 @@ public class FixtureResult {
 			return -1;
 	}
 	
+	public boolean doubleCheckGameHasNotStarted() {
+		hasGameStarted();
+		return isActive();
+	}
+	
 	public void hasGameStarted() {
 		Date now = new Date();
+		
 		if(gameDate.compareTo(now) <= 0) {
 			this.active = false;
 		} 

@@ -164,6 +164,8 @@ Product : Crowds - World Cup 2014 Application
 				            	<form:hidden path="fixtureResults[${loop.index}].userId" value="${fixture.userId}"/>
 				            	<form:hidden path="fixtureResults[${loop.index}].gameId" value="${fixture.gameId}"/>
 				            	<form:hidden path="fixtureResults[${loop.index}].eventId" value="${fixture.eventId}"/>
+				            	<form:hidden path="fixtureResults[${loop.index}].active" value="${fixture.active}"/>
+				            	<form:hidden path="fixtureResults[${loop.index}].gameDate" value="${fixture.gameDate}"/>
 				            	
 				            	<td><label>${loop.index + 1}</label></td>
 
@@ -252,13 +254,24 @@ Product : Crowds - World Cup 2014 Application
 					<script>
 					 	removeMessages();
 					 	<c:if test="${model.updated ne undefined}">
-							<c:if test="${model.updated eq true}">
-								updateSuccessMessage("Yours records have been successfully updated.");
+							<c:if test="${model.updated eq true}">						
+							 	<c:if test="${model.oneUpdateFailed ne undefined}">
+									<c:if test="${model.oneUpdateFailed eq true}">
+										updateFailMessage("You cannot update a match already started/played.");
+									</c:if>	
+									<c:if test="${model.oneUpdateFailed eq false}">
+										updateSuccessMessage("Yours records have been successfully updated.");
+									</c:if>	
+								</c:if>								
+								<c:if test="${model.oneUpdateFailed eq undefined}">
+									updateSuccessMessage("Yours records have been successfully updated.");
+								</c:if>	
 							</c:if>	
 							<c:if test="${model.updated eq false}">
 								updateFailMessage("The record update has failed.");
 							</c:if>	
-						</c:if>		
+						</c:if>	
+							
 					</script>	
 					<!--  END OF UPDATE SUCCESS AREA -->  
 					

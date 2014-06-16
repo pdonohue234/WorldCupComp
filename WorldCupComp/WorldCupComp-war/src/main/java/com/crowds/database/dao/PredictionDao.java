@@ -122,6 +122,11 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 						new Object[] {p_prediction.getUserId(), p_prediction.getGameId(), p_prediction.getTeam1Prediction(), 
 						p_prediction.getTeam2Prediction(), p_prediction.getWinningTeamPrediction(),
 						this.getSdf().format(new Date())});
+				
+				this.m_logger.warning(SQL_ADD);
+				this.m_logger.warning(p_prediction.getUserId()+", "+p_prediction.getGameId()+", "+ p_prediction.getTeam1Prediction() +", "+ p_prediction.getTeam2Prediction() +", "+ 
+									p_prediction.getWinningTeamPrediction() +", "+ this.getSdf().format(new Date()));
+				
 				int rows = this.update(l_sql);
 				return rows;
 			}
@@ -145,6 +150,11 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 						new Object[] {p_prediction.getTeam1Prediction(), p_prediction.getTeam2Prediction(), 
 						p_prediction.getWinningTeamPrediction(), this.getSdf().format(new Date()),
 						p_prediction.getUserId(), p_prediction.getGameId()});
+				
+				this.m_logger.warning(SQL_UPDATE);
+				this.m_logger.warning(p_prediction.getTeam1Prediction() +", "+ p_prediction.getTeam2Prediction() +", "+ p_prediction.getWinningTeamPrediction() +", "+ 
+										this.getSdf().format(new Date()) +", "+ p_prediction.getUserId() +", "+ p_prediction.getGameId());
+				
 				int rows = this.update(l_sql);
 				return rows;
 			}
@@ -193,6 +203,7 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 	 *
 	 */
 	protected class PredictionRowMapper implements ParameterizedRowMapper<Prediction> {
+		public Logger			p_logger	= 	Logger.getLogger(PredictionRowMapper.class.getName());
 		
 		public PredictionRowMapper() {
 			super();
@@ -209,9 +220,14 @@ public class PredictionDao extends AbstractDaoJdbc<Prediction>{
 				dto.setTeam2Prediction(rs.getInt(seqn++));
 				dto.setWinningTeamPrediction(rs.getString(seqn++));
 				dto.setDate(getDate(rs.getDate(seqn++)));
+				
+				this.p_logger.warning("Retrieved: " + dto.getUserId() +", "+ dto.getGameId() +", "+ dto.getTeam1Prediction() +", "+ 
+						dto.getTeam2Prediction() +", "+ dto.getWinningTeamPrediction() +", "+ 
+						dto.getDate()  );
+
 			}
 			catch(Exception e) {
-				m_logger.severe(e.getLocalizedMessage());
+				p_logger.severe(e.getLocalizedMessage());
 			}
 			
 			return dto;
